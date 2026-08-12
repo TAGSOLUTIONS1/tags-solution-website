@@ -161,3 +161,12 @@ npm install && npm run dev  →  http://localhost:3000/success-stories
   Delivered" (imported from data/site.js so it can never drift). A real
   cross-product users figure can be swapped in in one line if leadership
   supplies one — no invented numbers.
+
+## Round 7 — cover images for all 38 stories
+
+- 38 processed covers added at public/niche-covers/<slug>.jpg (1200×800,
+  ~75 KB each, 2.6 MB total). Source: Gemini generations, QA-reviewed
+  (4 regenerated after review, 2 rescued by crop, 1 micro-retouched to
+  remove stray dial text), watermark corners cropped, uniform 3:2.
+- Niche listing cards now open with the story cover; story-page hero
+  renders the cover behind the title via CaseHero's image prop.

@@ -93,10 +93,14 @@ export default function NichePage({ params }) {
                     }}
                   >
                     {isProduct && (
-                      <span style={{ position: "absolute", top: "-13px", left: "50%", transform: "translateX(-50%)", background: "#f57c00", color: "#121820", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".04em", padding: "6px 16px", borderRadius: "20px", whiteSpace: "nowrap" }}>
+                      <span style={{ position: "absolute", top: "-13px", left: "50%", transform: "translateX(-50%)", background: "#f57c00", color: "#121820", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".04em", padding: "6px 16px", borderRadius: "20px", whiteSpace: "nowrap", zIndex: 2 }}>
                         TAGS Product
                       </span>
                     )}
+                    {/* story cover (decorative — the title right below carries the meaning) */}
+                    <span style={{ display: "block", borderRadius: "10px", overflow: "hidden", aspectRatio: "3 / 2", marginBottom: "20px" }}>
+                      <img src={`/niche-covers/${s.slug}.jpg`} alt="" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                    </span>
                     <h6 className="mil-mb-15">Industry: <span className="mil-accent">{s.kicker}</span></h6>
                     <h4 className="mil-mb-15">{s.title}</h4>
                     <p

@@ -87,6 +87,7 @@ export default function NicheStoryPage({ params }) {
         client={clientLabel(s.client)}
         industry={niche.name}
         tags={s.tags}
+        image={`/niche-covers/${s.slug}.jpg`}
         backHref={`/success-stories/niche/${niche.slug}`}
         backLabel={niche.name}
       />
