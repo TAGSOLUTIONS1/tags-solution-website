@@ -7,7 +7,8 @@ import { hero, stats, trustLogos, CALENDLY_URL } from "@/data/site";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { testimonials } from "@/data/testimonials";
-import { getCaseStudies, getBlogs } from "@/lib/api";
+import { getBlogs } from "@/lib/api";
+import { STORIES, NICHES } from "@/data/nicheStories";
 import { models as engagementModels, modelArt } from "@/data/engagement";
 import { pageMeta } from "@/lib/seo";
 
@@ -20,8 +21,24 @@ export const metadata = pageMeta({
 });
 
 export default async function HomePage() {
-  const [caseStudies, blogs] = await Promise.all([getCaseStudies(), getBlogs()]);
-  const featuredCases = caseStudies.slice(0, 4);
+  const blogs = await getBlogs();
+  // Featured stories come from the niche data (the 3 TAGS products + the
+  // portfolio's opening story), not the API's old flat list — see
+  // CHANGES-qa-fixes.md Batch 2.
+  const FEATURED = ["geostats-single-map-entire-city", "gosalify-signal-to-outreach", "findxstorage-ai-marketplace-self-storage", "end-to-end-finance-operations-run-by-agents"];
+  const trim = (t = "") => (t.length <= 140 ? t : t.slice(0, 137).replace(/\s+\S*$/, "") + "…");
+  const nicheName = (slug) => (NICHES.find((n) => n.slug === slug) || {}).name || "";
+  const featuredCases = FEATURED
+    .map((slug) => STORIES.find((st) => st.slug === slug))
+    .filter(Boolean)
+    .map((st) => ({
+      slug: st.slug,
+      href: `/success-stories/niche/${st.niche}/${st.slug}`,
+      image: `/niche-covers/${st.slug}.jpg`,
+      title: st.title,
+      industry: nicheName(st.niche),
+      excerpt: trim((st.overview && st.overview.paras && st.overview.paras[0]) || ""),
+    }));
   const latestBlogs = blogs.slice(0, 6);
   const leftServices = services.slice(0, 4);
   const rightServices = services.slice(4);
@@ -279,7 +296,7 @@ export default async function HomePage() {
           <div className="row align-items-center mil-mb-60-adapt">
             <div className="col-md-6 col-xl-6">
               <span className="mil-suptitle mil-suptitle-2 mil-mb-30">Our Work</span>
-              <h2 className="mil-mb-30">Latest Success Stories</h2>
+              <h2 className="mil-mb-30">Featured Success Stories</h2>
             </div>
             <div className="col-md-6 col-xl-6">
               <div className="mil-adaptive-right">
@@ -295,14 +312,14 @@ export default async function HomePage() {
             <div className="swiper-wrapper">
               {featuredCases.map((c) => (
                 <div className="swiper-slide" key={c.slug}>
-                  <Link href={`/success-stories/${c.slug}`} className="mil-card">
+                  <Link href={c.href} className="mil-card">
                     <div className="mil-cover-frame">
                       <img src={c.image} alt={c.title} />
                     </div>
                     <div className="mil-description">
                       <div className="mil-card-title">
                         <h4 className="mil-mb-20">{c.title}</h4>
-                        <h6>Industry: <span className="mil-accent">{c.industry}</span></h6>
+                        <h6>Niche: <span className="mil-accent">{c.industry}</span></h6>
                       </div>
                       <div className="mil-card-text">
                         <p>{c.excerpt}</p>

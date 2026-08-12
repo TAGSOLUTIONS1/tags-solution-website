@@ -74,11 +74,12 @@ export default function SearchWidget() {
           return [];
         }
       };
-      const [blogs, cases] = await Promise.all([fetchList("/blogs/"), fetchList("/case-studies/")]);
+      // Only blogs come from the API now — every success story is already in
+      // the static index at its canonical niche route (demo studies excluded).
+      const blogs = await fetchList("/blogs/");
       if (cancelled) return;
       const entries = [
         ...blogs.filter((b) => b.slug && b.title).map((b) => ({ type: "Blog", title: b.title, href: `/blog/${b.slug}` })),
-        ...cases.filter((c) => c.slug && c.title).map((c) => ({ type: "Success Story", title: c.title, href: `/success-stories/${c.slug}` })),
       ];
       setRemote(entries);
       setLoaded(true);

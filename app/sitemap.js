@@ -62,8 +62,11 @@ export default async function sitemap() {
   // Old flat routes superseded by niche routes (same content at two URLs) —
   // the pages stay live, but the sitemap lists only the canonical niche URL.
   const supersededSlugs = new Set(["real-estate-marketplace", "edtech-learning-platform"]);
+  // Demo/placeholder studies excluded from the sitemap pending the content
+  // owner's decision on their fate (the pages themselves remain live).
+  const demoSlugs = new Set(["ecommerce-platform-revamp", "healthcare-mobile-app", "fintech-dashboard-solution", "logistics-management-system"]);
   const caseRoutes = cases
-    .filter((c) => !supersededSlugs.has(c.slug))
+    .filter((c) => !supersededSlugs.has(c.slug) && !demoSlugs.has(c.slug))
     .map((c) => ({
       url: `${SITE_URL}/success-stories/${c.slug}`,
       lastModified: now,

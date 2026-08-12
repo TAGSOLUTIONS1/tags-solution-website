@@ -35,3 +35,35 @@ badges, counters, career tags; homepage cert strip / truncation / icons.
 Needs content-owner decision (not fixed here): canonical stats set,
 Services-vs-Solutions menu merge, demo case studies' fate, testimonial
 brand spellings, blog re-dating, "Zero Technical Debt" stat.
+
+## Batch 2 — stale references / rebuild integration (5 fixes)
+
+1. Homepage carousel now shows FEATURED niche stories (the 3 TAGS products
+   + the portfolio's opening story) with the new covers, linking to niche
+   routes — no longer the API's old flat list. Heading renamed "Latest" →
+   "Featured" (nothing is dated; "latest" was false labeling). [tracker I1]
+2. Industry pages' related-work rails are mapped to real niche stories via
+   the new hand-curated data/industryStoryMap.js (2–4 per industry), with
+   covers + niche routes. Dead relatedCases()/CASE_KEYWORDS removed. [I3]
+3. Sitemap: the four demo studies (ShopZone revamp, MediCare, PayStream,
+   LogiTrack) are excluded pending the owner's decision; pages stay live. [I4]
+4. Site search no longer injects remote case studies from the API — every
+   real story is already in the static index at its canonical route. [I5]
+5. Old-vs-new artwork split on homepage/industry rails: resolved
+   automatically by 1–2. [I6]
+
+Still blocked on owner: flagship deep-dives are orphans (relink or delete),
+demo pages' final fate + HomeFind/EduSpark redirects.
+
+### Batch 2 amendment
+- Industry-rail chips now show the INDUSTRY being browsed (e.g. "Industry:
+  Healthcare"), not the story's niche name — niches and industries are
+  different groupings and mixing them on industry pages was confusing.
+- IT rail trimmed to its two bulletproof picks (app builder, self-hosted
+  agents); the codebase story's kicker says "Real Estate" and clashed on
+  click-through from an IT context.
+- Labeling made truthful site-wide: "Industry:" only where the value is a
+  real industry (industry-page rails); story heroes + homepage featured
+  cards say "Niche:" (their value IS a niche); niche-page cards show the
+  kicker as a plain eyebrow with no label word (flagship-hero precedent).
+  Flagship pages keep their original label via a default prop.

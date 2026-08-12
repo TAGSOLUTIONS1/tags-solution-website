@@ -7,7 +7,8 @@ import CountUp from "@/components/CountUp";
 import JsonLd from "@/components/JsonLd";
 import { industries, getIndustry } from "@/data/industries";
 import { CALENDLY_URL } from "@/data/site";
-import { getCaseStudies } from "@/lib/api";
+import { STORIES } from "@/data/nicheStories";
+import { industryStoryMap } from "@/data/industryStoryMap";
 import { pageMeta, breadcrumbSchema } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -27,28 +28,19 @@ export function generateMetadata({ params }) {
 
 // Loose keyword match so each industry surfaces the most relevant case studies,
 // falling back to the latest three when nothing matches.
-const CASE_KEYWORDS = {
-  "financial-services": ["fintech", "finance", "payment", "bank"],
-  healthcare: ["health", "medical", "care", "patient"],
-  logistics: ["logistic", "supply", "fleet", "transport", "chain"],
-  agencies: ["agency", "marketing", "ecommerce", "commerce"],
-  consulting: ["consult", "platform"],
-  "information-technologies": ["tech", "software", "saas", "gaming", "app"],
-};
-
-function relatedCases(all, slug) {
-  const kws = CASE_KEYWORDS[slug] || [];
-  const hay = (c) => `${c.industry} ${c.title} ${(c.tags || []).join(" ")}`.toLowerCase();
-  const matched = all.filter((c) => kws.some((k) => hay(c).includes(k)));
-  return (matched.length ? matched : all).slice(0, 3);
-}
-
 export default async function IndustryDetailPage({ params }) {
   const industry = getIndustry(params.slug);
   if (!industry) notFound();
 
-  const caseStudies = await getCaseStudies();
-  const related = relatedCases(caseStudies, industry.slug);
+  // Related work comes from the niche stories via a hand-curated map
+  // (data/industryStoryMap.js) — not the API's old flat list.
+  // Chip shows THIS industry's name — the visitor is browsing by industry,
+  // so labeling cards with niche names here would be confusing (niches and
+  // industries are two different groupings of the same stories).
+  const related = (industryStoryMap[industry.slug] || [])
+    .map((sl) => STORIES.find((st) => st.slug === sl))
+    .filter(Boolean)
+    .map((st) => ({ slug: st.slug, href: `/success-stories/niche/${st.niche}/${st.slug}`, image: `/niche-covers/${st.slug}.jpg`, title: st.title, industry: industry.title }));
 
   const jsonLd = breadcrumbSchema([
     { name: "Home", path: "/" },
@@ -182,7 +174,7 @@ export default async function IndustryDetailPage({ params }) {
             <div className="row">
               {related.map((c) => (
                 <div className="col-lg-4 mil-mb-30" key={c.slug}>
-                  <Link href={`/success-stories/${c.slug}`} className="mil-card">
+                  <Link href={c.href} className="mil-card">
                     <div className="mil-cover-frame">
                       <img src={c.image} alt={c.title} />
                     </div>

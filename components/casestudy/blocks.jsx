@@ -10,7 +10,7 @@ import BackLink from "@/components/casestudy/BackLink";
 // `backHref`/`backLabel` set the hierarchical back target (defaults keep the
 // original behavior); BackLink upgrades it to true history-back when the
 // visitor came from within the site.
-export function CaseHero({ kicker, title, client, industry, image, tags, backHref = "/success-stories", backLabel = "All Success Stories" }) {
+export function CaseHero({ kicker, title, client, industry, industryLabel = "Industry", image, tags, backHref = "/success-stories", backLabel = "All Success Stories" }) {
   return (
     <div className="mil-banner-sm-2 mil-deep-bg" style={{ height: "auto", minHeight: "460px", background: "linear-gradient(180deg, #181e26 0%, #0e1218 100%)" }}>
       {image && <img src={image} className="mil-background-image" style={{ objectPosition: "center", opacity: 0.5 }} alt={title} />}
@@ -23,7 +23,7 @@ export function CaseHero({ kicker, title, client, industry, image, tags, backHre
           <p className="mil-light-soft">
             {client && <>Client: <span className="mil-light">{client}</span></>}
             {client && industry && " · "}
-            {industry && <>Industry: <span className="mil-light">{industry}</span></>}
+            {industry && <>{industryLabel}: <span className="mil-light">{industry}</span></>}
           </p>
           {Array.isArray(tags) && tags.length > 0 && (
             <ul className="mil-tags mil-mt-30">

@@ -102,7 +102,7 @@ export default function NichePage({ params }) {
                     <span style={{ display: "block", borderRadius: "10px", overflow: "hidden", aspectRatio: "3 / 2", marginBottom: "20px" }}>
                       <img src={`/niche-covers/${s.slug}.jpg`} alt="" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                     </span>
-                    <h6 className="mil-mb-15">Industry: <span className="mil-accent">{s.kicker}</span></h6>
+                    <h6 className="mil-mb-15"><span className="mil-accent">{s.kicker}</span></h6>
                     <h4 className="mil-mb-15">{s.title}</h4>
                     <p
                       className="mil-mb-30"
