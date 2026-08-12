@@ -69,8 +69,10 @@ export default function CaseJourneyTracker({ steps = [] }) {
         {steps.map((s, i) => (
           <li key={s.id} className={i === active ? "is-active" : i < active ? "is-done" : ""}>
             <button type="button" onClick={() => jump(i)}>
-              <span className="cs-num">{String(i + 1).padStart(2, "0")}</span>
-              <span className="cs-lab">{s.label}</span>
+              <span className="cs-tip">
+                <span className="cs-num">{String(i + 1).padStart(2, "0")}</span>
+                <span className="cs-lab">{s.label}</span>
+              </span>
             </button>
           </li>
         ))}

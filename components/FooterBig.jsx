@@ -60,6 +60,7 @@ export default function FooterBig() {
                   <h4 className="mil-list-title mil-light mil-mb-30">Company</h4>
                   <ul className="mil-hover-link-list mil-light">
                     <li><Link href="/about">About Us</Link></li>
+                    <li><Link href="/products">Products</Link></li>
                     <li><Link href="/success-stories">Success Stories</Link></li>
                     <li><Link href="/careers">Careers</Link></li>
                     <li><Link href="/blog">Blog</Link></li>

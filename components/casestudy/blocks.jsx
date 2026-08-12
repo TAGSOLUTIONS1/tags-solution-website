@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BackLink from "@/components/casestudy/BackLink";
 
 // Shared building blocks for the code-served custom case-study pages. All are
 // presentational (server) components styled with the site design system
@@ -6,14 +7,17 @@ import Link from "next/link";
 // these in a bespoke order, so each page is unique but on-brand.
 
 // Dark hero banner with title + client/industry meta and a back link.
-export function CaseHero({ kicker, title, client, industry, image, tags }) {
+// `backHref`/`backLabel` set the hierarchical back target (defaults keep the
+// original behavior); BackLink upgrades it to true history-back when the
+// visitor came from within the site.
+export function CaseHero({ kicker, title, client, industry, image, tags, backHref = "/success-stories", backLabel = "All Success Stories" }) {
   return (
     <div className="mil-banner-sm-2 mil-deep-bg" style={{ height: "auto", minHeight: "460px", background: "linear-gradient(180deg, #181e26 0%, #0e1218 100%)" }}>
       {image && <img src={image} className="mil-background-image" style={{ objectPosition: "center", opacity: 0.5 }} alt={title} />}
       <div className="mil-overlay"></div>
       <div className="mil-banner-content" style={{ paddingTop: "170px", paddingBottom: "80px" }}>
         <div className="container mil-relative">
-          <Link href="/success-stories" className="mil-link link-left mil-light mil-mb-30"><i className="fas fa-arrow-left"></i><span>All Success Stories</span></Link>
+          <BackLink href={backHref} label={backLabel} />
           {kicker && <span className="mil-suptitle mil-accent mil-mb-30" style={{ display: "block" }}>{kicker}</span>}
           <h1 className="mil-uppercase mil-light mil-mb-30" style={{ maxWidth: "20ch" }}>{title}</h1>
           <p className="mil-light-soft">
@@ -23,7 +27,13 @@ export function CaseHero({ kicker, title, client, industry, image, tags }) {
           </p>
           {Array.isArray(tags) && tags.length > 0 && (
             <ul className="mil-tags mil-mt-30">
-              {tags.map((t) => <li key={t}><span>{t}</span></li>)}
+              {tags.map((t) => (
+                <li key={t}>
+                  {/* .mil-tags only pill-styles anchors; hero tags are spans on a
+                      dark banner, so the pill recipe is applied inline (light). */}
+                  <span style={{ display: "inline-flex", background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.2)", color: "rgba(255,255,255,.85)", fontSize: "12px", padding: "2px 12px", borderRadius: "20px", marginBottom: "10px" }}>{t}</span>
+                </li>
+              ))}
             </ul>
           )}
         </div>

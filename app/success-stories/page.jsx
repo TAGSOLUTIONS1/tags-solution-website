@@ -1,8 +1,11 @@
 import Link from "next/link";
 import Header from "@/components/Header";
+import NavTracker from "@/components/casestudy/NavTracker";
 import Footer from "@/components/Footer";
 import CtaBand from "@/components/CtaBand";
-import { getCaseStudies } from "@/lib/api";
+import CountUp from "@/components/CountUp";
+import { NICHES, storiesByNiche, nicheStats } from "@/data/nicheStories";
+import { stats } from "@/data/site";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -12,14 +15,22 @@ export const metadata = pageMeta({
   path: "/success-stories",
 });
 
-export default async function CaseStudiesPage() {
-  const items = await getCaseStudies();
+// Niche-first success stories: the landing page shows the 7 niches we go
+// deepest in; each niche opens its own list of case studies at
+// /success-stories/niche/<niche>, and each study renders at
+// /success-stories/niche/<niche>/<story>. All content lives in
+// data/nicheStories.js.
+// Third stat cell uses the site's own canonical figure so it can never
+// drift from the numbers published elsewhere on the site.
+const projectsStat = stats.find((s) => s.label === "Projects Delivered") || { value: "215+", label: "Projects Delivered" };
 
+export default function SuccessStoriesPage() {
   return (
     <div className="mil-wrapper">
       <Header transparent />
+      <NavTracker />
 
-      {/* hero */}
+      {/* hero (unchanged from the previous flat listing page) */}
       <div className="mil-banner-sm mil-dark-bg">
         <img src="/img/deco/map.png" alt="background" className="mil-background-image" />
         <div className="mil-deco mil-deco-accent" style={{ top: "47%", right: "10%", transform: "rotate(90deg)" }}></div>
@@ -35,40 +46,69 @@ export default async function CaseStudiesPage() {
       </div>
       {/* hero end */}
 
-      {/* success story grid */}
-      <section className="mil-works mil-p-120-90">
-        <div className="mil-deco" style={{ top: 0, right: "20%" }}></div>
+      {/* stats band — per the content owner, the 3 products count INSIDE the
+          38 case studies, so there is no separate products stat. The third
+          cell is the portfolio's own claim, styled like the site's
+          non-numeric stats (About's "Zero / Technical Debt"). */}
+      <section className="mil-deep-bg mil-p-120-120">
         <div className="container">
-          <div className="row">
-            {items.map((c) => (
-              <div className="col-lg-6 mil-mb-60" key={c.slug}>
-                <Link href={`/success-stories/${c.slug}`} className="mil-card">
-                  <div className="mil-cover-frame">
-                    <img src={c.image} alt={c.title} />
-                  </div>
-                  <div className="mil-description">
-                    <div className="mil-card-title">
-                      {c.industry && <h6 className="mil-mb-15">industry: <span className="mil-accent">{c.industry}</span></h6>}
-                      <h4 className="mil-mb-20">{c.title}</h4>
-                    </div>
-                    <div className="mil-card-text">
-                      <p className="mil-mb-20">{c.excerpt}</p>
-                      {Array.isArray(c.tags) && c.tags.length > 0 && (
-                        <ul className="mil-tags">
-                          {c.tags.map((t) => (
-                            <li key={t}><span>{t}</span></li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
+          <div className="row justify-content-center mil-text-center">
+            <div className="col-6 col-md-3 mil-mb-30">
+              <h2 className="mil-accent mil-mb-15"><CountUp value={String(nicheStats.stories)} /></h2>
+              <h6>Case Studies</h6>
+            </div>
+            <div className="col-6 col-md-3 mil-mb-30">
+              <h2 className="mil-accent mil-mb-15"><CountUp value={String(nicheStats.niches)} /></h2>
+              <h6>Niches</h6>
+            </div>
+            <div className="col-6 col-md-3 mil-mb-30">
+              <h2 className="mil-accent mil-mb-15"><CountUp value={projectsStat.value} /></h2>
+              <h6>{projectsStat.label}</h6>
+            </div>
           </div>
         </div>
       </section>
-      {/* success story grid end */}
+      {/* stats band end */}
+
+      {/* niche grid — the niche with the most case studies leads as a
+          full-width featured card; the remaining six form a clean 3×2 grid,
+          so no tile is ever stranded alone. */}
+      <section className="mil-p-120-90" style={{ position: "relative" }}>
+        <div className="mil-deco" style={{ top: 0, right: "20%" }}></div>
+        <div className="container">
+          <div className="row align-items-center mil-mb-60">
+            <div className="col-lg-8">
+              <span className="mil-suptitle mil-suptitle-2 mil-mb-30">Where We Go Deepest</span>
+              <h2 className="mil-mb-0">Explore Our <span className="mil-accent">Niches</span></h2>
+            </div>
+          </div>
+
+          {/* all seven niches as equal horizontal rows (doc order) — a list
+              can't strand an odd tile the way a grid does */}
+          {NICHES.map((n) => {
+            const count = storiesByNiche(n.slug).length;
+            return (
+              <Link
+                key={n.slug}
+                href={`/success-stories/niche/${n.slug}`}
+                className="mil-svc-card mil-mb-30"
+                style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "26px", width: "100%", padding: "30px 34px", background: "#fff", borderRadius: "14px", border: "1px solid rgba(18,24,32,.08)" }}
+              >
+                <div className="mil-icon-frame mil-icon-frame-md" style={{ fontSize: "28px", display: "flex", alignItems: "center", justifyContent: "center", flex: "0 0 auto" }}>
+                  <span aria-hidden="true">{n.icon}</span>
+                </div>
+                <div style={{ flex: "1 1 340px", minWidth: 0 }}>
+                  <h4 className="mil-mb-5">{n.name}</h4>
+                  <h6 className="mil-accent mil-mb-5">{count} case {count === 1 ? "study" : "studies"}</h6>
+                  <p className="mil-mb-0" style={{ color: "#121820" }}>{n.tagline}</p>
+                </div>
+                <span className="mil-link" style={{ flex: "0 0 auto" }}><span>Explore Niche</span><i className="fas fa-arrow-right"></i></span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+      {/* niche grid end */}
 
       <CtaBand
         title="Ready to Be Our Next"
