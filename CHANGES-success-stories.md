@@ -170,3 +170,11 @@ npm install && npm run dev  →  http://localhost:3000/success-stories
   remove stray dial text), watermark corners cropped, uniform 3:2.
 - Niche listing cards now open with the story cover; story-page hero
   renders the cover behind the title via CaseHero's image prop.
+
+## Round 8 — Copilot review
+
+- Search dedupe scoped to remote success stories only (a blog or other
+  remote entry sharing a title with a static item is no longer hidden).
+- Stale featured-card layout comment removed from the listing page.
+- "Industry:" label comment: known item, parked for the content owner
+  (kicker vs short industry label — see QA audit + pending decisions).

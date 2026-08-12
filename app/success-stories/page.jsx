@@ -70,9 +70,7 @@ export default function SuccessStoriesPage() {
       </section>
       {/* stats band end */}
 
-      {/* niche grid — the niche with the most case studies leads as a
-          full-width featured card; the remaining six form a clean 3×2 grid,
-          so no tile is ever stranded alone. */}
+      {/* niche section */}
       <section className="mil-p-120-90" style={{ position: "relative" }}>
         <div className="mil-deco" style={{ top: 0, right: "20%" }}></div>
         <div className="container">

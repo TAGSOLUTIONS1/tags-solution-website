@@ -101,12 +101,17 @@ export default function SearchWidget() {
   }, [open]);
 
   const q = query.trim().toLowerCase();
-  // Remote entries that duplicate a static title (e.g. HomeFind/EduSpark exist
-  // both in the niche data and the API's old flat list) are dropped, so each
-  // result appears once and points at the niche route.
-  const staticTitles = useMemo(() => new Set(staticIndex.map((e) => e.title.toLowerCase())), [staticIndex]);
+  // Remote SUCCESS STORIES that duplicate a static story title (e.g.
+  // HomeFind/EduSpark exist both in the niche data and the API's old flat
+  // list) are dropped, so each story appears once and points at the niche
+  // route. Scoped to success stories only — a blog or other remote entry
+  // that merely shares a title with some static item must not be hidden.
+  const staticStoryTitles = useMemo(
+    () => new Set(staticIndex.filter((e) => e.type === "Success Story").map((e) => e.title.toLowerCase())),
+    [staticIndex]
+  );
   const results = q
-    ? [...staticIndex, ...remote.filter((e) => !staticTitles.has(e.title.toLowerCase()))]
+    ? [...staticIndex, ...remote.filter((e) => e.type !== "Success Story" || !staticStoryTitles.has(e.title.toLowerCase()))]
         .filter((e) => e.title.toLowerCase().includes(q))
         .slice(0, 12)
     : [];
