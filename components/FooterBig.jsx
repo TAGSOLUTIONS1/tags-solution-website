@@ -30,7 +30,7 @@ export default function FooterBig() {
               </p>
               <ul className="mil-simple-list mil-mb-15">
                 {contact.phones.map((p) => (
-                  <li key={p} className="mil-light"><span className="mil-light-soft">{p}</span></li>
+                  <li key={p} className="mil-light"><a href={`tel:${p.replace(/[^+\d]/g, "")}`} className="mil-light-soft">{p}</a></li>
                 ))}
                 {contact.emails.map((e) => (
                   <li key={e}><span className="mil-accent">{e.split("@")[0]}</span><span className="mil-light mil-light-soft">@{e.split("@")[1]}</span></li>
@@ -84,7 +84,7 @@ export default function FooterBig() {
       </div>
       <div className="mil-footer-bottom">
         <div className="container">
-          <p className="mil-text-sm mil-light">© {company.name} {company.founded}–2026.</p>
+          <p className="mil-text-sm mil-light">© {company.name} {company.founded}–{new Date().getFullYear()}.</p>
           <p className="mil-text-sm mil-light">All Rights Reserved.</p>
         </div>
       </div>

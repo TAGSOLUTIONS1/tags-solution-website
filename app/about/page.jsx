@@ -18,7 +18,7 @@ const values = [
     title: "Value Over Delivery",
     icon: "/img/icons/md/1.svg",
     description:
-      "We optimise for the outcome, not the invoice. Every decision is measured against the value it creates for your business, not the hours it fills.",
+      "We optimize for the outcome, not the invoice. Every decision is measured against the value it creates for your business, not the hours it fills.",
   },
   {
     title: "Transparency Over Bureaucracy",

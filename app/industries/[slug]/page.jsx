@@ -189,7 +189,7 @@ export default async function IndustryDetailPage({ params }) {
                     <div className="mil-description">
                       <div className="mil-card-title">
                         <h5 className="mil-mb-20">{c.title}</h5>
-                        <h6>industry: <span className="mil-accent">{c.industry}</span></h6>
+                        <h6>Industry: <span className="mil-accent">{c.industry}</span></h6>
                       </div>
                     </div>
                   </Link>

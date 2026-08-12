@@ -170,7 +170,7 @@ export const services = [
   {
     id: 5,
     slug: "data-and-ai",
-    title: "Data and AI",
+    title: "Data & AI",
     shortTitle: "Data & AI",
     image: "/tags/service-ai.jpg",
     art: "/img/services/data-and-ai.svg",
@@ -210,7 +210,7 @@ export const services = [
   {
     id: 6,
     slug: "enterprise-softwares",
-    title: "Enterprise Softwares",
+    title: "Enterprise Software",
     shortTitle: "Enterprise",
     image: "/tags/service-enterprise.jpg",
     art: "/img/services/enterprise-softwares.svg",

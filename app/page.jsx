@@ -302,7 +302,7 @@ export default async function HomePage() {
                     <div className="mil-description">
                       <div className="mil-card-title">
                         <h4 className="mil-mb-20">{c.title}</h4>
-                        <h6>industry: <span className="mil-accent">{c.industry}</span></h6>
+                        <h6>Industry: <span className="mil-accent">{c.industry}</span></h6>
                       </div>
                       <div className="mil-card-text">
                         <p>{c.excerpt}</p>
@@ -358,7 +358,7 @@ export default async function HomePage() {
                     <div className="mil-description">
                       <div className="mil-card-title">
                         <h4 className="mil-mb-20">{b.title}</h4>
-                        <h6>by: <span className="mil-accent">{b.author}</span></h6>
+                        <h6>By: <span className="mil-accent">{b.author}</span></h6>
                       </div>
                       <div className="mil-card-text">
                         <p style={{ color: "#121820" }}>{b.excerpt}</p>

@@ -68,7 +68,7 @@ export default function Page() {
             </div>
             <div className="col-xl-5 mil-mb-30">
               <p>
-                We are an agile technology partner where great work is recognised and craft is taken seriously. You will work alongside senior engineers on real products, ship to real users, and grow faster than you thought possible&mdash;backed by mentorship, flexibility, and a culture that says &ldquo;we&rdquo; because success is shared.
+                We are an agile technology partner where great work is recognized and craft is taken seriously. You will work alongside senior engineers on real products, ship to real users, and grow faster than you thought possible&mdash;backed by mentorship, flexibility, and a culture that says &ldquo;we&rdquo; because success is shared.
               </p>
             </div>
           </div>

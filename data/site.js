@@ -19,7 +19,7 @@ export const company = {
 
 export const contact = {
   offices: ["Dubai Silicon Oasis, UAE", "Lahore, Punjab, Pakistan"],
-  phones: ["+97-1508620567", "+92-3125050567"],
+  phones: ["+971 50 862 0567", "+92 312 5050567"],
   emails: ["contact@tagsolutionsltd.com", "hr@tagsolutionsltd.com"],
 };
 
@@ -27,20 +27,9 @@ export const social = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/tagsolutionsltd" },
   { label: "Instagram", href: "https://www.instagram.com/tagsltd/" },
   { label: "Facebook", href: "https://www.facebook.com/people/Tag-Solutions/61555203740162/" },
-  { label: "YouTube", href: "#" },
 ];
 
 // Primary navigation. `dropdown` marks mega-menu parents.
-export const nav = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Services", href: "/services", dropdown: "services" },
-  { label: "Industries", href: "/industries", dropdown: "industries" },
-  { label: "Success Stories", href: "/success-stories", dropdown: "success-stories" },
-  { label: "Blogs", href: "/blog", dropdown: "blog" },
-  { label: "Careers", href: "/careers" },
-];
-
 // Services mega-menu (Arbisoft-style): delivery capabilities grouped by
 // discipline. Each item links to the closest service page.
 export const serviceGroups = [
@@ -186,7 +175,7 @@ export const engagementModels = [
     price: "Monthly",
     tagline: "A full squad, embedded in your mission.",
     description:
-      "A cross-functional team of engineers, designers, and a delivery lead who work exclusively on your product as a seamless extension of your organisation.",
+      "A cross-functional team of engineers, designers, and a delivery lead who work exclusively on your product as a seamless extension of your organization.",
     features: [
       "Hand-picked, full-time team",
       "Dedicated delivery manager",
@@ -269,7 +258,7 @@ export const sled = {
   title: "U.S. SLED Delivery Partner",
   subtitle: "State, Local & Education technology delivery",
   description:
-    "TAG Solutions partners with U.S. State, Local, and Education (SLED) organisations to deliver secure, compliant, cloud-native software — from modernisation to net-new builds.",
+    "TAG Solutions partners with U.S. State, Local, and Education (SLED) organizations to deliver secure, compliant, cloud-native software — from modernization to net-new builds.",
   highlights: [
     { title: "State, Local & Education", text: "Purpose-built delivery for public-sector agencies, municipalities, and education institutions." },
     { title: "FedRAMP-Aware Cloud", text: "Cloud architectures designed with FedRAMP and government security baselines in mind." },

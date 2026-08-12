@@ -30,7 +30,7 @@ export const models = [
     price: "Monthly",
     tagline: "A full squad, embedded in your mission.",
     description:
-      "A cross-functional team of engineers, designers, and a delivery lead who work exclusively on your product as a seamless extension of your organisation — without the overhead of hiring.",
+      "A cross-functional team of engineers, designers, and a delivery lead who work exclusively on your product as a seamless extension of your organization — without the overhead of hiring.",
     features: [
       "Hand-picked, full-time team",
       "Dedicated delivery manager",
@@ -165,14 +165,14 @@ export const faqGroups = [
     items: [
       { q: "Is outsourcing expensive?", a: "Not necessarily. A fixed-scope engagement gives you a locked budget upfront with no hiring, onboarding, or infrastructure overhead. For most SMEs it costs less than building and retaining an equivalent in-house team." },
       { q: "How much control do I have when outsourcing?", a: "You define the goals and sign off at each milestone; we handle day-to-day execution and management, and keep you updated with regular demos and reports. You stay in control of direction without managing the details." },
-      { q: "What kind of projects are best suited for outsourcing?", a: "Well-defined initiatives with a clear scope — MVPs, platform builds, integrations, or modernisation — especially when you want a single accountable partner to take it from design to launch." },
+      { q: "What kind of projects are best suited for outsourcing?", a: "Well-defined initiatives with a clear scope — MVPs, platform builds, integrations, or modernization — especially when you want a single accountable partner to take it from design to launch." },
       { q: "How do I maintain quality in outsourced projects?", a: "Quality is maintained through clear KPIs, code reviews, automated testing, and QA processes. You get an experienced team that has shipped similar projects, plus adherence to industry standards that reduces the risk of errors and delays." },
     ],
   },
   {
     group: "Dedicated Teams FAQs",
     items: [
-      { q: "How is a dedicated team different from outsourcing?", a: "A dedicated team works exclusively on your product as an extension of your organisation, with you collaborating closely and making the decisions — whereas outsourcing hands full project ownership to us." },
+      { q: "How is a dedicated team different from outsourcing?", a: "A dedicated team works exclusively on your product as an extension of your organization, with you collaborating closely and making the decisions — whereas outsourcing hands full project ownership to us." },
       { q: "Can I scale the team up or down?", a: "Yes. Team size and composition can be adjusted as your roadmap changes — add specialists for a push, or scale back between phases." },
       { q: "Who manages the dedicated team?", a: "We provide a delivery manager and suggest the structure; you set priorities and direction. It's a shared model built around close collaboration." },
     ],

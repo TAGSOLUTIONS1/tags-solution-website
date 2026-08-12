@@ -42,7 +42,7 @@ const process = [
   { step: "01", title: "Discovery", text: "We map your goals, users, and constraints to define what success looks like." },
   { step: "02", title: "Design", text: "We architect the system and craft the experience, validated early with prototypes." },
   { step: "03", title: "Build", text: "We ship in tight, tested iterations so you see working software often." },
-  { step: "04", title: "Scale", text: "We optimise, monitor, and evolve — adding capacity and intelligence as you grow." },
+  { step: "04", title: "Scale", text: "We optimize, monitor, and evolve — adding capacity and intelligence as you grow." },
 ];
 
 export default function ServiceDetailPage({ params }) {
@@ -118,7 +118,7 @@ export default function ServiceDetailPage({ params }) {
         <div className="mil-deco" style={{ top: 0, right: "20%" }}></div>
         <div className="container">
           <span className="mil-suptitle mil-suptitle-2 mil-mb-30">What We Offer</span>
-          <h2 className="mil-mb-60">Everything You Need To <span className="mil-accent">Succeed</span></h2>
+          <h2 className="mil-mb-60">Everything You Need to <span className="mil-accent">Succeed</span></h2>
           <div className="mil-divider"></div>
           {service.subServices.map((sub, i) => (
             <div key={i}>
