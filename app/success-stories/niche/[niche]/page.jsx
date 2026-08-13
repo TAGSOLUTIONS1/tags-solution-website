@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CtaBand from "@/components/CtaBand";
 import JsonLd from "@/components/JsonLd";
 import BackLink from "@/components/casestudy/BackLink";
+import { NicheIcon } from "@/components/NicheIcons";
 import { NICHES, nicheBySlug, storiesByNiche } from "@/data/nicheStories";
 import { pageMeta, breadcrumbSchema } from "@/lib/seo";
 
@@ -55,9 +56,9 @@ export default function NichePage({ params }) {
         <div className="mil-banner-content">
           <div className="container mil-relative">
             <BackLink href="/success-stories" label="All Niches" />
-            <div className="mil-icon-frame mil-icon-frame-md mil-mb-30" style={{ fontSize: "28px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span aria-hidden="true">{niche.icon}</span>
-            </div>
+            <span className="nx-icon nx-icon-dark mil-mb-30" style={{ display: "flex" }}>
+              <NicheIcon slug={niche.slug} />
+            </span>
             <span className="mil-suptitle mil-accent mil-mb-30" style={{ display: "block" }}>
               Niche · {stories.length} Case {stories.length === 1 ? "Study" : "Studies"}
             </span>

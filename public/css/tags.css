@@ -691,3 +691,46 @@
 
 /* Roles / labeled grid */
 .cs-lead { font-size: 19px; line-height: 1.6; color: rgba(18, 24, 32, .72); max-width: 760px; }
+
+/* --- Niche icon tiles (kept for the niche-page hero) --- */
+.nx-icon {
+  flex: 0 0 auto; width: 52px; height: 52px; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(245, 124, 0, .1); color: #f57c00;
+}
+.nx-icon-dark { background: rgba(255, 255, 255, .09); }
+
+/* --- Niche index (design review v2): editorial divider list. No boxes —
+   full-width rows split by hairlines; big titles; the arrow reveals and the
+   row tints + indents on hover. --- */
+.nl-list { border-top: 1px solid rgba(18, 24, 32, .1); }
+.nl-row {
+  display: flex; align-items: center; gap: 26px;
+  padding: 34px 6px; border-bottom: 1px solid rgba(18, 24, 32, .1);
+  transition: background .2s ease, padding-left .25s ease;
+}
+.nl-row:hover { background: rgba(245, 124, 0, .04); padding-left: 16px; }
+.nl-row:focus-visible { outline: 2px solid #f57c00; outline-offset: -2px; background: rgba(245, 124, 0, .04); }
+.nl-icon { flex: 0 0 auto; display: flex; color: rgba(18, 24, 32, .4); transition: color .2s ease, transform .2s ease; }
+.nl-icon svg { width: 27px; height: 27px; }
+.nl-row:hover .nl-icon { color: #f57c00; transform: scale(1.05); }
+.nl-body { flex: 1 1 auto; min-width: 0; }
+.nl-title { font-size: clamp(21px, 2.3vw, 27px); line-height: 1.25; margin-bottom: 6px; transition: color .2s ease; }
+.nl-row:hover .nl-title { color: #f57c00; }
+.nl-tag { color: rgba(18, 24, 32, .55); margin: 0; max-width: 64ch; line-height: 1.6; }
+/* uniform rows: every tagline occupies exactly a two-line slot (short ones
+   reserve it, long ones wrap inside it) so row heights never jitter */
+@media (min-width: 768px) {
+  .nl-tag { min-height: 3.2em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+}
+.nl-count { flex: 0 0 auto; text-align: right; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(18, 24, 32, .45); white-space: nowrap; line-height: 1.3; }
+.nl-count b { display: block; font-family: Syne, sans-serif; font-size: 23px; font-weight: 800; color: #f57c00; letter-spacing: 0; }
+.nl-arrow { flex: 0 0 auto; width: 40px; display: flex; justify-content: flex-end; color: #f57c00; opacity: 0; transform: translateX(-8px); transition: opacity .22s ease, transform .22s ease; }
+.nl-row:hover .nl-arrow, .nl-row:focus-visible .nl-arrow { opacity: 1; transform: translateX(0); }
+@media (max-width: 767px) {
+  .nl-row { flex-wrap: wrap; gap: 14px 16px; padding: 26px 2px; }
+  .nl-icon { order: 1; }
+  .nl-count { order: 2; margin-left: auto; }
+  .nl-body { order: 3; flex: 1 1 100%; }
+  .nl-arrow { display: none; }
+}

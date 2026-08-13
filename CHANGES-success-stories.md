@@ -178,3 +178,28 @@ npm install && npm run dev  →  http://localhost:3000/success-stories
 - Stale featured-card layout comment removed from the listing page.
 - "Industry:" label comment: known item, parked for the content owner
   (kicker vs short industry label — see QA audit + pending decisions).
+
+## Round 9 — design review (niche cards + iconography)
+
+- Niche listing rows redesigned per review: stroke-icon tile, small-caps
+  count eyebrow (orange number), clear title/tagline hierarchy, circular
+  arrow that fills orange and slides on hover; card lifts 2px with a soft
+  shadow + accent border. Styles in tags.css (.nx-*).
+- NEW components/NicheIcons.jsx — Lucide-style stroke icon set (24px grid,
+  1.75 stroke): one per niche + rocket + arrow. Replaces OS emoji on the
+  listing rows, the niche-page hero tile (dark variant), and the product
+  callout. Emoji rendered differently per OS; strokes render identically.
+- Side effect: the accent-dot-overlapping-icons issue disappears on these
+  surfaces (the new tiles do not use mil-icon-frame).
+- Icon set upgraded to the actual lucide-react library (pinned) per the
+  review's explicit recommendation; NicheIcons.jsx is now a thin wrapper,
+  so pages are unchanged. Adds one dependency — run npm install once.
+
+### Round 9b — bigger swing (follow-up direction)
+- Boxed cards replaced entirely with an editorial divider-list: full-width
+  rows split by hairlines, naked stroke icon, large Syne titles, right-
+  aligned count (orange numeral), arrow that reveals on hover while the row
+  tints and indents. Unmistakably a new component pattern.
+- Row heights equalized: taglines occupy a fixed two-line slot (min-height
+  + clamp guard) so rows never jitter when one wraps and a neighbor does
+  not. Mobile keeps natural stacking.

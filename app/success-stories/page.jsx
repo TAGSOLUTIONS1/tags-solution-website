@@ -6,6 +6,7 @@ import CtaBand from "@/components/CtaBand";
 import CountUp from "@/components/CountUp";
 import { NICHES, storiesByNiche, nicheStats } from "@/data/nicheStories";
 import { stats } from "@/data/site";
+import { NicheIcon, ArrowRightIcon } from "@/components/NicheIcons";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -81,29 +82,24 @@ export default function SuccessStoriesPage() {
             </div>
           </div>
 
-          {/* all seven niches as equal horizontal rows (doc order) — a list
-              can't strand an odd tile the way a grid does */}
-          {NICHES.map((n) => {
-            const count = storiesByNiche(n.slug).length;
-            return (
-              <Link
-                key={n.slug}
-                href={`/success-stories/niche/${n.slug}`}
-                className="mil-svc-card mil-mb-30"
-                style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "26px", width: "100%", padding: "30px 34px", background: "#fff", borderRadius: "14px", border: "1px solid rgba(18,24,32,.08)" }}
-              >
-                <div className="mil-icon-frame mil-icon-frame-md" style={{ fontSize: "28px", display: "flex", alignItems: "center", justifyContent: "center", flex: "0 0 auto" }}>
-                  <span aria-hidden="true">{n.icon}</span>
-                </div>
-                <div style={{ flex: "1 1 340px", minWidth: 0 }}>
-                  <h4 className="mil-mb-5">{n.name}</h4>
-                  <h6 className="mil-accent mil-mb-5">{count} case {count === 1 ? "study" : "studies"}</h6>
-                  <p className="mil-mb-0" style={{ color: "#121820" }}>{n.tagline}</p>
-                </div>
-                <span className="mil-link" style={{ flex: "0 0 auto" }}><span>Explore Niche</span><i className="fas fa-arrow-right"></i></span>
-              </Link>
-            );
-          })}
+          {/* all seven niches — design review v2: editorial divider list
+              (no boxes), big titles, arrow reveals on hover (.nl-* in tags.css) */}
+          <div className="nl-list">
+            {NICHES.map((n) => {
+              const count = storiesByNiche(n.slug).length;
+              return (
+                <Link key={n.slug} href={`/success-stories/niche/${n.slug}`} className="nl-row">
+                  <span className="nl-icon"><NicheIcon slug={n.slug} /></span>
+                  <span className="nl-body">
+                    <h3 className="nl-title">{n.name}</h3>
+                    <p className="nl-tag">{n.tagline}</p>
+                  </span>
+                  <span className="nl-count"><b>{count}</b>case {count === 1 ? "study" : "studies"}</span>
+                  <span className="nl-arrow"><ArrowRightIcon /></span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
       {/* niche grid end */}
