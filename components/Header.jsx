@@ -55,7 +55,7 @@ export default function Header({ transparent = false, fluid = false }) {
                 <li><Link href="/success-stories">Success Stories</Link></li>
                 <li><Link href="/careers">Careers</Link></li>
                 <li className="mil-has-children">
-                  <a href="#">Company</a>
+                  <Link href="/about">Company</Link>
                   <ul>
                     <li><Link href="/about">About Us</Link></li>
                     <li><Link href="/industries">Industries</Link></li>

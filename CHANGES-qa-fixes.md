@@ -127,3 +127,54 @@ demo pages' final fate + HomeFind/EduSpark redirects.
   every page ends on punctuation or a complete clause.
 - This pulls the homepage mid-word-truncation audit finding forward from
   the homepage batch (fixed here instead).
+
+## Batch 4 — homepage & iconography (7 fixes)
+
+1. Certification strip: dead href="#" wrappers removed from all logos (both
+   the desktop row and the mobile marquee); the five logos now sit in one
+   centered row (no more 5-in-3-columns hole); the Claude logo is labeled
+   "Claude" (it said Anthropic); heading reworded to "Our Team Holds
+   Certifications From" (owner may refine the wording). [audit #13]
+2. Homepage services list: icons are now meaningful Lucide icons mapped per
+   service (code/globe/phone/megaphone/database/boxes/cloud) — previously
+   template icons cycled by index with no relation to the service. [#15]
+3. Homepage engagement cards now deep-link to their model on /engagement
+   (#outsourcing / #dedicated / #augmentation), with scroll offset for the
+   fixed header. [#16]
+4. Carousels hardened site-wide: watchOverflow + observer on every Swiper
+   init (first-paint clipping / stale nav states). [#17]
+5. Industries emoji replaced with Lucide across the industries grid, the
+   industry-page heroes, and the homepage industries cards. [#19]
+6. Careers benefits emoji replaced with matching Lucide icons in the same
+   frames. [#19]
+7. Header "Company" parent now links to /about instead of a dead "#" (the
+   dropdown still opens on hover). Full Services-vs-Solutions menu merge
+   remains an owner decision. [#5, partial]
+
+### Batch 4 amendment — trust strip regression
+- meta.svg had no intrinsic width/height (viewBox only); when the dead link
+  wrappers (which had been sizing the logos via a 150px box rule) were
+  removed, Meta collapsed to zero width. The SVG now carries explicit
+  dimensions; images use a definite height; and the marquee/visibility CSS
+  selectors were updated for the new span markup (also prevents the strip
+  rendering twice on mobile).
+
+### Batch 4 items 5-6 reversed (owner preference)
+- Industries surfaces (grid, page heroes, homepage cards) and careers
+  benefits keep their original emoji. Lucide remains where the design
+  review ruled it: the niche surfaces and the homepage services list.
+  Unused icon maps removed from NicheIcons.jsx.
+
+### Batch 4 final shape — 5-6 reinstated + services-list polish
+- Lucide icons re-applied to industries (grid, heroes, homepage cards) and
+  careers benefits (reinstated after review).
+- Homepage services list: icon tiles (soft orange, 50px) sit beside the
+  text instead of stranded in a 30%-wide column; dividers are clean
+  hairlines (orange end-ticks removed); "View All Services" moved out of
+  the Scale & Optimize column into its own centered row under both
+  columns — it belongs to neither category.
+- Homepage industry cards: icons in the same soft orange tiles as the
+  services list (they were naked strokes with a floating dot).
+- "View All Services" moved to the section header, right of the "How We
+  Can Help You" heading — category-neutral and never orphaned in the
+  columns' uneven whitespace.

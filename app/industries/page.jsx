@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBand from "@/components/CtaBand";
 import { industries } from "@/data/industries";
+import { IndustryIcon } from "@/components/NicheIcons";
 import { CALENDLY_URL } from "@/data/site";
 import { pageMeta } from "@/lib/seo";
 
@@ -52,7 +53,7 @@ export default function IndustriesPage() {
                     <img src={ind.image} alt={ind.title} />
                   </Link>
                   <div style={{ padding: "34px", display: "flex", flexDirection: "column", flexGrow: 1 }}>
-                    <h4 className="mil-mb-15"><span aria-hidden="true" style={{ marginRight: "10px" }}>{ind.icon}</span>{ind.title}</h4>
+                    <h4 className="mil-mb-15" style={{ display: "flex", alignItems: "center", gap: "12px" }}><span className="mil-accent" style={{ display: "inline-flex" }}><IndustryIcon slug={ind.slug} /></span>{ind.title}</h4>
                     <p className="mil-mb-30">{ind.excerpt}</p>
                     <ul className="mil-check-icon-list mil-mb-30" style={{ flexGrow: 1 }}>
                       {ind.solutions.slice(0, 3).map((s) => (

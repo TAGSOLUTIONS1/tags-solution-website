@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import CtaBand from "@/components/CtaBand";
 import { stats } from "@/data/site";
 import { benefits, jobOpenings } from "@/data/careers";
+import { BenefitIcon } from "@/components/NicheIcons";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -88,8 +89,8 @@ export default function Page() {
             {benefits.map((b) => (
               <div className="col-md-6 col-xl-4" key={b.title}>
                 <div className="mil-icon-box-2 mil-mb-60">
-                  <div className="mil-icon-frame mil-icon-frame-md mil-icon-bg mil-mb-30" style={{ fontSize: "34px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span aria-hidden="true">{b.icon}</span>
+                  <div className="mil-icon-frame mil-icon-frame-md mil-icon-bg mil-mb-30" style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#f57c00" }}>
+                    <BenefitIcon title={b.title} />
                   </div>
                   <div className="mil-box-text">
                     <h4 className="mil-mb-30">{b.title}</h4>

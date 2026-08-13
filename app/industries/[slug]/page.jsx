@@ -9,6 +9,7 @@ import { industries, getIndustry } from "@/data/industries";
 import { CALENDLY_URL } from "@/data/site";
 import { STORIES } from "@/data/nicheStories";
 import { industryStoryMap } from "@/data/industryStoryMap";
+import { IndustryIcon } from "@/components/NicheIcons";
 import { pageMeta, breadcrumbSchema } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -66,7 +67,7 @@ export default async function IndustryDetailPage({ params }) {
             </ul>
             <div className="row">
               <div className="col-lg-10 col-xl-9">
-                <span className="mil-suptitle mil-mb-30"><span className="mil-light"><span aria-hidden="true" style={{ marginRight: "8px" }}>{industry.icon}</span>{industry.title}</span></span>
+                <span className="mil-suptitle mil-mb-30" style={{ display: "inline-flex", alignItems: "center", gap: "10px" }}><span className="mil-accent" style={{ display: "inline-flex" }}><IndustryIcon slug={industry.slug} size={20} /></span><span className="mil-light">{industry.title}</span></span>
                 <h1 className="mil-light mil-mb-30">{industry.heroHeadline}</h1>
                 <p className="mil-light-soft" style={{ maxWidth: "640px", fontSize: "17px", lineHeight: 1.7 }}>{industry.heroSubtext}</p>
               </div>

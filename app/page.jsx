@@ -10,6 +10,7 @@ import { testimonials } from "@/data/testimonials";
 import { getBlogs } from "@/lib/api";
 import { STORIES, NICHES } from "@/data/nicheStories";
 import { firstSentence, sentenceTrim } from "@/lib/text";
+import { ServiceIcon, IndustryIcon } from "@/components/NicheIcons";
 import { models as engagementModels, modelArt } from "@/data/engagement";
 import { pageMeta } from "@/lib/seo";
 
@@ -133,18 +134,19 @@ export default async function HomePage() {
       {/* trust strip */}
       <div className="mil-partners mil-p-90-60">
         <div className="container">
-          <p className="mil-text-center mil-mb-30 mil-upper mil-suptitle-2">Our Employees are Certified by Big Companies</p>
+          <p className="mil-text-center mil-mb-30 mil-upper mil-suptitle-2">Our Team Holds Certifications From</p>
           {/* desktop: static grid */}
-          <div className="mil-partners-frame mil-trust-desktop">
+          {/* logos are not links — a dead href="#" just scrolls to top */}
+          <div className="mil-trust-desktop" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "34px 64px" }}>
             {trustLogos.map((logo) => (
-              <a href="#" key={logo.name}><img src={logo.src} alt={logo.name} style={{ maxHeight: "34px", width: "auto" }} /></a>
+              <span key={logo.name}><img src={logo.src} alt={logo.name} style={{ height: "34px", width: "auto", display: "block" }} /></span>
             ))}
           </div>
           {/* mobile: seamless left-to-right marquee (logos duplicated for the loop) */}
           <div className="mil-trust-marquee" aria-hidden="true">
             <div className="mil-trust-track">
               {[...trustLogos, ...trustLogos].map((logo, i) => (
-                <a href="#" key={`${logo.name}-${i}`}><img src={logo.src} alt={logo.name} /></a>
+                <span key={`${logo.name}-${i}`}><img src={logo.src} alt={logo.name} /></span>
               ))}
             </div>
           </div>
@@ -173,7 +175,7 @@ export default async function HomePage() {
             {engagementModels.map((m, i) => (
               <div className="col-lg-4 mil-mb-30" key={m.key}>
                 <Link
-                  href="/engagement"
+                  href={`/engagement#${m.key}`}
                   className="mil-svc-card"
                   style={{ display: "flex", flexDirection: "column", height: "100%", padding: "40px 34px", background: "#fff", borderRadius: "14px", border: m.featured ? "2px solid #f57c00" : "1px solid rgba(18,24,32,.08)", position: "relative" }}
                 >
@@ -205,8 +207,8 @@ export default async function HomePage() {
             {industries.map((ind) => (
               <div className="col-md-6 col-lg-4" key={ind.slug}>
                 <Link href={`/industries/${ind.slug}`} className="mil-icon-box-2 mil-mb-60" style={{ display: "block" }}>
-                  <div className="mil-icon-frame mil-icon-frame-md mil-mb-30" style={{ fontSize: "28px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span aria-hidden="true">{ind.icon}</span>
+                  <div className="mil-icon-frame mil-icon-frame-md mil-mb-30" style={{ width: "50px", height: "50px", borderRadius: "13px", background: "rgba(245,124,0,.1)", color: "#f57c00", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <IndustryIcon slug={ind.slug} />
                   </div>
                   <h5 className="mil-mb-15">{ind.title}</h5>
                   <p style={{ color: "#121820" }}>{ind.excerpt}</p>
@@ -225,8 +227,11 @@ export default async function HomePage() {
         <div className="mil-deco" style={{ top: 0, right: "20%" }}></div>
         <div className="container">
           <span className="mil-suptitle mil-suptitle-2 mil-mb-30">Our Core Services</span>
-          <h2 className="mil-mb-30">How We Can <span className="mil-accent">Help You</span></h2>
-          <div className="row">
+          <div className="mil-mb-30" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "16px" }}>
+            <h2 className="mil-mb-0">How We Can <span className="mil-accent">Help You</span></h2>
+            <Link href="/services" className="mil-link"><span>View All Services</span><i className="fas fa-arrow-right"></i></Link>
+          </div>
+          <div className="mil-home-services row">
             <div className="col-lg-6 col-xl-6">
               <h4 className="mil-mb-60 mil-mt-30">Build &amp; Engineer</h4>
               <div className="mil-divider mil-divider-left"></div>
@@ -235,7 +240,7 @@ export default async function HomePage() {
                   <Link href={`/services/${s.slug}`} className="mil-service-item">
                     <div className="mil-service-icon">
                       <div className="mil-icon-frame mil-icon-frame-md">
-                        <img src={`/img/icons/md/${(i % 6) + 1}.svg`} alt="icon" />
+                        <ServiceIcon slug={s.slug} />
                       </div>
                     </div>
                     <div className="mil-service-text">
@@ -255,7 +260,7 @@ export default async function HomePage() {
                   <Link href={`/services/${s.slug}`} className="mil-service-item">
                     <div className="mil-service-icon">
                       <div className="mil-icon-frame mil-icon-frame-md">
-                        <img src={`/img/icons/md/${((i + 4) % 6) + 1}.svg`} alt="icon" />
+                        <ServiceIcon slug={s.slug} />
                       </div>
                     </div>
                     <div className="mil-service-text">
@@ -266,7 +271,6 @@ export default async function HomePage() {
                   <div className="mil-divider mil-divider-left"></div>
                 </div>
               ))}
-              <Link href="/services" className="mil-link mil-mt-30"><span>View All Services</span><i className="fas fa-arrow-right"></i></Link>
             </div>
           </div>
         </div>

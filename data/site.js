@@ -165,7 +165,7 @@ export const trustLogos = [
   { name: "Microsoft", src: "/tags/microsoft.svg" },
   { name: "Meta", src: "/tags/meta.svg" },
   { name: "OpenAI", src: "/tags/openai.svg" },
-  { name: "Anthropic", src: "/tags/claude-logo.svg" },
+  { name: "Claude", src: "/tags/claude-logo.svg" },
 ];
 
 // Engagement models (Arbisoft-style B2B offering — powers /engagement).

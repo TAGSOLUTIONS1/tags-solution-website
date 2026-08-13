@@ -275,7 +275,7 @@
    so the loop is seamless (animating a full 50% == one complete set width). */
 .mil-trust-marquee { display: none; }
 @media screen and (max-width: 992px) {
-  .mil-partners-frame.mil-trust-desktop { display: none !important; }
+  .mil-trust-desktop { display: none !important; }
   .mil-trust-marquee {
     display: block;
     overflow: hidden;
@@ -290,7 +290,7 @@
     /* start shifted one set to the left, slide back to 0 => travels left->right */
     animation: mil-trust-scroll 24s linear infinite;
   }
-  .mil-trust-track a {
+  .mil-trust-track span {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -299,7 +299,7 @@
     /* no hover on touch, so show the logos in full color rather than grayscale */
     filter: none;
   }
-  .mil-trust-track a img {
+  .mil-trust-track span img {
     height: 34px;
     width: auto;
     display: block;
@@ -793,3 +793,14 @@
 .svc-chip { list-style: none; display: inline-flex; align-items: center; gap: 8px; padding: 7px 15px; border-radius: 20px; background: rgba(18, 24, 32, .05); color: #121820; font-size: 13.5px; font-weight: 500; }
 .svc-chip:before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; font-size: 10px; color: #f57c00; }
 @media (max-width: 991px) { .svc-offer { grid-template-columns: 1fr; gap: 16px; padding: 30px 0; } }
+
+/* --- Homepage services list polish: icon tiles close to the text (the
+   template gave a 24px icon a 30%-wide column), hairline dividers without
+   the orange end-ticks, tighter rhythm. --- */
+.mil-home-services .mil-service-item { padding: 26px 0; }
+.mil-home-services .mil-service-item .mil-service-icon { width: auto; padding-left: 0; margin-right: 26px; }
+.mil-home-services .mil-service-item .mil-service-text { width: auto; flex: 1; padding-right: 0; }
+.mil-home-services .mil-icon-frame.mil-icon-frame-md { width: 50px; height: 50px; border-radius: 13px; background: rgba(245, 124, 0, .1); color: #f57c00; }
+.mil-home-services .mil-divider { height: 1px; background: rgba(18, 24, 32, .1); }
+.mil-home-services .mil-divider:before, .mil-home-services .mil-divider:after { display: none; }
+.mil-home-services .mil-service-item h5 { margin-bottom: 12px !important; }
