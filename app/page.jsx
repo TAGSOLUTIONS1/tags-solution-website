@@ -9,6 +9,7 @@ import { industries } from "@/data/industries";
 import { testimonials } from "@/data/testimonials";
 import { getBlogs } from "@/lib/api";
 import { STORIES, NICHES } from "@/data/nicheStories";
+import { firstSentence, sentenceTrim } from "@/lib/text";
 import { models as engagementModels, modelArt } from "@/data/engagement";
 import { pageMeta } from "@/lib/seo";
 
@@ -26,7 +27,6 @@ export default async function HomePage() {
   // portfolio's opening story), not the API's old flat list — see
   // CHANGES-qa-fixes.md Batch 2.
   const FEATURED = ["geostats-single-map-entire-city", "gosalify-signal-to-outreach", "findxstorage-ai-marketplace-self-storage", "end-to-end-finance-operations-run-by-agents"];
-  const trim = (t = "") => (t.length <= 140 ? t : t.slice(0, 137).replace(/\s+\S*$/, "") + "…");
   const nicheName = (slug) => (NICHES.find((n) => n.slug === slug) || {}).name || "";
   const featuredCases = FEATURED
     .map((slug) => STORIES.find((st) => st.slug === slug))
@@ -37,7 +37,7 @@ export default async function HomePage() {
       image: `/niche-covers/${st.slug}.jpg`,
       title: st.title,
       industry: nicheName(st.niche),
-      excerpt: trim((st.overview && st.overview.paras && st.overview.paras[0]) || ""),
+      excerpt: sentenceTrim((st.overview && st.overview.paras && st.overview.paras[0]) || "", 150),
     }));
   const latestBlogs = blogs.slice(0, 6);
   const leftServices = services.slice(0, 4);
@@ -184,7 +184,7 @@ export default async function HomePage() {
                   <span className="mil-accent" style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: "22px", marginBottom: "14px" }}>{String(i + 1).padStart(2, "0")}</span>
                   <h4 className="mil-mb-15">{m.title}</h4>
                   <h6 className="mil-accent mil-mb-15">{m.tagline}</h6>
-                  <p className="mil-mb-30" style={{ flexGrow: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", color: "#121820" }}>{m.description}</p>
+                  <p className="mil-mb-30" style={{ flexGrow: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", color: "#121820" }}>{firstSentence(m.description, 200)}</p>
                   <span className="mil-link"><span>Learn More</span><i className="fas fa-arrow-right"></i></span>
                 </Link>
               </div>
@@ -240,7 +240,7 @@ export default async function HomePage() {
                     </div>
                     <div className="mil-service-text">
                       <h5 className="mil-mb-30"><span className="mil-accent">{String(i + 1).padStart(2, "0")}</span> {s.shortTitle}</h5>
-                      <p style={serviceDescStyle}>{s.description}</p>
+                      <p style={serviceDescStyle}>{firstSentence(s.description)}</p>
                     </div>
                   </Link>
                   <div className="mil-divider mil-divider-left"></div>
@@ -260,7 +260,7 @@ export default async function HomePage() {
                     </div>
                     <div className="mil-service-text">
                       <h5 className="mil-mb-30"><span className="mil-accent">{String(leftServices.length + i + 1).padStart(2, "0")}</span> {s.shortTitle}</h5>
-                      <p style={serviceDescStyle}>{s.description}</p>
+                      <p style={serviceDescStyle}>{firstSentence(s.description)}</p>
                     </div>
                   </Link>
                   <div className="mil-divider mil-divider-left"></div>
@@ -424,7 +424,7 @@ export default async function HomePage() {
                         {[...Array(5)].map((_, j) => <li key={j}><i className="fas fa-star"></i></li>)}
                       </ul>
                     </div>
-                    <p className="mil-mb-30" style={reviewQuoteStyle}>{r.quote}</p>
+                    <p className="mil-mb-30" style={reviewQuoteStyle}>{sentenceTrim(r.quote, 240)}</p>
                     <div className="mil-author">
                       <img src={r.img} alt={r.name} />
                       <div className="mil-name">

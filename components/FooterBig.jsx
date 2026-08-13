@@ -33,7 +33,7 @@ export default function FooterBig() {
                   <li key={p} className="mil-light"><a href={`tel:${p.replace(/[^+\d]/g, "")}`} className="mil-light-soft">{p}</a></li>
                 ))}
                 {contact.emails.map((e) => (
-                  <li key={e}><span className="mil-accent">{e.split("@")[0]}</span><span className="mil-light mil-light-soft">@{e.split("@")[1]}</span></li>
+                  <li key={e}><a href={`mailto:${e}`}><span className="mil-accent">{e.split("@")[0]}</span><span className="mil-light mil-light-soft">@{e.split("@")[1]}</span></a></li>
                 ))}
               </ul>
             </div>

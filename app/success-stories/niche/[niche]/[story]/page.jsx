@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import NavTracker from "@/components/casestudy/NavTracker";
-import { RocketIcon } from "@/components/NicheIcons";
 import Footer from "@/components/Footer";
 import CtaBand from "@/components/CtaBand";
 import CountUp from "@/components/CountUp";
@@ -97,7 +96,7 @@ export default function NicheStoryPage({ params }) {
       {/* product callout */}
       {isProduct && (
         <div className="container mil-mt-60">
-          <Callout icon={<RocketIcon />}>
+          <Callout icon="🚀">
             <strong>{s.client.name}</strong> is a TAGS product — designed, built and owned in-house.
             {" "}Visit{" "}
             <a href={`https://${s.client.url}`} target="_blank" rel="noopener noreferrer" className="mil-accent">

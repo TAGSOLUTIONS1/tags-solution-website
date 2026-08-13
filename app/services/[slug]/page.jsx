@@ -7,6 +7,7 @@ import JsonLd from "@/components/JsonLd";
 import { services, getService } from "@/data/services";
 import { CALENDLY_URL } from "@/data/site";
 import { pageMeta, serviceSchema, breadcrumbSchema } from "@/lib/seo";
+import { firstSentence } from "@/lib/text";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -22,21 +23,6 @@ export function generateMetadata({ params }) {
     image: s.image,
   });
 }
-
-const numBadge = {
-  flexShrink: 0,
-  width: "52px",
-  height: "52px",
-  borderRadius: "50%",
-  background: "#f57c00",
-  color: "#121820",
-  fontWeight: 700,
-  fontFamily: "Syne, sans-serif",
-  fontSize: "18px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-};
 
 const process = [
   { step: "01", title: "Discovery", text: "We map your goals, users, and constraints to define what success looks like." },
@@ -106,7 +92,7 @@ export default function ServiceDetailPage({ params }) {
           <div className="row justify-content-center mil-text-center">
             <div className="col-lg-9">
               <span className="mil-suptitle mil-suptitle-2 mil-mb-30">Overview</span>
-              <h2 className="mil-mb-0">{service.description}</h2>
+              <p className="mil-text-lg mil-mb-0" style={{ color: "#121820" }}>{service.description}</p>
             </div>
           </div>
         </div>
@@ -119,31 +105,27 @@ export default function ServiceDetailPage({ params }) {
         <div className="container">
           <span className="mil-suptitle mil-suptitle-2 mil-mb-30">What We Offer</span>
           <h2 className="mil-mb-60">Everything You Need to <span className="mil-accent">Succeed</span></h2>
-          <div className="mil-divider"></div>
-          {service.subServices.map((sub, i) => (
-            <div key={i}>
-              <div className="row" style={{ paddingTop: "50px", paddingBottom: "50px" }}>
-                <div className="col-lg-5 mil-mb-30">
-                  <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-                    <span style={numBadge}>{String(i + 1).padStart(2, "0")}</span>
-                    <h3 style={{ margin: 0 }}>{sub.title}</h3>
-                  </div>
+          {/* offerings as editorial rows: hairline dividers (no orange end
+              ticks), number + title on a shared grid with the description,
+              features as check chips (.svc-* in tags.css) */}
+          <div className="svc-offer-list">
+            {service.subServices.map((sub, i) => (
+              <div key={i} className="svc-offer">
+                <div className="svc-offer-head">
+                  <span className="svc-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                  <h3 className="svc-offer-title">{sub.title}</h3>
                 </div>
-                <div className="col-lg-7">
-                  <p className="mil-mb-30" style={{ fontSize: "17px" }}>{sub.description}</p>
-                  <ul className="mil-check-icon-list" style={{ display: "flex", flexWrap: "wrap", columnGap: "40px", rowGap: "14px" }}>
+                <div className="svc-offer-body">
+                  <p className="svc-offer-desc">{sub.description}</p>
+                  <ul className="svc-chips">
                     {sub.features.map((f, j) => (
-                      <li key={j}>
-                        <img src="/img/icons/sm/12.svg" alt="icon" />
-                        <span className="mil-dark">{f}</span>
-                      </li>
+                      <li key={j} className="svc-chip">{f}</li>
                     ))}
                   </ul>
                 </div>
               </div>
-              <div className="mil-divider"></div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
       {/* what we offer end */}
@@ -182,7 +164,7 @@ export default function ServiceDetailPage({ params }) {
             {process.map((p) => (
               <div className="col-md-6 col-lg-3" key={p.step}>
                 <div className="mil-mb-60">
-                  <h2 className="mil-accent mil-mb-30">{p.step}</h2>
+                  <span className="cs-stepnum mil-accent mil-mb-30" aria-hidden="true">{p.step}</span>
                   <h5 className="mil-mb-15">{p.title}</h5>
                   <p>{p.text}</p>
                 </div>
@@ -212,7 +194,7 @@ export default function ServiceDetailPage({ params }) {
                   </div>
                   <div style={{ padding: "30px", display: "flex", flexDirection: "column", flexGrow: 1 }}>
                     <h4 className="mil-mb-15">{s.title}</h4>
-                    <p className="mil-mb-30" style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{s.description}</p>
+                    <p className="mil-mb-30" style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{firstSentence(s.description)}</p>
                     <span className="mil-link" style={{ marginTop: "auto" }}><span>Explore</span><i className="fas fa-arrow-right"></i></span>
                   </div>
                 </Link>

@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBand from "@/components/CtaBand";
 import { services } from "@/data/services";
+import { firstSentence } from "@/lib/text";
 import { serviceGroups, CALENDLY_URL } from "@/data/site";
 import { pageMeta } from "@/lib/seo";
 
@@ -51,6 +52,8 @@ const approach = [
   },
 ];
 
+// Card excerpts end at a SENTENCE boundary (the description's own opening
+// sentence[s]) instead of clamping mid-thought with an ellipsis.
 export default function ServicesPage() {
   return (
     <div className="mil-wrapper">
@@ -95,7 +98,7 @@ export default function ServicesPage() {
                   </div>
                   <div style={{ padding: "32px 30px", display: "flex", flexDirection: "column", flexGrow: 1 }}>
                     <h4 className="mil-mb-15">{s.title}</h4>
-                    <p className="mil-mb-30" style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{s.description}</p>
+                    <p className="mil-mb-30" style={{ display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>{firstSentence(s.description)}</p>
                     <div className="mil-mb-30" style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                       {s.tags.map((tag) => (
                         <span className="mil-dark" key={tag} style={{ padding: "5px 14px", border: "1px solid rgba(18,24,32,.12)", borderRadius: "30px", fontSize: "12px" }}>{tag}</span>

@@ -63,7 +63,13 @@ export default function Page() {
                     <h5 className="mil-mb-15">{card.title}</h5>
                     <ul className="mil-simple-list">
                       {card.lines.map((line) => (
-                        <li key={line}><p>{line}</p></li>
+                        <li key={line}>
+                          <p>
+                            {line.includes("@") ? <a href={`mailto:${line}`} className="mil-accent">{line}</a>
+                              : line.trim().startsWith("+") ? <a href={`tel:${line.replace(/[^+\d]/g, "")}`}>{line}</a>
+                              : line}
+                          </p>
+                        </li>
                       ))}
                     </ul>
                   </div>

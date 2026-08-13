@@ -67,3 +67,63 @@ demo pages' final fate + HomeFind/EduSpark redirects.
   cards say "Niche:" (their value IS a niche); niche-page cards show the
   kicker as a plain eyebrow with no label word (flagship-hero precedent).
   Flagship pages keep their original label via a default prop.
+
+## Batch 3 — components (10 fixes)
+
+1. Accordion +/- repositioned inside its own row (right-center) on
+   /engagement and /faq. It used to sit ON the divider below each question,
+   looking attached to the NEXT one, with an orphan + after the last. [High]
+2. "Our Approach" step badges (/services): uniform circles, decorative bars
+   removed, numerals no longer clipped.
+3. Career vacancy tags (/careers): real pills. The badge style only existed
+   in another scope, so tags rendered as unstyled run-on text.
+4. Icon-frame accent dot: moved outside the frame with a page-colored ring,
+   slightly smaller. Stops eating glyph corners site-wide.
+5. Decorative 01-04 numerals (service detail): now aria-hidden spans with an
+   identical look. Screen readers stop announcing "heading: zero one".
+6. Service description un-heading-ed: rendered as a lead paragraph (it was a
+   full sentence inside h2 markup).
+7. CountUp: server-renders the FINAL value, so counters are never blank or
+   zero without JavaScript; the animation replays 0-to-target on first view.
+8. Blog articles: real h1 (pages had none), breadcrumb spacing fixed ("All
+   Articles" vs category no longer run together), byline contrast raised,
+   highlight-box accent corrected from template purple to brand orange.
+   NOTE: the "duplicate title" seen live comes from post content itself
+   (the API), not this template.
+9. Cookie notice: closing now equals reject non-essential and the copy says
+   so; buttons renamed "Accept all" / "Reject non-essential"; the
+   contradictory "close to continue without accepting" line removed.
+10. Emails clickable: mailto links in the footer and on /contact info cards
+    (phone lines there are tel: links too).
+
+### Batch 3 amendments (visual QA pass)
+- Accordion divider moved from the question row to the END of each Q+A
+  unit (border now on the panel) — the line no longer floats between a
+  question and its own answer; paddings normalized incl. first row.
+- Step badges: mil-lines variant background restored (its circle vanished
+  once the decorative bars were removed); accent dot tucked inside the
+  circle corner with a white ring.
+- Services cards: excerpts now end at a sentence boundary (the
+  description's own opening sentence) instead of clamping mid-thought
+  with an ellipsis; the 3-line clamp stays as a guard.
+- Check lists (engagement, industries, service offerings): the dark
+  double-ring 12.svg check replaced site-wide with a brand check (orange
+  tick, soft orange circle) via CSS — no markup changes.
+- Services card excerpts corrected to FIRST sentence only: the previous
+  two-sentence excerpt was visually re-truncated by the 3-line clamp at
+  the exact old spot, making the fix invisible on screen.
+- Service-detail offerings section redesigned: mil-divider separators
+  (orange end-ticks) replaced with clean hairline rows; number badge +
+  title share a grid with the description; features are check chips.
+
+### Excerpt sweep (site-wide)
+- NEW lib/text.js: one shared sentence-safe excerpt rule. Excerpts end on a
+  complete sentence; if a single sentence is too long for its slot, the cut
+  lands on the last natural pause (comma/dash) — never a dangling word.
+- Wired into every truncating surface: homepage services list (x2 columns),
+  homepage engagement cards, homepage testimonial quotes, homepage featured
+  stories, /services listing cards, service-detail "Other Services" rail,
+  and niche story cards. Verified in the build: every clamped excerpt on
+  every page ends on punctuation or a complete clause.
+- This pulls the homepage mid-word-truncation audit finding forward from
+  the homepage batch (fixed here instead).

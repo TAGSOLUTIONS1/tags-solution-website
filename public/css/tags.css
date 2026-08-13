@@ -734,3 +734,62 @@
   .nl-body { order: 3; flex: 1 1 100%; }
   .nl-arrow { display: none; }
 }
+
+/* --- QA Batch 3: component fixes --- */
+/* 1. Accordions (engagement + faq): the +/- used to sit ON the divider below
+   each question (looking attached to the NEXT one, with an orphan + after the
+   last). Now it sits right-center inside its own row. */
+.mil-accordion { padding: 25px 50px 25px 0 !important; }
+.mil-accordion:after { left: auto !important; right: 12px !important; bottom: auto !important; top: 50% !important; transform: translateY(-50%); background: transparent !important; padding: 0 !important; }
+/* 2. Approach step badges: uniform circles, no decorative bars, no clipping. */
+.mil-number-icon { border-radius: 50% !important; overflow: visible !important; width: 80px !important; height: 80px !important; }
+.mil-number-icon span { font-size: 26px; }
+.mil-number-icon.mil-lines:before, .mil-number-icon.mil-lines:after { display: none !important; }
+/* 3. Career vacancy tags: proper pills (the badge style only existed inside
+   .mil-vacancy-head; the tags frame had none). */
+.mil-tags-frame .mil-badge { display: inline-flex; align-items: center; padding: 3px 14px; border-radius: 20px; background: rgba(18, 24, 32, .08); color: #121820; font-size: 12px; font-weight: 500; text-transform: none; }
+/* 4. Accent dot on icon frames: nudged outside the frame with a page-colored
+   ring so it stops eating glyph corners, and slightly smaller. */
+.mil-icon-frame.mil-icon-frame-md:before { width: 13px !important; height: 13px !important; bottom: -5px !important; right: -5px !important; box-shadow: 0 0 0 3px #fff; }
+.mil-icon-frame.mil-icon-frame-sm:before { width: 9px !important; height: 9px !important; bottom: -4px !important; right: -4px !important; box-shadow: 0 0 0 2px #fff; }
+/* 5. Decorative step numerals (rendered as spans now, h2 look preserved). */
+.cs-stepnum { display: block; font-family: Syne, sans-serif; font-weight: 600; color: inherit; font-size: 42px; line-height: 140%; }
+@media screen and (max-width: 992px) { .cs-stepnum { font-size: 32px; } }
+
+/* --- Batch 3 amendments (visual QA) --- */
+/* A. Accordion divider belongs at the END of each Q+A unit, not between a
+   question and its own answer: line moves from the head to the panel. */
+.mil-accordion { border-bottom: none !important; padding: 22px 50px 22px 0 !important; }
+.mil-accordion:first-child { padding-top: 22px !important; }
+.mil-panel { border-bottom: 1px solid rgba(18, 24, 32, .12); }
+.mil-panel .mil-window { padding-bottom: 25px; }
+/* B. Step badges: the mil-lines variant had a transparent background (its
+   circle vanished once the bars were removed) — restore it; and tuck the
+   accent dot inside the circle's corner with a white ring. */
+.mil-number-icon.mil-lines { background-color: rgba(18, 24, 32, .05) !important; }
+.mil-number-icon span:before { width: 14px !important; height: 14px !important; bottom: 10px !important; right: 14px !important; box-shadow: 0 0 0 3px #fff; }
+/* C. Check lists (engagement models, industries, service offerings): the
+   12.svg asset drew a heavy dark double-ring check. Replaced everywhere with
+   a brand check — orange tick in a soft orange circle. */
+.mil-check-icon-list li { align-items: center; }
+.mil-check-icon-list li img { display: none; }
+.mil-check-icon-list li:before {
+  content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900;
+  color: #f57c00; font-size: 11px; width: 22px; height: 22px;
+  flex: 0 0 auto; margin-right: 15px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(245, 124, 0, .12);
+}
+
+/* --- Service offerings rows (design pass): replaces mil-divider separators
+   (whose orange end-ticks read as artifacts) and floating check labels. --- */
+.svc-offer-list { border-top: 1px solid rgba(18, 24, 32, .1); }
+.svc-offer { display: grid; grid-template-columns: minmax(0, 380px) 1fr; gap: 22px 48px; padding: 40px 0; border-bottom: 1px solid rgba(18, 24, 32, .1); }
+.svc-offer-head { display: flex; align-items: center; gap: 18px; align-self: start; }
+.svc-num { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: #f57c00; color: #fff; font-family: Syne, sans-serif; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+.svc-offer-title { margin: 0; font-size: clamp(20px, 2vw, 26px); line-height: 1.3; }
+.svc-offer-desc { color: rgba(18, 24, 32, .6); font-size: 16px; margin-bottom: 18px; max-width: 62ch; }
+.svc-chips { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; }
+.svc-chip { list-style: none; display: inline-flex; align-items: center; gap: 8px; padding: 7px 15px; border-radius: 20px; background: rgba(18, 24, 32, .05); color: #121820; font-size: 13.5px; font-weight: 500; }
+.svc-chip:before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; font-size: 10px; color: #f57c00; }
+@media (max-width: 991px) { .svc-offer { grid-template-columns: 1fr; gap: 16px; padding: 30px 0; } }
