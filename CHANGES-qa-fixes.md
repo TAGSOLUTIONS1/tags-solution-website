@@ -212,3 +212,15 @@ demo pages' final fate + HomeFind/EduSpark redirects.
   lands in one commit the moment the owner approves the wording. All
   other Batch 5 fixes (form a11y/autofill, hexagon, lightbox, deep-links)
   stand.
+
+### Owner-side instructions applied
+- Pakistan phone number and the Lahore, Punjab, Pakistan location removed
+  site-wide (contact cards, footer, FAQ answer, contact metadata). Dubai
+  Silicon Oasis remains the sole office/number.
+- Careers: Project Manager position relocated to Dubai, UAE.
+- Item 9 applied per owner delegation: the unverifiable "Zero Technical
+  Debt Delivery" stat replaced with "30-Day Post-Launch Warranty" — a
+  claim the engagement page already publishes, so the About band now
+  cites only verifiable-by-the-site facts. IT industries blurb rewritten
+  ("Engineering muscle and architecture guidance for technology companies
+  that need to ship fast and scale safely.").

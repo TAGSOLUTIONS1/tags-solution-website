@@ -35,7 +35,7 @@ export const jobOpenings = [
     id: "3",
     title: "Project Manager",
     department: "Delivery",
-    location: "Lahore",
+    location: "Dubai, UAE",
     type: "Full-time",
     tags: ["Project Management", "Agile", "Delivery", "Stakeholder Management"],
     description:

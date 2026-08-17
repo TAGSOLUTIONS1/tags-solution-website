@@ -136,7 +136,7 @@ export const industries = [
     title: "Information Technologies",
     icon: "💻",
     image: "/tags/industry-it.jpg",
-    excerpt: "The engineering firepower and architecture guidance IT companies need to ship and scale.",
+    excerpt: "Engineering muscle and architecture guidance for technology companies that need to ship fast and scale safely.",
     heroHeadline: "A technology partner that helps IT companies ship and scale faster",
     heroSubtext:
       "From product engineering to embedded teams, we give technology companies the talent, tools, and architecture to grow.",

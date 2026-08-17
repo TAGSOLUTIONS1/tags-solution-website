@@ -7,7 +7,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "Contact Us",
   description:
-    "Have a project in mind? Book a free discovery call with TAG Solutions. Offices in Dubai Silicon Oasis, UAE and Lahore, Pakistan.",
+    "Have a project in mind? Book a free discovery call with TAG Solutions. Offices in Dubai Silicon Oasis, UAE.",
   path: "/contact",
 });
 

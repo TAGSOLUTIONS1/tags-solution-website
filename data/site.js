@@ -18,8 +18,8 @@ export const company = {
 };
 
 export const contact = {
-  offices: ["Dubai Silicon Oasis, UAE", "Lahore, Punjab, Pakistan"],
-  phones: ["+971 50 862 0567", "+92 312 5050567"],
+  offices: ["Dubai Silicon Oasis, UAE"],
+  phones: ["+971 50 862 0567"],
   emails: ["contact@tagsolutionsltd.com", "hr@tagsolutionsltd.com"],
 };
 
@@ -156,7 +156,7 @@ export const aboutStats = [
   { value: "4+", label: "Years of Engineering Depth" },
   { value: "50+", label: "Scalable Platforms Launched" },
   { value: "95%+", label: "Client Retention Rate" },
-  { value: "Zero", label: "Technical Debt Delivery" },
+  { value: "30-Day", label: "Post-Launch Warranty" },
 ];
 
 // "Our Employees are Certified by Big Companies" — trust strip.
@@ -233,7 +233,7 @@ export const faqs = [
   },
   {
     q: "Where are your teams located?",
-    a: "We operate from Dubai Silicon Oasis, UAE and Lahore, Pakistan, serving clients across the UAE, Pakistan, and beyond. Our teams work across time zones with overlapping hours for real-time collaboration.",
+    a: "We operate from Dubai Silicon Oasis, UAE, serving clients across the region and beyond. Our teams work across time zones with overlapping hours for real-time collaboration.",
   },
   {
     q: "How do you ensure quality and security?",
