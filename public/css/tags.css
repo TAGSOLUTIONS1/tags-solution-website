@@ -804,3 +804,17 @@
 .mil-home-services .mil-divider { height: 1px; background: rgba(18, 24, 32, .1); }
 .mil-home-services .mil-divider:before, .mil-home-services .mil-divider:after { display: none; }
 .mil-home-services .mil-service-item h5 { margin-bottom: 12px !important; }
+
+/* --- Flagship gallery lightbox --- */
+.cs-lightbox-thumb { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; text-align: inherit; }
+.cs-lightbox-thumb:focus-visible { outline: 2px solid #f57c00; outline-offset: 3px; border-radius: 10px; }
+.cs-lightbox { position: fixed; inset: 0; z-index: 1200; background: rgba(18, 24, 32, .93); display: flex; align-items: center; justify-content: center; padding: 4vh 4vw; cursor: zoom-out; }
+.cs-lightbox figure { margin: 0; max-width: 92vw; max-height: 88vh; cursor: default; text-align: center; }
+.cs-lightbox img { max-width: 92vw; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 24px 80px rgba(0, 0, 0, .5); }
+.cs-lightbox figcaption { color: rgba(255, 255, 255, .75); font-size: 13px; margin-top: 14px; }
+.cs-lb-close, .cs-lb-nav { position: fixed; z-index: 1201; border: 0; cursor: pointer; color: #fff; background: rgba(255, 255, 255, .1); width: 46px; height: 46px; border-radius: 50%; font-size: 22px; display: flex; align-items: center; justify-content: center; transition: background .2s ease; }
+.cs-lb-close:hover, .cs-lb-nav:hover { background: #f57c00; }
+.cs-lb-close { top: 22px; right: 22px; }
+.cs-lb-prev { left: 22px; top: 50%; transform: translateY(-50%); }
+.cs-lb-next { right: 22px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 575px) { .cs-lb-prev { left: 10px; } .cs-lb-next { right: 10px; } }

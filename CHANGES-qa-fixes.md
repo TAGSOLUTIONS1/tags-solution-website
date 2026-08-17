@@ -178,3 +178,37 @@ demo pages' final fate + HomeFind/EduSpark redirects.
 - "View All Services" moved to the section header, right of the "How We
   Can Help You" heading — category-neutral and never orphaned in the
   columns' uneven whitespace.
+
+## Batch 5 — contact, privacy, lightbox, deep-links (final independent batch)
+
+1. DISCOVERY: the contact form was already wired — it POSTs to the live
+   API's /contact-messages/ endpoint with a cold-start retry and inline
+   success/error states (the audit's "not wired" described the old site).
+   Batch 5 adds what was genuinely missing: label association (htmlFor/id
+   on all four fields), name + autocomplete attributes (browser autofill),
+   aria-live/role on the status messages, a real mailto link inside the
+   error message, and the privacy sentence now links to /privacy.
+   OWNER: confirm the API's contact-messages inbox is actively monitored.
+2. NEW /privacy — DRAFT policy page describing what the site actually does
+   (form data -> API for responding; essential + consent-based marketing
+   cookies per the cookie notice). Clearly bannered as draft, noindex, out
+   of the sitemap until approved. Linked from the form's privacy sentence,
+   the cookie notice, and the footer's copyright line.
+3. Contact hexagon: the accent deco carried z-index 1 (above the heading);
+   now layered behind a z-indexed content wrapper, pointer-events off.
+4. Flagship galleries: screenshots open in a lightbox — click any shot for
+   full size; Esc/backdrop/x closes, arrows + keyboard navigate, counter
+   caption. Gallery+DeviceFrame moved to a client component
+   (GalleryLightbox.jsx); blocks.jsx re-exports, so pages are unchanged.
+5. "See Our Work" on service pages deep-links to the matching niche where
+   affinity is clear (marketing->sales niche, data-ai->enterprise data,
+   enterprise->domain-native, mobile->consumer platforms, web->
+   marketplaces); software-development and cloud-engineering span many
+   niches and go to the full landing.
+
+### Batch 5 item 2 withdrawn pending owner approval
+- The /privacy page and its three links (form sentence, cookie notice,
+  footer) are removed from this PR. The draft is written and ready — it
+  lands in one commit the moment the owner approves the wording. All
+  other Batch 5 fixes (form a11y/autofill, hexagon, lightbox, deep-links)
+  stand.

@@ -31,6 +31,16 @@ const process = [
   { step: "04", title: "Scale", text: "We optimize, monitor, and evolve — adding capacity and intelligence as you grow." },
 ];
 
+// Services with a clearly matching niche deep-link there; the rest go to the
+// full success-stories landing (their work spans many niches).
+const WORK_NICHE = {
+  "digital-marketing": "sales-marketing-growth",
+  "data-and-ai": "enterprise-data-knowledge-secure-ai",
+  "enterprise-softwares": "domain-native-industry-solutions",
+  "mobile-app-development": "adaptive-learning-consumer-platforms",
+  "web-development": "real-estate-proptech-marketplaces",
+};
+
 export default function ServiceDetailPage({ params }) {
   const service = getService(params.slug);
   if (!service) {
@@ -77,7 +87,7 @@ export default function ServiceDetailPage({ params }) {
                 </div>
                 <div className="mil-buttons-frame" style={{ display: "flex", flexWrap: "wrap", gap: "15px" }}>
                   <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="mil-button mil-accent-bg"><span>Book a Discovery Call</span></a>
-                  <Link href="/success-stories" className="mil-button mil-border mil-light"><span>See Our Work</span></Link>
+                  <Link href={WORK_NICHE[service.slug] ? `/success-stories/niche/${WORK_NICHE[service.slug]}` : "/success-stories"} className="mil-button mil-border mil-light"><span>See Our Work</span></Link>
                 </div>
               </div>
             </div>

@@ -89,10 +89,12 @@ export default function Page() {
                   padding: "clamp(28px, 4vw, 56px)",
                 }}
               >
-                <div className="mil-deco mil-deco-accent" style={{ top: "20px", right: "8%" }}></div>
+                <div className="mil-deco mil-deco-accent" style={{ top: "20px", right: "8%", zIndex: 0, pointerEvents: "none" }}></div>
+                <div style={{ position: "relative", zIndex: 1 }}>
                 <h2 className="mil-light mil-mb-15">Send Us a <span className="mil-accent">Message</span></h2>
                 <p className="mil-light-soft mil-mb-60">Tell us a little about your project and we&apos;ll get back to you shortly.</p>
                 <ContactForm />
+                </div>
               </div>
             </div>
           </div>

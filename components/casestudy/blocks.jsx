@@ -80,20 +80,9 @@ export function Body({ paragraphs, className = "mil-mb-30", max = "760px" }) {
 }
 
 // Device-framed screenshot. kind: "phone" | "browser" | "plain".
-export function DeviceFrame({ src, alt = "", kind = "plain" }) {
-  if (kind === "phone") {
-    return <div className="cs-phone"><img src={src} alt={alt} loading="lazy" /></div>;
-  }
-  if (kind === "browser") {
-    return (
-      <div className="cs-browser">
-        <div className="cs-browser-bar"><i /><i /><i /><span className="cs-browser-url" /></div>
-        <img src={src} alt={alt} loading="lazy" />
-      </div>
-    );
-  }
-  return <img className="cs-plainshot" src={src} alt={alt} loading="lazy" />;
-}
+import { DeviceFrame } from "./GalleryLightbox";
+export { Gallery } from "./GalleryLightbox";
+
 
 // Two-column image + copy. `reverse` puts the image on the right.
 export function Split({ image, alt, frame = "plain", reverse = false, children }) {
@@ -159,19 +148,6 @@ export function CardGrid({ items, wide = false }) {
   );
 }
 
-// Screenshot gallery in device frames (auto-fill, no crop).
-export function Gallery({ images, frame = "browser" }) {
-  const imgs = (Array.isArray(images) ? images : []).filter(Boolean);
-  if (!imgs.length) return null;
-  const phone = frame === "phone";
-  return (
-    <div className="cs-gallery" style={phone ? { gridTemplateColumns: "repeat(auto-fill, minmax(210px, 1fr))" } : undefined}>
-      {imgs.map((im, i) => (
-        <DeviceFrame key={i} src={im.src || im} alt={im.alt || ""} kind={frame} />
-      ))}
-    </div>
-  );
-}
 
 // Pull quote.
 export function Quote({ quote, author }) {
