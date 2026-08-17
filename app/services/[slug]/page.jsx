@@ -54,7 +54,7 @@ export default function ServiceDetailPage({ params }) {
     serviceSchema(service, path),
     breadcrumbSchema([
       { name: "Home", path: "/" },
-      { name: "Services", path: "/services" },
+      { name: "Solutions", path: "/services" },
       { name: service.shortTitle || service.title, path },
     ]),
   ];
@@ -72,12 +72,12 @@ export default function ServiceDetailPage({ params }) {
           <div className="container">
             <ul className="mil-breadcrumbs mil-breadcrumbs-light mil-mb-30">
               <li><Link href="/">Home</Link></li>
-              <li><Link href="/services">Services</Link></li>
+              <li><Link href="/services">Solutions</Link></li>
               <li><Link href={`/services/${service.slug}`}>{service.shortTitle}</Link></li>
             </ul>
             <div className="row">
               <div className="col-lg-10 col-xl-9">
-                <span className="mil-suptitle mil-mb-30"><span className="mil-light">Our Services</span></span>
+                <span className="mil-suptitle mil-mb-30"><span className="mil-light">Our Solutions</span></span>
                 <h1 className="mil-light mil-mb-30">{service.title}</h1>
                 <p className="mil-light-soft mil-mb-30" style={{ maxWidth: "640px", fontSize: "17px", lineHeight: 1.7 }}>{service.heroDescription}</p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "40px" }}>
@@ -190,7 +190,7 @@ export default function ServiceDetailPage({ params }) {
         <div className="mil-deco" style={{ bottom: 0, right: "30%", transform: "rotate(180deg)" }}></div>
         <div className="container">
           <span className="mil-suptitle mil-suptitle-2 mil-mb-30">Keep Exploring</span>
-          <h2 className="mil-mb-60">Other <span className="mil-accent">Services</span></h2>
+          <h2 className="mil-mb-60">Other <span className="mil-accent">Solutions</span></h2>
           <div className="row">
             {otherServices.map((s, i) => (
               <div className="col-lg-4 col-md-6 mil-mb-30" key={s.slug}>
@@ -200,7 +200,7 @@ export default function ServiceDetailPage({ params }) {
                   style={{ display: "flex", flexDirection: "column", height: "100%", background: "#fff", border: "1px solid rgba(18,24,32,.08)", borderRadius: "14px", overflow: "hidden" }}
                 >
                   <div className="mil-svc-img" style={{ position: "relative", overflow: "hidden", height: "200px", background: "#f6f8fa" }}>
-                    <img src={s.art || s.image} alt={`How ${s.title} works`} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                    <img src={s.art || s.image} alt={`How ${s.title} works`} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block", padding: "10px" }} />
                   </div>
                   <div style={{ padding: "30px", display: "flex", flexDirection: "column", flexGrow: 1 }}>
                     <h4 className="mil-mb-15">{s.title}</h4>
@@ -215,7 +215,7 @@ export default function ServiceDetailPage({ params }) {
       </section>
       {/* other services end */}
 
-      <CtaBand primary={{ label: "Book a Discovery Call", href: CALENDLY_URL }} secondary={{ label: "View All Services", href: "/services" }} />
+      <CtaBand primary={{ label: "Book a Discovery Call", href: CALENDLY_URL }} secondary={{ label: "View All Solutions", href: "/services" }} />
 
       <Footer />
     </div>

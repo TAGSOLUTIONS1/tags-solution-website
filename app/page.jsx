@@ -226,10 +226,10 @@ export default async function HomePage() {
       <section className="mil-services mil-p-120-90">
         <div className="mil-deco" style={{ top: 0, right: "20%" }}></div>
         <div className="container">
-          <span className="mil-suptitle mil-suptitle-2 mil-mb-30">Our Core Services</span>
+          <span className="mil-suptitle mil-suptitle-2 mil-mb-30">Our Core Solutions</span>
           <div className="mil-mb-30" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "16px" }}>
             <h2 className="mil-mb-0">How We Can <span className="mil-accent">Help You</span></h2>
-            <Link href="/services" className="mil-link"><span>View All Services</span><i className="fas fa-arrow-right"></i></Link>
+            <Link href="/services" className="mil-link"><span>View All Solutions</span><i className="fas fa-arrow-right"></i></Link>
           </div>
           <div className="mil-home-services row">
             <div className="col-lg-6 col-xl-6">

@@ -818,3 +818,8 @@
 .cs-lb-prev { left: 22px; top: 50%; transform: translateY(-50%); }
 .cs-lb-next { right: 22px; top: 50%; transform: translateY(-50%); }
 @media (max-width: 575px) { .cs-lb-prev { left: 10px; } .cs-lb-next { right: 10px; } }
+
+/* Other Solutions rail: illustrations carry their caption inside the artwork —
+   contain-fit shows it whole, and the hover zoom is disabled here so the
+   caption can never clip at the frame edge. */
+.mil-svc-card:hover .mil-svc-img img { transform: none; }

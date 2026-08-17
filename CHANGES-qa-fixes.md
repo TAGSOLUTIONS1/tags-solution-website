@@ -224,3 +224,38 @@ demo pages' final fate + HomeFind/EduSpark redirects.
   cites only verifiable-by-the-site facts. IT industries blurb rewritten
   ("Engineering muscle and architecture guidance for technology companies
   that need to ship fast and scale safely.").
+
+### Owner round 2 — Solutions conversion (draft; URLs unchanged)
+- Header: "Services" menu removed; "Solutions" remains, its dropdown now
+  lists the 7 offerings directly (Software Development, Web, Mobile,
+  Digital Marketing, Data & AI, Enterprise Software, Cloud Engineering).
+- Labels flipped site-wide: listing page ("Explore Our Solutions", title,
+  hero), detail pages (breadcrumb, "Our Solutions", "Other Solutions",
+  "View All Solutions" CTA), homepage ("Our Core Solutions", "View All
+  Solutions"), About buttons, footer column, search result chips
+  ("Solution").
+- The listing's "Full Capabilities" section (an on-page copy of the old
+  grouped menu — the same duplication in page form) removed; the dead
+  serviceGroups/solutionGroups configs deleted (4 consumers rewired:
+  Header, FooterBig, SearchWidget, the listing).
+- URLs deliberately unchanged (/services/... everywhere) — labels and
+  addresses are independent; a /solutions URL migration would be a
+  separate decision with redirects.
+- Careers: all three Dubai roles standardized to "Dubai, UAE".
+- Post-conversion re-sweep: hero headline "Services That Move Your..." ->
+  "Solutions That Move..."; footer had TWO Solutions columns (the original
+  Solutions column + the renamed ex-Services one) — twin removed, three
+  remaining columns rebalanced; stale mega-menu comment deleted; listing
+  meta description word flipped. Intentionally kept: NAICS 541511 "Custom
+  Computer Programming Services" (legal classification, x2 on /sled),
+  Financial Services (industry name), all /services URLs.
+
+### Owner round 2 additions
+- "Other Solutions" cards: illustrations switch to contain-fit with padding
+  so the caption baked into each artwork bottom is never cropped (cover-
+  fit was clipping it at the 200px window, worst on hover).
+- Data & AI offerings: "AI Automation" renamed and rewritten as "Agentic
+  AI" (agents, orchestration, human-in-the-loop) and a fifth offering
+  "Generative AI" added (LLM integration, RAG, fine-tuning); tools gained
+  an "LLMs & Agents" row (OpenAI, Anthropic Claude, LangChain, HF).
+- Footer: phone and email fully accent-orange.

@@ -120,7 +120,7 @@ export default function Page() {
                 Our mission is to empower businesses with technology that drives growth, efficiency, and digital transformation &mdash; building lasting partnerships and delivering results that exceed expectations.
               </p>
               <div className="mil-buttons-frame">
-                <Link href="/services" className="mil-button mil-border"><span>Discover Our Services</span></Link>
+                <Link href="/services" className="mil-button mil-border"><span>Discover Our Solutions</span></Link>
               </div>
             </div>
           </div>
@@ -214,7 +214,7 @@ export default function Page() {
             </div>
             <div className="col-lg-4 mil-mb-60">
               <div className="mil-adaptive-right">
-                <Link href="/services" className="mil-button mil-border"><span>Explore Our Services</span></Link>
+                <Link href="/services" className="mil-button mil-border"><span>Explore Our Solutions</span></Link>
               </div>
             </div>
           </div>

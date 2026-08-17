@@ -195,13 +195,19 @@ export const services = [
         features: ["Custom Dashboard Development", "KPI Tracking & Reporting", "Data Visualization"],
       },
       {
-        title: "AI Automation",
-        description: "Automating repetitive tasks and workflows with intelligent AI-powered solutions.",
-        features: ["Process Automation", "Chatbot Development", "Document Processing"],
+        title: "Agentic AI",
+        description: "Autonomous AI agents that execute complete business workflows — with guardrails, approvals, and full audit trails.",
+        features: ["AI Agents & Copilots", "Workflow Orchestration", "Human-in-the-Loop Controls"],
+      },
+      {
+        title: "Generative AI",
+        description: "LLM-powered products and features that generate content, answers, and insight grounded in your own data.",
+        features: ["LLM Integration", "RAG Pipelines", "Fine-Tuning & Evaluation"],
       },
     ],
     tools: [
-      { category: "ML Frameworks", items: ["TensorFlow", "PyTorch", "Scikit-learn", "OpenAI"] },
+      { category: "ML Frameworks", items: ["TensorFlow", "PyTorch", "Scikit-learn"] },
+      { category: "LLMs & Agents", items: ["OpenAI", "Anthropic Claude", "LangChain", "Hugging Face"] },
       { category: "Data Tools", items: ["Apache Spark", "Airflow", "dbt", "Pandas"] },
       { category: "Visualization", items: ["Tableau", "Power BI", "D3.js", "Plotly"] },
       { category: "Cloud AI", items: ["AWS SageMaker", "Google AI", "Azure ML", "Vertex AI"] },
