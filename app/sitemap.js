@@ -23,6 +23,7 @@ export default async function sitemap() {
     { path: "/careers", priority: 0.6, changeFrequency: "weekly" },
     { path: "/sled", priority: 0.6, changeFrequency: "monthly" },
     { path: "/faq", priority: 0.5, changeFrequency: "monthly" },
+    { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
     { path: "/contact", priority: 0.7, changeFrequency: "monthly" },
   ].map((r) => ({
     url: `${SITE_URL}${r.path}`,

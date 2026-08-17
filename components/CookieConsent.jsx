@@ -47,7 +47,7 @@ export default function CookieConsent() {
 
       <p style={styles.text}>
         We use cookies for essential functions and, with your consent, marketing.
-        Closing this notice rejects non-essential cookies.
+        Closing this notice rejects non-essential cookies. <a href="/privacy" style={{ color: ACCENT }}>Privacy Policy</a>.
       </p>
 
       {customizing && (

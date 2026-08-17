@@ -74,7 +74,7 @@ export default function ContactForm() {
           </div>
         </div>
         <div className="col-12">
-          <p className="mil-text-sm mil-light-soft mil-mb-30">We will process your personal information in accordance with our Privacy Policy.</p>
+          <p className="mil-text-sm mil-light-soft mil-mb-30">We will process your personal information in accordance with our <a href="/privacy" className="mil-accent">Privacy Policy</a>.</p>
           <button type="submit" className="mil-button mil-accent-bg mil-fw" disabled={status === "loading"}>
             <span>{status === "loading" ? "Sending…" : "Send Message Now"}</span>
           </button>

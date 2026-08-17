@@ -823,3 +823,10 @@
    contain-fit shows it whole, and the hover zoom is disabled here so the
    caption can never clip at the frame edge. */
 .mil-svc-card:hover .mil-svc-img img { transform: none; }
+
+/* --- Dividers, site-wide: the orange end-tick decoration is retired in
+   favor of clean 1px hairlines (the dark .mil-light variant keeps its own
+   light line). Matches the offerings, tools, and niche-index treatments. --- */
+.mil-divider:before, .mil-divider:after { display: none !important; }
+.mil-divider { height: 1px; }
+.mil-divider.mil-light { background-color: rgba(255, 255, 255, .12); }

@@ -76,7 +76,7 @@ export default function FooterBig() {
       </div>
       <div className="mil-footer-bottom">
         <div className="container">
-          <p className="mil-text-sm mil-light">© {company.name} {company.founded}–{new Date().getFullYear()}.</p>
+          <p className="mil-text-sm mil-light">© {company.name} {company.founded}–{new Date().getFullYear()}. · <a href="/privacy" style={{ opacity: .85 }}>Privacy Policy</a></p>
           <p className="mil-text-sm mil-light">All Rights Reserved.</p>
         </div>
       </div>

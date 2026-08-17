@@ -8,6 +8,7 @@ import { services, getService } from "@/data/services";
 import { CALENDLY_URL } from "@/data/site";
 import { pageMeta, serviceSchema, breadcrumbSchema } from "@/lib/seo";
 import { firstSentence } from "@/lib/text";
+import { ServiceIcon } from "@/components/NicheIcons";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -77,6 +78,7 @@ export default function ServiceDetailPage({ params }) {
             </ul>
             <div className="row">
               <div className="col-lg-10 col-xl-9">
+                <span className="nx-icon nx-icon-dark mil-mb-30" style={{ display: "flex" }}><ServiceIcon slug={service.slug} /></span>
                 <span className="mil-suptitle mil-mb-30"><span className="mil-light">Our Solutions</span></span>
                 <h1 className="mil-light mil-mb-30">{service.title}</h1>
                 <p className="mil-light-soft mil-mb-30" style={{ maxWidth: "640px", fontSize: "17px", lineHeight: 1.7 }}>{service.heroDescription}</p>
@@ -151,7 +153,7 @@ export default function ServiceDetailPage({ params }) {
               <div className="col-lg-6 col-xl-3 mil-mb-30" key={i}>
                 <div style={{ height: "100%", padding: "34px 30px", border: "1px solid rgba(18,24,32,.1)", borderRadius: "14px" }}>
                   <h5 className="mil-accent mil-mb-15">{group.category}</h5>
-                  <div className="mil-divider mil-divider-left mil-mb-30"></div>
+                  <div style={{ height: "1px", background: "rgba(18,24,32,.1)", margin: "0 0 26px" }}></div>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                     {group.items.map((item) => (
                       <span className="mil-dark" key={item} style={{ padding: "5px 14px", border: "1px solid rgba(18,24,32,.12)", borderRadius: "30px", fontSize: "13px" }}>{item}</span>

@@ -259,3 +259,26 @@ demo pages' final fate + HomeFind/EduSpark redirects.
   "Generative AI" added (LLM integration, RAG, fine-tuning); tools gained
   an "LLMs & Agents" row (OpenAI, Anthropic Claude, LangChain, HF).
 - Footer: phone and email fully accent-orange.
+
+### Owner round 3 — FAQ content + privacy published
+- Engagement FAQs replaced verbatim with the owner's new document: 15
+  Q&As (5 per model), deduplicated and detailed (pricing, change requests,
+  IP ownership, vetting, time zones). One British spelling normalized
+  (organisation -> organization) per the site-wide US-English standard;
+  the Lahore (UTC+5) team mention kept verbatim per the document.
+- Privacy Policy published at /privacy: owner-approved wording, 90-day
+  retention, effective 17 August 2026; indexed, added to the sitemap, and
+  linked from the contact form, cookie notice, and footer.
+- Parked items closed per owner: Lahore job locations stay as-is;
+  Solutions conversion approved.
+
+### Final held items executed
+- "Contact Us" promoted from the Company dropdown to the main navigation
+  bar (after Company).
+- UI pass (targeted): service-detail heroes gain the Lucide icon tile
+  (matching the niche heroes); the tools cards\x27 orange-tick dividers
+  replaced with clean hairlines — the last survivors of that artifact.
+- Correction: Contact Us now truly top-level (the first insert anchored
+  inside the Company dropdown); divider end-ticks retired SITE-WIDE via
+  one rule (1px hairlines everywhere; dark variant keeps a light line) —
+  the earlier per-section removals are now the universal standard.

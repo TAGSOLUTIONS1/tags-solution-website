@@ -41,9 +41,9 @@ export default function Header({ transparent = false, fluid = false }) {
                     <li><Link href="/blog">Blog</Link></li>
                     <li><Link href="/sled">U.S. SLED Partner</Link></li>
                     <li><Link href="/faq">FAQ</Link></li>
-                    <li><Link href="/contact">Contact Us</Link></li>
                   </ul>
                 </li>
+                <li><Link href="/contact">Contact Us</Link></li>
               </ul>
               <SearchWidget />
             </nav>
