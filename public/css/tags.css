@@ -538,43 +538,58 @@
    mobile bar (.cs-track-m) are each independently fixed-positioned. --- */
 .cs-track { display: none; }
 
-/* Vertical rail (desktop) */
+/* Vertical rail (desktop) — dots only; labels appear as tooltips on
+   hover/keyboard focus, so the rail is ~50px wide and never covers text. */
 .cs-track ol {
-  list-style: none; margin: 0; padding: 16px 18px;
+  list-style: none; margin: 0; padding: 14px 10px;
   position: fixed; right: 18px; top: 50%; transform: translateY(-50%); z-index: 30;
   display: flex; flex-direction: column;
-  background: rgba(255, 255, 255, .72);
+  background: rgba(255, 255, 255, .95);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(18, 24, 32, .08); border-radius: 18px;
   box-shadow: 0 14px 44px rgba(18, 24, 32, .12);
 }
-.cs-track li { position: relative; padding-left: 26px; }
-.cs-track li:not(:last-child) { padding-bottom: 24px; }
+.cs-track li { position: relative; width: 22px; height: 22px; }
+.cs-track li:not(:last-child) { margin-bottom: 18px; }
 /* connecting line between dots */
 .cs-track li:not(:last-child)::before {
-  content: ""; position: absolute; left: 5px; top: 17px; bottom: -7px; width: 2px;
+  content: ""; position: absolute; left: 50%; top: 100%; height: 18px; width: 2px;
+  transform: translateX(-50%);
   background: rgba(18, 24, 32, .14);
 }
 .cs-track li.is-done:not(:last-child)::before { background: var(--cs-a); }
 /* dot */
 .cs-track li::after {
-  content: ""; position: absolute; left: 0; top: 3px; width: 12px; height: 12px;
+  content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 12px;
+  transform: translate(-50%, -50%);
   border-radius: 50%; border: 2px solid rgba(18, 24, 32, .25); background: #fff; transition: .2s;
 }
 .cs-track li.is-done::after { border-color: var(--cs-a); background: var(--cs-a); }
 .cs-track li.is-active::after { border-color: var(--cs-a); background: var(--cs-a); box-shadow: 0 0 0 4px rgba(var(--cs-a-rgb), .18); }
+/* the whole dot cell is the click target */
 .cs-track button {
-  background: none; border: 0; cursor: pointer; padding: 0; font-family: inherit; text-align: left;
-  display: flex; flex-direction: column; gap: 1px; align-items: flex-start;
+  position: absolute; inset: -5px; z-index: 2;
+  background: none; border: 0; cursor: pointer; padding: 0; font-family: inherit;
 }
-.cs-track .cs-num { font-size: 10px; font-weight: 700; letter-spacing: .12em; color: rgba(18, 24, 32, .32); }
-.cs-track .cs-lab { font-size: 13px; font-weight: 600; color: rgba(18, 24, 32, .5); white-space: nowrap; line-height: 1.2; transition: color .2s; }
-.cs-track li.is-done .cs-num, .cs-track li.is-active .cs-num { color: var(--cs-a); }
-.cs-track li.is-active .cs-lab, .cs-track button:hover .cs-lab { color: var(--cs-ink); }
+.cs-track button:focus-visible { outline: 2px solid var(--cs-a); outline-offset: 2px; border-radius: 50%; }
+/* tooltip: number + label in one pill, floating left of the dot */
+.cs-track .cs-tip {
+  position: absolute; right: calc(100% + 16px); top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  display: flex; align-items: center; gap: 8px; white-space: nowrap;
+  background: #fff; border: 1px solid rgba(18, 24, 32, .08); border-radius: 20px;
+  padding: 6px 14px; box-shadow: 0 10px 30px rgba(18, 24, 32, .16);
+  opacity: 0; pointer-events: none; transition: opacity .18s, transform .18s;
+}
+.cs-track li:hover .cs-tip,
+.cs-track button:focus-visible .cs-tip { opacity: 1; transform: translateY(-50%) translateX(0); }
+.cs-track .cs-num { font-size: 10px; font-weight: 800; letter-spacing: .12em; color: var(--cs-a); }
+.cs-track .cs-lab { font-size: 13px; font-weight: 600; color: var(--cs-ink); line-height: 1.2; }
 
-/* Compact top bar (mobile / narrow) */
+/* Compact top bar (below 1280px). The dot rail needs only ~70px of clear
+   margin beside the 1140px content column; anything narrower gets the bar. */
 .cs-track-m { display: none; }
-@media (max-width: 1199px) {
+@media (max-width: 1279px) {
   .cs-track ol { display: none; }
   .cs-track-m {
     display: flex; align-items: center; gap: 12px;
@@ -676,3 +691,46 @@
 
 /* Roles / labeled grid */
 .cs-lead { font-size: 19px; line-height: 1.6; color: rgba(18, 24, 32, .72); max-width: 760px; }
+
+/* --- Niche icon tiles (kept for the niche-page hero) --- */
+.nx-icon {
+  flex: 0 0 auto; width: 52px; height: 52px; border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(245, 124, 0, .1); color: #f57c00;
+}
+.nx-icon-dark { background: rgba(255, 255, 255, .09); }
+
+/* --- Niche index (design review v2): editorial divider list. No boxes —
+   full-width rows split by hairlines; big titles; the arrow reveals and the
+   row tints + indents on hover. --- */
+.nl-list { border-top: 1px solid rgba(18, 24, 32, .1); }
+.nl-row {
+  display: flex; align-items: center; gap: 26px;
+  padding: 34px 6px; border-bottom: 1px solid rgba(18, 24, 32, .1);
+  transition: background .2s ease, padding-left .25s ease;
+}
+.nl-row:hover { background: rgba(245, 124, 0, .04); padding-left: 16px; }
+.nl-row:focus-visible { outline: 2px solid #f57c00; outline-offset: -2px; background: rgba(245, 124, 0, .04); }
+.nl-icon { flex: 0 0 auto; display: flex; color: rgba(18, 24, 32, .4); transition: color .2s ease, transform .2s ease; }
+.nl-icon svg { width: 27px; height: 27px; }
+.nl-row:hover .nl-icon { color: #f57c00; transform: scale(1.05); }
+.nl-body { flex: 1 1 auto; min-width: 0; }
+.nl-title { font-size: clamp(21px, 2.3vw, 27px); line-height: 1.25; margin-bottom: 6px; transition: color .2s ease; }
+.nl-row:hover .nl-title { color: #f57c00; }
+.nl-tag { color: rgba(18, 24, 32, .55); margin: 0; max-width: 64ch; line-height: 1.6; }
+/* uniform rows: every tagline occupies exactly a two-line slot (short ones
+   reserve it, long ones wrap inside it) so row heights never jitter */
+@media (min-width: 768px) {
+  .nl-tag { min-height: 3.2em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+}
+.nl-count { flex: 0 0 auto; text-align: right; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: rgba(18, 24, 32, .45); white-space: nowrap; line-height: 1.3; }
+.nl-count b { display: block; font-family: Syne, sans-serif; font-size: 23px; font-weight: 800; color: #f57c00; letter-spacing: 0; }
+.nl-arrow { flex: 0 0 auto; width: 40px; display: flex; justify-content: flex-end; color: #f57c00; opacity: 0; transform: translateX(-8px); transition: opacity .22s ease, transform .22s ease; }
+.nl-row:hover .nl-arrow, .nl-row:focus-visible .nl-arrow { opacity: 1; transform: translateX(0); }
+@media (max-width: 767px) {
+  .nl-row { flex-wrap: wrap; gap: 14px 16px; padding: 26px 2px; }
+  .nl-icon { order: 1; }
+  .nl-count { order: 2; margin-left: auto; }
+  .nl-body { order: 3; flex: 1 1 100%; }
+  .nl-arrow { display: none; }
+}

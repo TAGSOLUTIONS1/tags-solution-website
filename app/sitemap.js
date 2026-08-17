@@ -1,6 +1,7 @@
 import { SITE_URL } from "@/lib/seo";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
+import { NICHES, STORIES } from "@/data/nicheStories";
 import { getBlogs, getCaseStudies } from "@/lib/api";
 
 // Revalidate the sitemap alongside the content it lists (5 min, matching lib/api).
@@ -16,6 +17,7 @@ export default async function sitemap() {
     { path: "/services", priority: 0.9, changeFrequency: "monthly" },
     { path: "/industries", priority: 0.8, changeFrequency: "monthly" },
     { path: "/success-stories", priority: 0.8, changeFrequency: "weekly" },
+    { path: "/products", priority: 0.8, changeFrequency: "monthly" },
     { path: "/blog", priority: 0.8, changeFrequency: "weekly" },
     { path: "/engagement", priority: 0.7, changeFrequency: "monthly" },
     { path: "/careers", priority: 0.6, changeFrequency: "weekly" },
@@ -57,8 +59,28 @@ export default async function sitemap() {
     };
   });
 
-  const caseRoutes = cases.map((c) => ({
-    url: `${SITE_URL}/success-stories/${c.slug}`,
+  // Old flat routes superseded by niche routes (same content at two URLs) —
+  // the pages stay live, but the sitemap lists only the canonical niche URL.
+  const supersededSlugs = new Set(["real-estate-marketplace", "edtech-learning-platform"]);
+  const caseRoutes = cases
+    .filter((c) => !supersededSlugs.has(c.slug))
+    .map((c) => ({
+      url: `${SITE_URL}/success-stories/${c.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    }));
+
+  // Niche-first success stories (data/nicheStories.js).
+  const nicheRoutes = NICHES.map((n) => ({
+    url: `${SITE_URL}/success-stories/niche/${n.slug}`,
+    lastModified: now,
+    changeFrequency: "weekly",
+    priority: 0.7,
+  }));
+
+  const nicheStoryRoutes = STORIES.map((s) => ({
+    url: `${SITE_URL}/success-stories/niche/${s.niche}/${s.slug}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.6,
@@ -70,5 +92,7 @@ export default async function sitemap() {
     ...industryRoutes,
     ...blogRoutes,
     ...caseRoutes,
+    ...nicheRoutes,
+    ...nicheStoryRoutes,
   ];
 }

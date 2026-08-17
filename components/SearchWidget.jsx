@@ -5,11 +5,17 @@ import Link from "next/link";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { serviceGroups, solutionGroups } from "@/data/site";
+import { nicheSearchEntries } from "@/data/nicheSearchIndex";
+import { products } from "@/data/products";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://tagsb.vercel.app";
 
 // Static, always-available part of the search index (services, solutions,
-// industries). Blogs and case studies are fetched from the API on first open.
+// industries, and the niche-first success stories). Blogs and any extra API
+// case studies are fetched from the API on first open.
+// NOTE: this is a client component — import only the light nicheSearchIndex
+// here, never the full nicheStories.js (it would ship every story's text in
+// the site-wide JS bundle).
 function buildStaticIndex() {
   const seen = new Set();
   const out = [];
@@ -23,6 +29,8 @@ function buildStaticIndex() {
   serviceGroups.forEach((g) => g.items.forEach((it) => add("Service", it.label, it.href)));
   solutionGroups.forEach((g) => g.items.forEach((it) => add("Solution", it.label, it.href)));
   industries.forEach((i) => add("Industry", i.title, `/industries/${i.slug}`));
+  nicheSearchEntries.forEach((e) => add(e.type, e.title, e.href));
+  products.forEach((p) => add("Product", p.name, `/products#${p.slug}`));
   return out;
 }
 
@@ -35,6 +43,8 @@ const SEARCH_SVG = (
 const BADGE_BG = {
   Service: "rgba(245,124,0,.12)",
   Solution: "rgba(245,124,0,.12)",
+  Niche: "rgba(245,124,0,.12)",
+  Product: "rgba(245,124,0,.12)",
   Industry: "rgba(18,24,32,.06)",
   Blog: "rgba(18,24,32,.06)",
   "Success Story": "rgba(18,24,32,.06)",
@@ -91,8 +101,19 @@ export default function SearchWidget() {
   }, [open]);
 
   const q = query.trim().toLowerCase();
+  // Remote SUCCESS STORIES that duplicate a static story title (e.g.
+  // HomeFind/EduSpark exist both in the niche data and the API's old flat
+  // list) are dropped, so each story appears once and points at the niche
+  // route. Scoped to success stories only — a blog or other remote entry
+  // that merely shares a title with some static item must not be hidden.
+  const staticStoryTitles = useMemo(
+    () => new Set(staticIndex.filter((e) => e.type === "Success Story").map((e) => e.title.toLowerCase())),
+    [staticIndex]
+  );
   const results = q
-    ? [...staticIndex, ...remote].filter((e) => e.title.toLowerCase().includes(q)).slice(0, 12)
+    ? [...staticIndex, ...remote.filter((e) => e.type !== "Success Story" || !staticStoryTitles.has(e.title.toLowerCase()))]
+        .filter((e) => e.title.toLowerCase().includes(q))
+        .slice(0, 12)
     : [];
 
   const close = () => {
