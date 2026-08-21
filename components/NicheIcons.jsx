@@ -10,12 +10,16 @@ import {
   Layers,
   GraduationCap,
   Rocket,
+  Sparkles,
   ArrowRight,
 } from "lucide-react";
 
 const S = { size: 22, strokeWidth: 1.75, "aria-hidden": true };
 
 export const RocketIcon = () => <Rocket {...S} />;
+// "Our Best Work" — the flagship deep-dives row, which sits in the same list
+// as the niches but isn't one of them.
+export const FeaturedIcon = () => <Sparkles {...S} />;
 export const ArrowRightIcon = () => <ArrowRight {...S} size={18} />;
 
 // niche slug -> Lucide icon

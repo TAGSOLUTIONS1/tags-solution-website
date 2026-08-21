@@ -6,7 +6,8 @@ import CtaBand from "@/components/CtaBand";
 import CountUp from "@/components/CountUp";
 import { NICHES, storiesByNiche, nicheStats } from "@/data/nicheStories";
 import { stats } from "@/data/site";
-import { NicheIcon, ArrowRightIcon } from "@/components/NicheIcons";
+import { NicheIcon, FeaturedIcon, ArrowRightIcon } from "@/components/NicheIcons";
+import { getCaseStudies } from "@/lib/api";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -25,7 +26,12 @@ export const metadata = pageMeta({
 // drift from the numbers published elsewhere on the site.
 const projectsStat = stats.find((s) => s.label === "Projects Delivered") || { value: "215+", label: "Projects Delivered" };
 
-export default function SuccessStoriesPage() {
+export default async function SuccessStoriesPage() {
+  // The flagship deep-dives (5 code-served write-ups + whatever the API adds).
+  // Same source as the homepage slider, so the two can't drift apart. They get
+  // their own row at the top of the list below and open at /success-stories/featured.
+  const featuredCount = (await getCaseStudies()).length;
+
   return (
     <div className="mil-wrapper">
       <Header transparent />
@@ -85,6 +91,18 @@ export default function SuccessStoriesPage() {
           {/* all seven niches — design review v2: editorial divider list
               (no boxes), big titles, arrow reveals on hover (.nl-* in tags.css) */}
           <div className="nl-list">
+            {/* the flagship deep-dives ride in the same list as the niches —
+                same row anatomy, first position, its own listing page */}
+            <Link href="/success-stories/featured" className="nl-row">
+              <span className="nl-icon"><FeaturedIcon /></span>
+              <span className="nl-body">
+                <h3 className="nl-title">Our Best Work</h3>
+                <p className="nl-tag">The flagship builds, told end to end — architecture, trade-offs and what shipped.</p>
+              </span>
+              <span className="nl-count"><b>{featuredCount}</b>case {featuredCount === 1 ? "study" : "studies"}</span>
+              <span className="nl-arrow"><ArrowRightIcon /></span>
+            </Link>
+
             {NICHES.map((n) => {
               const count = storiesByNiche(n.slug).length;
               return (

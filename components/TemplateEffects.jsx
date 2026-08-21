@@ -251,11 +251,36 @@ export default function TemplateEffects() {
   // mounted page markup gets initialised, and cleans up on navigation.
   useEffect(() => {
     const instances = [];
-    SLIDERS.forEach(({ sel, cfg }) => {
-      document.querySelectorAll(sel).forEach((el) => {
-        instances.push(new Swiper(el, { ...cfg, modules: MODULES }));
+
+    // Start every slider that's in the DOM and isn't already running. The
+    // `el.swiper` guard makes this safe to call as often as we like.
+    const initSliders = () => {
+      SLIDERS.forEach(({ sel, cfg }) => {
+        document.querySelectorAll(sel).forEach((el) => {
+          if (el.swiper) return;
+          instances.push(new Swiper(el, { ...cfg, modules: MODULES }));
+        });
+      });
+    };
+
+    initSliders();
+
+    // A single pass isn't enough. `pathname` updates the moment a navigation
+    // starts, so this effect can run while the route is still the app/loading
+    // fallback — the slider markup streams in afterwards, and nothing would
+    // re-run. An uninitialised slider keeps the CSS default `width: 100%` on
+    // its slides, which is the full-width / "zoomed in" cards. Watch for the
+    // markup arriving and start it then. childList only: Swiper's own autoplay
+    // mutates classes and styles, which must not retrigger this.
+    let frame = 0;
+    const observer = new MutationObserver(() => {
+      if (frame) return; // coalesce a burst of mutations into one pass
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        initSliders();
       });
     });
+    observer.observe(document.body, { childList: true, subtree: true });
 
     const applyScrollState = () => {
       const scrolled = window.scrollY >= 220;
@@ -271,6 +296,8 @@ export default function TemplateEffects() {
     window.addEventListener("scroll", applyScrollState);
 
     return () => {
+      observer.disconnect();
+      if (frame) cancelAnimationFrame(frame);
       window.removeEventListener("scroll", applyScrollState);
       instances.forEach((sw) => {
         try {
