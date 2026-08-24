@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { company, serviceGroups, solutionGroups } from "@/data/site";
+import { company } from "@/data/site";
+import { services } from "@/data/services";
 import SearchWidget from "@/components/SearchWidget";
 
 // Top navigation bar for TAG Solutions. `transparent` renders the animated
@@ -21,33 +22,11 @@ export default function Header({ transparent = false, fluid = false }) {
             <nav>
               <ul>
                 <li><Link href="/engagement">Engagement Models</Link></li>
-                <li className="mil-has-children mil-mega">
-                  <Link href="/services">Services</Link>
-                  <ul>
-                    {serviceGroups.map((group) => (
-                      <li className="mil-mega-col" key={group.title}>
-                        <h6 className="mil-mega-title"><Link href={group.href}>{group.title}</Link></h6>
-                        <ul className="mil-mega-list">
-                          {group.items.map((it) => (
-                            <li key={it.label}><Link href={it.href}>{it.label}</Link></li>
-                          ))}
-                        </ul>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <li className="mil-has-children mil-mega">
+                <li className="mil-has-children">
                   <Link href="/services">Solutions</Link>
                   <ul>
-                    {solutionGroups.map((group) => (
-                      <li className="mil-mega-col" key={group.title}>
-                        <h6 className="mil-mega-title"><Link href={group.href}>{group.title}</Link></h6>
-                        <ul className="mil-mega-list">
-                          {group.items.map((it) => (
-                            <li key={it.label}><Link href={it.href}>{it.label}</Link></li>
-                          ))}
-                        </ul>
-                      </li>
+                    {services.map((sv) => (
+                      <li key={sv.slug}><Link href={`/services/${sv.slug}`}>{sv.shortTitle || sv.title}</Link></li>
                     ))}
                   </ul>
                 </li>
@@ -55,16 +34,18 @@ export default function Header({ transparent = false, fluid = false }) {
                 <li><Link href="/success-stories">Success Stories</Link></li>
                 <li><Link href="/careers">Careers</Link></li>
                 <li className="mil-has-children">
-                  <a href="#">Company</a>
+                  <Link href="/about">Company</Link>
                   <ul>
                     <li><Link href="/about">About Us</Link></li>
                     <li><Link href="/industries">Industries</Link></li>
                     <li><Link href="/blog">Blog</Link></li>
                     <li><Link href="/sled">U.S. SLED Partner</Link></li>
                     <li><Link href="/faq">FAQ</Link></li>
-                    <li><Link href="/contact">Contact Us</Link></li>
                   </ul>
                 </li>
+                {/* the one nav item we want people to notice: .mil-nav-cta
+                    pulses it between the nav colour and the brand orange */}
+                <li className="mil-nav-cta"><Link href="/contact">Contact Us</Link></li>
               </ul>
               <SearchWidget />
             </nav>

@@ -275,7 +275,7 @@
    so the loop is seamless (animating a full 50% == one complete set width). */
 .mil-trust-marquee { display: none; }
 @media screen and (max-width: 992px) {
-  .mil-partners-frame.mil-trust-desktop { display: none !important; }
+  .mil-trust-desktop { display: none !important; }
   .mil-trust-marquee {
     display: block;
     overflow: hidden;
@@ -290,7 +290,7 @@
     /* start shifted one set to the left, slide back to 0 => travels left->right */
     animation: mil-trust-scroll 24s linear infinite;
   }
-  .mil-trust-track a {
+  .mil-trust-track span {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
@@ -299,7 +299,7 @@
     /* no hover on touch, so show the logos in full color rather than grayscale */
     filter: none;
   }
-  .mil-trust-track a img {
+  .mil-trust-track span img {
     height: 34px;
     width: auto;
     display: block;
@@ -733,4 +733,132 @@
   .nl-count { order: 2; margin-left: auto; }
   .nl-body { order: 3; flex: 1 1 100%; }
   .nl-arrow { display: none; }
+}
+
+/* --- QA Batch 3: component fixes --- */
+/* 1. Accordions (engagement + faq): the +/- used to sit ON the divider below
+   each question (looking attached to the NEXT one, with an orphan + after the
+   last). Now it sits right-center inside its own row. */
+.mil-accordion { padding: 25px 50px 25px 0 !important; }
+.mil-accordion:after { left: auto !important; right: 12px !important; bottom: auto !important; top: 50% !important; transform: translateY(-50%); background: transparent !important; padding: 0 !important; }
+/* 2. Approach step badges: uniform circles, no decorative bars, no clipping. */
+.mil-number-icon { border-radius: 50% !important; overflow: visible !important; width: 80px !important; height: 80px !important; }
+.mil-number-icon span { font-size: 26px; }
+.mil-number-icon.mil-lines:before, .mil-number-icon.mil-lines:after { display: none !important; }
+/* 3. Career vacancy tags: proper pills (the badge style only existed inside
+   .mil-vacancy-head; the tags frame had none). */
+.mil-tags-frame .mil-badge { display: inline-flex; align-items: center; padding: 3px 14px; border-radius: 20px; background: rgba(18, 24, 32, .08); color: #121820; font-size: 12px; font-weight: 500; text-transform: none; }
+/* 4. Accent dot on icon frames: nudged outside the frame with a page-colored
+   ring so it stops eating glyph corners, and slightly smaller. */
+.mil-icon-frame.mil-icon-frame-md:before { width: 13px !important; height: 13px !important; bottom: -5px !important; right: -5px !important; box-shadow: 0 0 0 3px #fff; }
+.mil-icon-frame.mil-icon-frame-sm:before { width: 9px !important; height: 9px !important; bottom: -4px !important; right: -4px !important; box-shadow: 0 0 0 2px #fff; }
+/* 5. Decorative step numerals (rendered as spans now, h2 look preserved). */
+.cs-stepnum { display: block; font-family: Syne, sans-serif; font-weight: 600; color: inherit; font-size: 42px; line-height: 140%; }
+@media screen and (max-width: 992px) { .cs-stepnum { font-size: 32px; } }
+
+/* --- Batch 3 amendments (visual QA) --- */
+/* A. Accordion divider belongs at the END of each Q+A unit, not between a
+   question and its own answer: line moves from the head to the panel. */
+.mil-accordion { border-bottom: none !important; padding: 22px 50px 22px 0 !important; }
+.mil-accordion:first-child { padding-top: 22px !important; }
+.mil-panel { border-bottom: 1px solid rgba(18, 24, 32, .12); }
+.mil-panel .mil-window { padding-bottom: 25px; }
+/* B. Step badges: the mil-lines variant had a transparent background (its
+   circle vanished once the bars were removed) — restore it; and tuck the
+   accent dot inside the circle's corner with a white ring. */
+.mil-number-icon.mil-lines { background-color: rgba(18, 24, 32, .05) !important; }
+.mil-number-icon span:before { width: 14px !important; height: 14px !important; bottom: 10px !important; right: 14px !important; box-shadow: 0 0 0 3px #fff; }
+/* C. Check lists (engagement models, industries, service offerings): the
+   12.svg asset drew a heavy dark double-ring check. Replaced everywhere with
+   a brand check — orange tick in a soft orange circle. */
+.mil-check-icon-list li { align-items: center; }
+.mil-check-icon-list li img { display: none; }
+.mil-check-icon-list li:before {
+  content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900;
+  color: #f57c00; font-size: 11px; width: 22px; height: 22px;
+  flex: 0 0 auto; margin-right: 15px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(245, 124, 0, .12);
+}
+
+/* --- Service offerings rows (design pass): replaces mil-divider separators
+   (whose orange end-ticks read as artifacts) and floating check labels. --- */
+.svc-offer-list { border-top: 1px solid rgba(18, 24, 32, .1); }
+.svc-offer { display: grid; grid-template-columns: minmax(0, 380px) 1fr; gap: 22px 48px; padding: 40px 0; border-bottom: 1px solid rgba(18, 24, 32, .1); }
+.svc-offer-head { display: flex; align-items: center; gap: 18px; align-self: start; }
+.svc-num { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: #f57c00; color: #fff; font-family: Syne, sans-serif; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+.svc-offer-title { margin: 0; font-size: clamp(20px, 2vw, 26px); line-height: 1.3; }
+.svc-offer-desc { color: rgba(18, 24, 32, .6); font-size: 16px; margin-bottom: 18px; max-width: 62ch; }
+.svc-chips { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; }
+.svc-chip { list-style: none; display: inline-flex; align-items: center; gap: 8px; padding: 7px 15px; border-radius: 20px; background: rgba(18, 24, 32, .05); color: #121820; font-size: 13.5px; font-weight: 500; }
+.svc-chip:before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; font-size: 10px; color: #f57c00; }
+@media (max-width: 991px) { .svc-offer { grid-template-columns: 1fr; gap: 16px; padding: 30px 0; } }
+
+/* --- Homepage services list polish: icon tiles close to the text (the
+   template gave a 24px icon a 30%-wide column), hairline dividers without
+   the orange end-ticks, tighter rhythm. --- */
+.mil-home-services .mil-service-item { padding: 26px 0; }
+.mil-home-services .mil-service-item .mil-service-icon { width: auto; padding-left: 0; margin-right: 26px; }
+.mil-home-services .mil-service-item .mil-service-text { width: auto; flex: 1; padding-right: 0; }
+.mil-home-services .mil-icon-frame.mil-icon-frame-md { width: 50px; height: 50px; border-radius: 13px; background: rgba(245, 124, 0, .1); color: #f57c00; }
+.mil-home-services .mil-divider { height: 1px; background: rgba(18, 24, 32, .1); }
+.mil-home-services .mil-divider:before, .mil-home-services .mil-divider:after { display: none; }
+.mil-home-services .mil-service-item h5 { margin-bottom: 12px !important; }
+
+/* --- Flagship gallery lightbox --- */
+.cs-lightbox-thumb { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; text-align: inherit; }
+.cs-lightbox-thumb:focus-visible { outline: 2px solid #f57c00; outline-offset: 3px; border-radius: 10px; }
+.cs-lightbox { position: fixed; inset: 0; z-index: 1200; background: rgba(18, 24, 32, .93); display: flex; align-items: center; justify-content: center; padding: 4vh 4vw; cursor: zoom-out; }
+.cs-lightbox figure { margin: 0; max-width: 92vw; max-height: 88vh; cursor: default; text-align: center; }
+.cs-lightbox img { max-width: 92vw; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 24px 80px rgba(0, 0, 0, .5); }
+.cs-lightbox figcaption { color: rgba(255, 255, 255, .75); font-size: 13px; margin-top: 14px; }
+.cs-lb-close, .cs-lb-nav { position: fixed; z-index: 1201; border: 0; cursor: pointer; color: #fff; background: rgba(255, 255, 255, .1); width: 46px; height: 46px; border-radius: 50%; font-size: 22px; display: flex; align-items: center; justify-content: center; transition: background .2s ease; }
+.cs-lb-close:hover, .cs-lb-nav:hover { background: #f57c00; }
+.cs-lb-close { top: 22px; right: 22px; }
+.cs-lb-prev { left: 22px; top: 50%; transform: translateY(-50%); }
+.cs-lb-next { right: 22px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 575px) { .cs-lb-prev { left: 10px; } .cs-lb-next { right: 10px; } }
+
+/* Other Solutions rail: illustrations carry their caption inside the artwork —
+   contain-fit shows it whole, and the hover zoom is disabled here so the
+   caption can never clip at the frame edge. */
+.mil-svc-card:hover .mil-svc-img img { transform: none; }
+
+/* --- Dividers, site-wide: the orange end-tick decoration is retired in
+   favor of clean 1px hairlines (the dark .mil-light variant keeps its own
+   light line). Matches the offerings, tools, and niche-index treatments. --- */
+.mil-divider:before, .mil-divider:after { display: none !important; }
+.mil-divider { height: 1px; }
+.mil-divider.mil-light { background-color: rgba(255, 255, 255, .12); }
+
+/* --- Industries grid cover frames: self-contained (the template's
+   .mil-cover-frame rules only apply inside .mil-card, so these cards were
+   rendering raw unstyled images — left-edge slices). Landscape frame at
+   the photos' exact ratio, house grayscale-to-color hover. --- */
+.ind-cover { position: relative; overflow: hidden; display: block; aspect-ratio: 1920 / 1072; }
+.ind-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: .4s cubic-bezier(0, 0, .3642, 1); }
+.ind-cover:hover img { filter: grayscale(100%); transform: scale(1.03); }
+
+/* --- "Contact Us" in the navbar: the one nav item we want people to notice,
+   so it pulses between the nav's own text colour and the brand orange rather
+   than sitting flat like its neighbours. Two keyframe sets because the base
+   colour differs per header variant (dark text on the solid panel, white on
+   the transparent one over a hero). Keyframes outrank normal declarations in
+   the cascade, so these win over the template's link colour without !important.
+   Hover drops the animation entirely so the existing hover colour still reads,
+   and reduced-motion users get the accent colour with no movement. --- */
+.mil-nav-cta > a { animation: mil-nav-cta-pulse 2.2s ease-in-out infinite; }
+@keyframes mil-nav-cta-pulse {
+  0%, 100% { color: #121820; }
+  50% { color: #f57c00; }
+}
+.mil-top-panel.mil-top-panel-transparent .mil-nav-cta > a { animation-name: mil-nav-cta-pulse-light; }
+@keyframes mil-nav-cta-pulse-light {
+  0%, 100% { color: #fff; }
+  50% { color: #f57c00; }
+}
+.mil-nav-cta > a:hover { animation: none; color: #f57c00; }
+@media (prefers-reduced-motion: reduce) {
+  .mil-nav-cta > a,
+  .mil-top-panel.mil-top-panel-transparent .mil-nav-cta > a { animation: none; color: #f57c00; }
 }

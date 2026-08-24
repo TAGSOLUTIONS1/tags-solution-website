@@ -56,7 +56,7 @@ export default function OfflinePage() {
 
       <div className="mil-addition-bottom">
         <div className="container-fluid">
-          <p className="mil-text-sm mil-light-soft">© TAG Solutions 2022–2026.</p>
+          <p className="mil-text-sm mil-light-soft">© TAG Solutions 2022–{new Date().getFullYear()}.</p>
           <p className="mil-text-sm mil-light-soft">All Rights Reserved.</p>
         </div>
       </div>

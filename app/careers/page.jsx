@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import CtaBand from "@/components/CtaBand";
 import { stats } from "@/data/site";
 import { benefits, jobOpenings } from "@/data/careers";
+import { BenefitIcon } from "@/components/NicheIcons";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -68,7 +69,7 @@ export default function Page() {
             </div>
             <div className="col-xl-5 mil-mb-30">
               <p>
-                We are an agile technology partner where great work is recognised and craft is taken seriously. You will work alongside senior engineers on real products, ship to real users, and grow faster than you thought possible&mdash;backed by mentorship, flexibility, and a culture that says &ldquo;we&rdquo; because success is shared.
+                We are an agile technology partner where great work is recognized and craft is taken seriously. You will work alongside senior engineers on real products, ship to real users, and grow faster than you thought possible&mdash;backed by mentorship, flexibility, and a culture that says &ldquo;we&rdquo; because success is shared.
               </p>
             </div>
           </div>
@@ -88,8 +89,8 @@ export default function Page() {
             {benefits.map((b) => (
               <div className="col-md-6 col-xl-4" key={b.title}>
                 <div className="mil-icon-box-2 mil-mb-60">
-                  <div className="mil-icon-frame mil-icon-frame-md mil-icon-bg mil-mb-30" style={{ fontSize: "34px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span aria-hidden="true">{b.icon}</span>
+                  <div className="mil-icon-frame mil-icon-frame-md mil-icon-bg mil-mb-30" style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "#f57c00" }}>
+                    <BenefitIcon title={b.title} />
                   </div>
                   <div className="mil-box-text">
                     <h4 className="mil-mb-30">{b.title}</h4>

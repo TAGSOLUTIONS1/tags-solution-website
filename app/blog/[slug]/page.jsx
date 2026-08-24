@@ -61,9 +61,9 @@ export default async function BlogDetailPage({ params }) {
         <div className="mil-banner-content" style={{ paddingTop: "160px", paddingBottom: "70px" }}>
           <div className="container mil-relative">
             <Link href="/blog" className="mil-link link-left mil-light mil-mb-30"><i className="fas fa-arrow-left"></i><span>All Articles</span></Link>
-            {post.category && <span className="mil-suptitle mil-accent mil-mb-30">{post.category}</span>}
-            <h2 className="mil-up-font mil-light mil-mb-30">{post.title}</h2>
-            <p className="mil-light-soft">
+            {post.category && <span className="mil-suptitle mil-accent mil-mb-30" style={{ marginLeft: "22px" }}>{post.category}</span>}
+            <h1 className="mil-up-font mil-light mil-mb-30" style={{ fontSize: "clamp(30px, 4vw, 46px)" }}>{post.title}</h1>
+            <p style={{ color: "rgba(255,255,255,.85)" }}>
               {post.author}{post.author && post.date && " · "}{post.date}
             </p>
           </div>
@@ -93,7 +93,7 @@ export default async function BlogDetailPage({ params }) {
               )}
 
               {post.highlight_box && (post.highlight_box.title || post.highlight_box.content) && (
-                <div className="mil-icon-box-2 mil-deep-bg mil-mb-60" style={{ padding: "40px", borderLeft: "3px solid var(--accent, #6c4cf1)" }}>
+                <div className="mil-icon-box-2 mil-deep-bg mil-mb-60" style={{ padding: "40px", borderLeft: "3px solid #f57c00" }}>
                   {post.highlight_box.title && <h5 className="mil-accent mil-mb-15">{post.highlight_box.title}</h5>}
                   {post.highlight_box.content && <p>{post.highlight_box.content}</p>}
                 </div>

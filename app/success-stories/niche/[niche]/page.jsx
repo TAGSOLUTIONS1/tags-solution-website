@@ -7,6 +7,7 @@ import CtaBand from "@/components/CtaBand";
 import JsonLd from "@/components/JsonLd";
 import BackLink from "@/components/casestudy/BackLink";
 import { NicheIcon } from "@/components/NicheIcons";
+import { firstSentence } from "@/lib/text";
 import { NICHES, nicheBySlug, storiesByNiche } from "@/data/nicheStories";
 import { pageMeta, breadcrumbSchema } from "@/lib/seo";
 
@@ -76,7 +77,7 @@ export default function NichePage({ params }) {
           <div className="row">
             {stories.map((s) => {
               const isProduct = (s.client || {}).type === "product";
-              const excerpt = (s.overview && s.overview.paras && s.overview.paras[0]) || "";
+              const excerpt = firstSentence((s.overview && s.overview.paras && s.overview.paras[0]) || "", 170);
               return (
                 <div className="col-lg-6 mil-mb-30" key={s.slug} style={{ display: "flex" }}>
                   <Link
@@ -102,7 +103,7 @@ export default function NichePage({ params }) {
                     <span style={{ display: "block", borderRadius: "10px", overflow: "hidden", aspectRatio: "3 / 2", marginBottom: "20px" }}>
                       <img src={`/niche-covers/${s.slug}.jpg`} alt="" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                     </span>
-                    <h6 className="mil-mb-15">Industry: <span className="mil-accent">{s.kicker}</span></h6>
+                    <h6 className="mil-mb-15"><span className="mil-accent">{s.kicker}</span></h6>
                     <h4 className="mil-mb-15">{s.title}</h4>
                     <p
                       className="mil-mb-30"

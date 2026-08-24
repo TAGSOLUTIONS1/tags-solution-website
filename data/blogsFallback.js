@@ -121,7 +121,7 @@ Staying ahead of these trends will help developers and businesses create mobile 
   {
     id: "4",
     slug: "cloud-computing-benefits-small-business",
-    title: "Why Cloud Computing is Essential for Small Businesses",
+    title: "Why Cloud Computing Is Essential for Small Businesses",
     excerpt: "Discover how cloud computing can help small businesses reduce costs, improve efficiency, and scale faster than ever before.",
     image: "/tags/blog-4.jpg",
     author: "Hassan Tariq",

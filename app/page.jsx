@@ -7,7 +7,10 @@ import { hero, stats, trustLogos, CALENDLY_URL } from "@/data/site";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { testimonials } from "@/data/testimonials";
-import { getCaseStudies, getBlogs } from "@/lib/api";
+import { getBlogs } from "@/lib/api";
+import { STORIES, NICHES } from "@/data/nicheStories";
+import { firstSentence, sentenceTrim } from "@/lib/text";
+import { ServiceIcon, IndustryIcon } from "@/components/NicheIcons";
 import { models as engagementModels, modelArt } from "@/data/engagement";
 import { pageMeta } from "@/lib/seo";
 
@@ -20,8 +23,23 @@ export const metadata = pageMeta({
 });
 
 export default async function HomePage() {
-  const [caseStudies, blogs] = await Promise.all([getCaseStudies(), getBlogs()]);
-  const featuredCases = caseStudies.slice(0, 4);
+  const blogs = await getBlogs();
+  // Featured stories come from the niche data (the 3 TAGS products + the
+  // portfolio's opening story), not the API's old flat list — see
+  // CHANGES-qa-fixes.md Batch 2.
+  const FEATURED = ["geostats-single-map-entire-city", "gosalify-signal-to-outreach", "findxstorage-ai-marketplace-self-storage", "end-to-end-finance-operations-run-by-agents"];
+  const nicheName = (slug) => (NICHES.find((n) => n.slug === slug) || {}).name || "";
+  const featuredCases = FEATURED
+    .map((slug) => STORIES.find((st) => st.slug === slug))
+    .filter(Boolean)
+    .map((st) => ({
+      slug: st.slug,
+      href: `/success-stories/niche/${st.niche}/${st.slug}`,
+      image: `/niche-covers/${st.slug}.jpg`,
+      title: st.title,
+      industry: nicheName(st.niche),
+      excerpt: sentenceTrim((st.overview && st.overview.paras && st.overview.paras[0]) || "", 150),
+    }));
   const latestBlogs = blogs.slice(0, 6);
   const leftServices = services.slice(0, 4);
   const rightServices = services.slice(4);
@@ -116,18 +134,19 @@ export default async function HomePage() {
       {/* trust strip */}
       <div className="mil-partners mil-p-90-60">
         <div className="container">
-          <p className="mil-text-center mil-mb-30 mil-upper mil-suptitle-2">Our Employees are Certified by Big Companies</p>
+          <p className="mil-text-center mil-mb-30 mil-upper mil-suptitle-2">Our Team Holds Certifications From</p>
           {/* desktop: static grid */}
-          <div className="mil-partners-frame mil-trust-desktop">
+          {/* logos are not links — a dead href="#" just scrolls to top */}
+          <div className="mil-trust-desktop" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "34px 64px" }}>
             {trustLogos.map((logo) => (
-              <a href="#" key={logo.name}><img src={logo.src} alt={logo.name} style={{ maxHeight: "34px", width: "auto" }} /></a>
+              <span key={logo.name}><img src={logo.src} alt={logo.name} style={{ height: "34px", width: "auto", display: "block" }} /></span>
             ))}
           </div>
           {/* mobile: seamless left-to-right marquee (logos duplicated for the loop) */}
           <div className="mil-trust-marquee" aria-hidden="true">
             <div className="mil-trust-track">
               {[...trustLogos, ...trustLogos].map((logo, i) => (
-                <a href="#" key={`${logo.name}-${i}`}><img src={logo.src} alt={logo.name} /></a>
+                <span key={`${logo.name}-${i}`}><img src={logo.src} alt={logo.name} /></span>
               ))}
             </div>
           </div>
@@ -156,7 +175,7 @@ export default async function HomePage() {
             {engagementModels.map((m, i) => (
               <div className="col-lg-4 mil-mb-30" key={m.key}>
                 <Link
-                  href="/engagement"
+                  href={`/engagement#${m.key}`}
                   className="mil-svc-card"
                   style={{ display: "flex", flexDirection: "column", height: "100%", padding: "40px 34px", background: "#fff", borderRadius: "14px", border: m.featured ? "2px solid #f57c00" : "1px solid rgba(18,24,32,.08)", position: "relative" }}
                 >
@@ -167,7 +186,7 @@ export default async function HomePage() {
                   <span className="mil-accent" style={{ fontFamily: "Syne, sans-serif", fontWeight: 700, fontSize: "22px", marginBottom: "14px" }}>{String(i + 1).padStart(2, "0")}</span>
                   <h4 className="mil-mb-15">{m.title}</h4>
                   <h6 className="mil-accent mil-mb-15">{m.tagline}</h6>
-                  <p className="mil-mb-30" style={{ flexGrow: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", color: "#121820" }}>{m.description}</p>
+                  <p className="mil-mb-30" style={{ flexGrow: 1, display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden", color: "#121820" }}>{firstSentence(m.description, 200)}</p>
                   <span className="mil-link"><span>Learn More</span><i className="fas fa-arrow-right"></i></span>
                 </Link>
               </div>
@@ -188,8 +207,8 @@ export default async function HomePage() {
             {industries.map((ind) => (
               <div className="col-md-6 col-lg-4" key={ind.slug}>
                 <Link href={`/industries/${ind.slug}`} className="mil-icon-box-2 mil-mb-60" style={{ display: "block" }}>
-                  <div className="mil-icon-frame mil-icon-frame-md mil-mb-30" style={{ fontSize: "28px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span aria-hidden="true">{ind.icon}</span>
+                  <div className="mil-icon-frame mil-icon-frame-md mil-mb-30" style={{ width: "50px", height: "50px", borderRadius: "13px", background: "rgba(245,124,0,.1)", color: "#f57c00", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <IndustryIcon slug={ind.slug} />
                   </div>
                   <h5 className="mil-mb-15">{ind.title}</h5>
                   <p style={{ color: "#121820" }}>{ind.excerpt}</p>
@@ -207,9 +226,12 @@ export default async function HomePage() {
       <section className="mil-services mil-p-120-90">
         <div className="mil-deco" style={{ top: 0, right: "20%" }}></div>
         <div className="container">
-          <span className="mil-suptitle mil-suptitle-2 mil-mb-30">Our Core Services</span>
-          <h2 className="mil-mb-30">How We Can <span className="mil-accent">Help You</span></h2>
-          <div className="row">
+          <span className="mil-suptitle mil-suptitle-2 mil-mb-30">Our Core Solutions</span>
+          <div className="mil-mb-30" style={{ display: "flex", flexWrap: "wrap", alignItems: "flex-end", justifyContent: "space-between", gap: "16px" }}>
+            <h2 className="mil-mb-0">How We Can <span className="mil-accent">Help You</span></h2>
+            <Link href="/services" className="mil-link"><span>View All Solutions</span><i className="fas fa-arrow-right"></i></Link>
+          </div>
+          <div className="mil-home-services row">
             <div className="col-lg-6 col-xl-6">
               <h4 className="mil-mb-60 mil-mt-30">Build &amp; Engineer</h4>
               <div className="mil-divider mil-divider-left"></div>
@@ -218,12 +240,12 @@ export default async function HomePage() {
                   <Link href={`/services/${s.slug}`} className="mil-service-item">
                     <div className="mil-service-icon">
                       <div className="mil-icon-frame mil-icon-frame-md">
-                        <img src={`/img/icons/md/${(i % 6) + 1}.svg`} alt="icon" />
+                        <ServiceIcon slug={s.slug} />
                       </div>
                     </div>
                     <div className="mil-service-text">
                       <h5 className="mil-mb-30"><span className="mil-accent">{String(i + 1).padStart(2, "0")}</span> {s.shortTitle}</h5>
-                      <p style={serviceDescStyle}>{s.description}</p>
+                      <p style={serviceDescStyle}>{firstSentence(s.description)}</p>
                     </div>
                   </Link>
                   <div className="mil-divider mil-divider-left"></div>
@@ -238,18 +260,17 @@ export default async function HomePage() {
                   <Link href={`/services/${s.slug}`} className="mil-service-item">
                     <div className="mil-service-icon">
                       <div className="mil-icon-frame mil-icon-frame-md">
-                        <img src={`/img/icons/md/${((i + 4) % 6) + 1}.svg`} alt="icon" />
+                        <ServiceIcon slug={s.slug} />
                       </div>
                     </div>
                     <div className="mil-service-text">
                       <h5 className="mil-mb-30"><span className="mil-accent">{String(leftServices.length + i + 1).padStart(2, "0")}</span> {s.shortTitle}</h5>
-                      <p style={serviceDescStyle}>{s.description}</p>
+                      <p style={serviceDescStyle}>{firstSentence(s.description)}</p>
                     </div>
                   </Link>
                   <div className="mil-divider mil-divider-left"></div>
                 </div>
               ))}
-              <Link href="/services" className="mil-link mil-mt-30"><span>View All Services</span><i className="fas fa-arrow-right"></i></Link>
             </div>
           </div>
         </div>
@@ -279,7 +300,7 @@ export default async function HomePage() {
           <div className="row align-items-center mil-mb-60-adapt">
             <div className="col-md-6 col-xl-6">
               <span className="mil-suptitle mil-suptitle-2 mil-mb-30">Our Work</span>
-              <h2 className="mil-mb-30">Latest Success Stories</h2>
+              <h2 className="mil-mb-30">Featured Success Stories</h2>
             </div>
             <div className="col-md-6 col-xl-6">
               <div className="mil-adaptive-right">
@@ -295,14 +316,14 @@ export default async function HomePage() {
             <div className="swiper-wrapper">
               {featuredCases.map((c) => (
                 <div className="swiper-slide" key={c.slug}>
-                  <Link href={`/success-stories/${c.slug}`} className="mil-card">
+                  <Link href={c.href} className="mil-card">
                     <div className="mil-cover-frame">
                       <img src={c.image} alt={c.title} />
                     </div>
                     <div className="mil-description">
                       <div className="mil-card-title">
                         <h4 className="mil-mb-20">{c.title}</h4>
-                        <h6>industry: <span className="mil-accent">{c.industry}</span></h6>
+                        <h6>Niche: <span className="mil-accent">{c.industry}</span></h6>
                       </div>
                       <div className="mil-card-text">
                         <p>{c.excerpt}</p>
@@ -358,7 +379,7 @@ export default async function HomePage() {
                     <div className="mil-description">
                       <div className="mil-card-title">
                         <h4 className="mil-mb-20">{b.title}</h4>
-                        <h6>by: <span className="mil-accent">{b.author}</span></h6>
+                        <h6>By: <span className="mil-accent">{b.author}</span></h6>
                       </div>
                       <div className="mil-card-text">
                         <p style={{ color: "#121820" }}>{b.excerpt}</p>
@@ -407,7 +428,7 @@ export default async function HomePage() {
                         {[...Array(5)].map((_, j) => <li key={j}><i className="fas fa-star"></i></li>)}
                       </ul>
                     </div>
-                    <p className="mil-mb-30" style={reviewQuoteStyle}>{r.quote}</p>
+                    <p className="mil-mb-30" style={reviewQuoteStyle}>{sentenceTrim(r.quote, 240)}</p>
                     <div className="mil-author">
                       <img src={r.img} alt={r.name} />
                       <div className="mil-name">

@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CtaBand from "@/components/CtaBand";
 import { industries } from "@/data/industries";
+import { IndustryIcon } from "@/components/NicheIcons";
 import { CALENDLY_URL } from "@/data/site";
 import { pageMeta } from "@/lib/seo";
 
@@ -48,11 +49,11 @@ export default function IndustriesPage() {
             {industries.map((ind) => (
               <div className="col-lg-4 col-md-6 mil-mb-60" key={ind.slug}>
                 <div style={{ display: "flex", flexDirection: "column", height: "100%", border: "1px solid rgba(18,24,32,.08)", borderRadius: "10px", overflow: "hidden", background: "#fff" }}>
-                  <Link href={`/industries/${ind.slug}`} className="mil-cover-frame" style={{ display: "block" }}>
+                  <Link href={`/industries/${ind.slug}`} className="ind-cover">
                     <img src={ind.image} alt={ind.title} />
                   </Link>
                   <div style={{ padding: "34px", display: "flex", flexDirection: "column", flexGrow: 1 }}>
-                    <h4 className="mil-mb-15"><span aria-hidden="true" style={{ marginRight: "10px" }}>{ind.icon}</span>{ind.title}</h4>
+                    <h4 className="mil-mb-15" style={{ display: "flex", alignItems: "center", gap: "12px" }}><span className="mil-accent" style={{ display: "inline-flex" }}><IndustryIcon slug={ind.slug} /></span>{ind.title}</h4>
                     <p className="mil-mb-30">{ind.excerpt}</p>
                     <ul className="mil-check-icon-list mil-mb-30" style={{ flexGrow: 1 }}>
                       {ind.solutions.slice(0, 3).map((s) => (

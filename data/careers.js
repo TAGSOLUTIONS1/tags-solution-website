@@ -35,7 +35,7 @@ export const jobOpenings = [
     id: "3",
     title: "Project Manager",
     department: "Delivery",
-    location: "Lahore",
+    location: "Dubai, UAE",
     type: "Full-time",
     tags: ["Project Management", "Agile", "Delivery", "Stakeholder Management"],
     description:
@@ -45,7 +45,7 @@ export const jobOpenings = [
     id: "4",
     title: "Internal Relations Officer",
     department: "People & Culture",
-    location: "Dubai",
+    location: "Dubai, UAE",
     type: "Full-time",
     tags: ["HR", "Employee Engagement", "Communication", "Culture"],
     description:
@@ -55,7 +55,7 @@ export const jobOpenings = [
     id: "5",
     title: "Sales Manager — International Clients",
     department: "Sales",
-    location: "Dubai",
+    location: "Dubai, UAE",
     type: "Full-time",
     tags: ["International Sales", "Lead Generation", "Account Management", "B2B"],
     description:

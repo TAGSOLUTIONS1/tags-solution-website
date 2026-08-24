@@ -1,13 +1,13 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import { contact } from "@/data/site";
+import { contact, CALENDLY_URL } from "@/data/site";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
   title: "Contact Us",
   description:
-    "Have a project in mind? Book a free discovery call with TAG Solutions. Offices in Dubai Silicon Oasis, UAE and Lahore, Pakistan.",
+    "Have a project in mind? Book a free discovery call with TAG Solutions. Offices in Dubai Silicon Oasis, UAE.",
   path: "/contact",
 });
 
@@ -63,12 +63,34 @@ export default function Page() {
                     <h5 className="mil-mb-15">{card.title}</h5>
                     <ul className="mil-simple-list">
                       {card.lines.map((line) => (
-                        <li key={line}><p>{line}</p></li>
+                        <li key={line}>
+                          <p>
+                            {line.includes("@") ? <a href={`mailto:${line}`} className="mil-accent">{line}</a>
+                              : line.trim().startsWith("+") ? <a href={`tel:${line.replace(/[^+\d]/g, "")}`}>{line}</a>
+                              : line}
+                          </p>
+                        </li>
                       ))}
                     </ul>
                   </div>
                 </div>
               ))}
+
+              {/* book a meeting — the alternative to the form for people who'd
+                  rather talk. Uses the same site-wide CALENDLY_URL as every
+                  other booking CTA, so there's one link to change. */}
+              <div className="mil-icon-box-2 mil-mb-60">
+                <div className="mil-icon-frame mil-icon-frame-md mil-icon-bg mil-mb-30" style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px" }}>
+                  <i className="fas fa-calendar-alt mil-accent" aria-hidden="true"></i>
+                </div>
+                <div className="mil-box-text">
+                  <h5 className="mil-mb-15">Book a Meeting</h5>
+                  <p className="mil-mb-30">Rather talk it through? Pick a time that suits you and we&apos;ll take it from there.</p>
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="mil-button mil-accent-bg">
+                    <span>Book a Meeting</span>
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* right — message form */}
@@ -83,10 +105,12 @@ export default function Page() {
                   padding: "clamp(28px, 4vw, 56px)",
                 }}
               >
-                <div className="mil-deco mil-deco-accent" style={{ top: "20px", right: "8%" }}></div>
+                <div className="mil-deco mil-deco-accent" style={{ top: "20px", right: "8%", zIndex: 0, pointerEvents: "none" }}></div>
+                <div style={{ position: "relative", zIndex: 1 }}>
                 <h2 className="mil-light mil-mb-15">Send Us a <span className="mil-accent">Message</span></h2>
                 <p className="mil-light-soft mil-mb-60">Tell us a little about your project and we&apos;ll get back to you shortly.</p>
                 <ContactForm />
+                </div>
               </div>
             </div>
           </div>

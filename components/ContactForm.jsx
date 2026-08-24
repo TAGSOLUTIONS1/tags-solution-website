@@ -39,7 +39,7 @@ export default function ContactForm() {
 
   if (status === "done") {
     return (
-      <div className="mil-complete-message">
+      <div className="mil-complete-message" role="status" aria-live="polite">
         <h4 className="mil-mb-15">Thank you! 🎉</h4>
         <p className="mil-text-lg">We&apos;ve received your message and will get back to you soon.</p>
       </div>
@@ -51,35 +51,35 @@ export default function ContactForm() {
       <div className="row">
         <div className="col-md-6">
           <div className="mil-input-frame mil-mb-30">
-            <label><span className="mil-light">Name</span><span className="mil-accent">Required</span></label>
-            <input type="text" placeholder="Your name" value={form.name} onChange={update("name")} required />
+            <label htmlFor="cf-name"><span className="mil-light">Name</span><span className="mil-accent">Required</span></label>
+            <input id="cf-name" name="name" autoComplete="name" type="text" placeholder="Your name" value={form.name} onChange={update("name")} required />
           </div>
         </div>
         <div className="col-md-6">
           <div className="mil-input-frame mil-mb-30">
-            <label><span className="mil-light">Email Address</span><span className="mil-accent">Required</span></label>
-            <input type="email" placeholder="you@company.com" value={form.email} onChange={update("email")} required />
+            <label htmlFor="cf-email"><span className="mil-light">Email Address</span><span className="mil-accent">Required</span></label>
+            <input id="cf-email" name="email" autoComplete="email" type="email" placeholder="you@company.com" value={form.email} onChange={update("email")} required />
           </div>
         </div>
         <div className="col-12">
           <div className="mil-input-frame mil-mb-30">
-            <label><span className="mil-light">Subject</span><span className="mil-light-soft">Optional</span></label>
-            <input type="text" placeholder="How can we help?" value={form.subject} onChange={update("subject")} />
+            <label htmlFor="cf-subject"><span className="mil-light">Subject</span><span className="mil-light-soft">Optional</span></label>
+            <input id="cf-subject" name="subject" autoComplete="off" type="text" placeholder="How can we help?" value={form.subject} onChange={update("subject")} />
           </div>
         </div>
         <div className="col-12">
           <div className="mil-input-frame mil-mb-30">
-            <label><span className="mil-light">Message</span><span className="mil-accent">Required</span></label>
-            <textarea placeholder="Tell us about your project" value={form.message} onChange={update("message")} required style={{ minHeight: "140px", paddingTop: "15px" }}></textarea>
+            <label htmlFor="cf-message"><span className="mil-light">Message</span><span className="mil-accent">Required</span></label>
+            <textarea id="cf-message" name="message" placeholder="Tell us about your project" value={form.message} onChange={update("message")} required style={{ minHeight: "140px", paddingTop: "15px" }}></textarea>
           </div>
         </div>
         <div className="col-12">
-          <p className="mil-text-sm mil-light-soft mil-mb-30">We will process your personal information in accordance with our Privacy Policy.</p>
+          <p className="mil-text-sm mil-light-soft mil-mb-30">We will process your personal information in accordance with our <a href="/privacy" className="mil-accent">Privacy Policy</a>.</p>
           <button type="submit" className="mil-button mil-accent-bg mil-fw" disabled={status === "loading"}>
             <span>{status === "loading" ? "Sending…" : "Send Message Now"}</span>
           </button>
           {status === "error" && (
-            <p className="mil-text-sm mil-light mil-mt-15">Something went wrong. Please try again or email us directly.</p>
+            <p className="mil-text-sm mil-light mil-mt-15" role="alert">Something went wrong. Please try again, or email us directly at <a href="mailto:contact@tagsolutionsltd.com" className="mil-accent">contact@tagsolutionsltd.com</a>.</p>
           )}
         </div>
       </div>

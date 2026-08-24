@@ -18,8 +18,8 @@ export const company = {
 };
 
 export const contact = {
-  offices: ["Dubai Silicon Oasis, UAE", "Lahore, Punjab, Pakistan"],
-  phones: ["+97-1508620567", "+92-3125050567"],
+  offices: ["Dubai Silicon Oasis, UAE"],
+  phones: ["+971 50 862 0567"],
   emails: ["contact@tagsolutionsltd.com", "hr@tagsolutionsltd.com"],
 };
 
@@ -27,123 +27,9 @@ export const social = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/tagsolutionsltd" },
   { label: "Instagram", href: "https://www.instagram.com/tagsltd/" },
   { label: "Facebook", href: "https://www.facebook.com/people/Tag-Solutions/61555203740162/" },
-  { label: "YouTube", href: "#" },
 ];
 
 // Primary navigation. `dropdown` marks mega-menu parents.
-export const nav = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Services", href: "/services", dropdown: "services" },
-  { label: "Industries", href: "/industries", dropdown: "industries" },
-  { label: "Success Stories", href: "/success-stories", dropdown: "success-stories" },
-  { label: "Blogs", href: "/blog", dropdown: "blog" },
-  { label: "Careers", href: "/careers" },
-];
-
-// Services mega-menu (Arbisoft-style): delivery capabilities grouped by
-// discipline. Each item links to the closest service page.
-export const serviceGroups = [
-  {
-    title: "Development & QA",
-    href: "/services/software-development",
-    items: [
-      { label: "Custom Software Development", href: "/services/software-development" },
-      { label: "Frontend Development", href: "/services/web-development" },
-      { label: "Backend Development", href: "/services/web-development" },
-      { label: "UX / UI Design", href: "/services/web-development" },
-      { label: "SaaS Development", href: "/services/software-development" },
-      { label: "MVP Development", href: "/services/software-development" },
-      { label: "Enterprise Software", href: "/services/enterprise-softwares" },
-      { label: "Software Testing & QA", href: "/services/software-development" },
-      { label: "Software Consulting", href: "/services/software-development" },
-    ],
-  },
-  {
-    title: "Mobility & Apps",
-    href: "/services/mobile-app-development",
-    items: [
-      { label: "Mobile App Development", href: "/services/mobile-app-development" },
-      { label: "iOS App Development", href: "/services/mobile-app-development" },
-      { label: "Android App Development", href: "/services/mobile-app-development" },
-      { label: "Cross-Platform Apps", href: "/services/mobile-app-development" },
-      { label: "Web App Development", href: "/services/web-development" },
-    ],
-  },
-  {
-    title: "Cloud & IT Operations",
-    href: "/services/cloud-engineering",
-    items: [
-      { label: "DevOps & CI/CD", href: "/services/cloud-engineering" },
-      { label: "Cloud Architecture", href: "/services/cloud-engineering" },
-      { label: "Cloud Migration", href: "/services/cloud-engineering" },
-      { label: "Cybersecurity", href: "/services/cloud-engineering" },
-      { label: "Infrastructure & Integration", href: "/services/enterprise-softwares" },
-    ],
-  },
-  {
-    title: "AI, ML & Automation",
-    href: "/services/data-and-ai",
-    items: [
-      { label: "Machine Learning", href: "/services/data-and-ai" },
-      { label: "Generative AI", href: "/services/data-and-ai" },
-      { label: "Predictive Analytics", href: "/services/data-and-ai" },
-      { label: "AI Automation & Chatbots", href: "/services/data-and-ai" },
-      { label: "Data Engineering", href: "/services/data-and-ai" },
-      { label: "Business Intelligence", href: "/services/data-and-ai" },
-    ],
-  },
-];
-
-// Solutions mega-menu (Arbisoft-style): domain groups with named offerings.
-// Each item links to the closest service page (no dedicated solution routes).
-export const solutionGroups = [
-  {
-    title: "Data & AI",
-    href: "/services/data-and-ai",
-    items: [
-      { label: "Generative AI", href: "/services/data-and-ai" },
-      { label: "Predictive Analytics", href: "/services/data-and-ai" },
-      { label: "Machine Learning", href: "/services/data-and-ai" },
-      { label: "AI Chatbots & Automation", href: "/services/data-and-ai" },
-      { label: "Data Engineering", href: "/services/data-and-ai" },
-      { label: "BI & Data Analytics", href: "/services/data-and-ai" },
-    ],
-  },
-  {
-    title: "Product Engineering",
-    href: "/services/software-development",
-    items: [
-      { label: "Custom Software Development", href: "/services/software-development" },
-      { label: "SaaS Development", href: "/services/software-development" },
-      { label: "MVP Development", href: "/services/software-development" },
-      { label: "Web Development", href: "/services/web-development" },
-      { label: "Mobile Apps", href: "/services/mobile-app-development" },
-    ],
-  },
-  {
-    title: "Cloud & Enterprise",
-    href: "/services/cloud-engineering",
-    items: [
-      { label: "Cloud Architecture", href: "/services/cloud-engineering" },
-      { label: "Cloud Migration", href: "/services/cloud-engineering" },
-      { label: "DevOps & CI/CD", href: "/services/cloud-engineering" },
-      { label: "ERP & CRM Systems", href: "/services/enterprise-softwares" },
-      { label: "System Integration", href: "/services/enterprise-softwares" },
-    ],
-  },
-  {
-    title: "Growth & E-Commerce",
-    href: "/services/digital-marketing",
-    items: [
-      { label: "eCommerce Development", href: "/services/web-development" },
-      { label: "Performance Marketing", href: "/services/digital-marketing" },
-      { label: "SEO & Content", href: "/services/digital-marketing" },
-      { label: "Customer Segmentation", href: "/services/data-and-ai" },
-    ],
-  },
-];
-
 export const hero = {
   eyebrow: "Technology & Global Solutions",
   titlePrefix: "Empowering Your Vision with",
@@ -167,7 +53,7 @@ export const aboutStats = [
   { value: "4+", label: "Years of Engineering Depth" },
   { value: "50+", label: "Scalable Platforms Launched" },
   { value: "95%+", label: "Client Retention Rate" },
-  { value: "Zero", label: "Technical Debt Delivery" },
+  { value: "30-Day", label: "Post-Launch Warranty" },
 ];
 
 // "Our Employees are Certified by Big Companies" — trust strip.
@@ -176,7 +62,7 @@ export const trustLogos = [
   { name: "Microsoft", src: "/tags/microsoft.svg" },
   { name: "Meta", src: "/tags/meta.svg" },
   { name: "OpenAI", src: "/tags/openai.svg" },
-  { name: "Anthropic", src: "/tags/claude-logo.svg" },
+  { name: "Claude", src: "/tags/claude-logo.svg" },
 ];
 
 // Engagement models (Arbisoft-style B2B offering — powers /engagement).
@@ -186,7 +72,7 @@ export const engagementModels = [
     price: "Monthly",
     tagline: "A full squad, embedded in your mission.",
     description:
-      "A cross-functional team of engineers, designers, and a delivery lead who work exclusively on your product as a seamless extension of your organisation.",
+      "A cross-functional team of engineers, designers, and a delivery lead who work exclusively on your product as a seamless extension of your organization.",
     features: [
       "Hand-picked, full-time team",
       "Dedicated delivery manager",
@@ -244,7 +130,7 @@ export const faqs = [
   },
   {
     q: "Where are your teams located?",
-    a: "We operate from Dubai Silicon Oasis, UAE and Lahore, Pakistan, serving clients across the UAE, Pakistan, and beyond. Our teams work across time zones with overlapping hours for real-time collaboration.",
+    a: "We operate from Dubai Silicon Oasis, UAE, serving clients across the region and beyond. Our teams work across time zones with overlapping hours for real-time collaboration.",
   },
   {
     q: "How do you ensure quality and security?",
@@ -269,7 +155,7 @@ export const sled = {
   title: "U.S. SLED Delivery Partner",
   subtitle: "State, Local & Education technology delivery",
   description:
-    "TAG Solutions partners with U.S. State, Local, and Education (SLED) organisations to deliver secure, compliant, cloud-native software — from modernisation to net-new builds.",
+    "TAG Solutions partners with U.S. State, Local, and Education (SLED) organizations to deliver secure, compliant, cloud-native software — from modernization to net-new builds.",
   highlights: [
     { title: "State, Local & Education", text: "Purpose-built delivery for public-sector agencies, municipalities, and education institutions." },
     { title: "FedRAMP-Aware Cloud", text: "Cloud architectures designed with FedRAMP and government security baselines in mind." },

@@ -35,9 +35,8 @@ export default function CookieConsent() {
   const acceptAll = () => persist({ essential: true, marketing: true });
   const rejectAll = () => persist({ essential: true, marketing: false });
   const savePrefs = () => persist({ essential: true, marketing });
-  // Closing without choosing = continue without accepting (essential only),
-  // per the notice copy. We don't store it, so it reappears next visit.
-  const dismiss = () => setVisible(false);
+  // Closing the notice = reject non-essential (and we say so in the copy).
+  const dismiss = () => rejectAll();
 
   return (
     <div role="dialog" aria-label="Cookie notice" style={styles.wrap}>
@@ -47,8 +46,8 @@ export default function CookieConsent() {
       </div>
 
       <p style={styles.text}>
-        We use cookies for essential functions and marketing. Click &ldquo;Accept&rdquo; or
-        close this message to continue without accepting.
+        We use cookies for essential functions and, with your consent, marketing.
+        Closing this notice rejects non-essential cookies. <a href="/privacy" style={{ color: ACCENT }}>Privacy Policy</a>.
       </p>
 
       {customizing && (
@@ -75,8 +74,8 @@ export default function CookieConsent() {
         ) : (
           <button type="button" onClick={() => setCustomizing(true)} style={styles.btnGhost}>Customize</button>
         )}
-        <button type="button" onClick={rejectAll} style={styles.btnGhost}>Reject</button>
-        <button type="button" onClick={acceptAll} style={styles.btnAccent}>Accept</button>
+        <button type="button" onClick={rejectAll} style={styles.btnGhost}>Reject non-essential</button>
+        <button type="button" onClick={acceptAll} style={styles.btnAccent}>Accept all</button>
       </div>
     </div>
   );

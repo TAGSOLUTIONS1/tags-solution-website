@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
-import { serviceGroups, solutionGroups } from "@/data/site";
 import { nicheSearchEntries } from "@/data/nicheSearchIndex";
 import { products } from "@/data/products";
 
@@ -25,9 +24,7 @@ function buildStaticIndex() {
     seen.add(key);
     out.push({ type, title, href });
   };
-  services.forEach((s) => add("Service", s.shortTitle, `/services/${s.slug}`));
-  serviceGroups.forEach((g) => g.items.forEach((it) => add("Service", it.label, it.href)));
-  solutionGroups.forEach((g) => g.items.forEach((it) => add("Solution", it.label, it.href)));
+  services.forEach((s) => add("Solution", s.shortTitle, `/services/${s.slug}`));
   industries.forEach((i) => add("Industry", i.title, `/industries/${i.slug}`));
   nicheSearchEntries.forEach((e) => add(e.type, e.title, e.href));
   products.forEach((p) => add("Product", p.name, `/products#${p.slug}`));
@@ -41,7 +38,7 @@ const SEARCH_SVG = (
 );
 
 const BADGE_BG = {
-  Service: "rgba(245,124,0,.12)",
+  Solution: "rgba(245,124,0,.12)",
   Solution: "rgba(245,124,0,.12)",
   Niche: "rgba(245,124,0,.12)",
   Product: "rgba(245,124,0,.12)",
@@ -74,11 +71,12 @@ export default function SearchWidget() {
           return [];
         }
       };
-      const [blogs, cases] = await Promise.all([fetchList("/blogs/"), fetchList("/case-studies/")]);
+      // Only blogs come from the API now — every success story is already in
+      // the static index at its canonical niche route (demo studies excluded).
+      const blogs = await fetchList("/blogs/");
       if (cancelled) return;
       const entries = [
         ...blogs.filter((b) => b.slug && b.title).map((b) => ({ type: "Blog", title: b.title, href: `/blog/${b.slug}` })),
-        ...cases.filter((c) => c.slug && c.title).map((c) => ({ type: "Success Story", title: c.title, href: `/success-stories/${c.slug}` })),
       ];
       setRemote(entries);
       setLoaded(true);

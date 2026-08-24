@@ -7,7 +7,7 @@ import { pageMeta } from "@/lib/seo";
 export const metadata = pageMeta({
   title: "U.S. SLED Delivery Partner",
   description:
-    "TAG Solutions delivers secure, compliant, cloud-native software for U.S. State, Local & Education organisations — FedRAMP-aware, NIST 800-53 and CMMC Level 1 aligned.",
+    "TAG Solutions delivers secure, compliant, cloud-native software for U.S. State, Local & Education organizations — FedRAMP-aware, NIST 800-53 and CMMC Level 1 aligned.",
   path: "/sled",
 });
 
@@ -82,7 +82,7 @@ export default function Page() {
             </div>
             <div className="col-lg-7 mil-mb-60">
               <p className="mil-mb-30">
-                TAG Solutions serves U.S. State, Local, and Education organisations &mdash; agencies, municipalities, and institutions &mdash; with software delivery engineered for the public sector. From modernising legacy systems to standing up net-new platforms, we design cloud-native architectures that hold up to public-sector scrutiny.
+                TAG Solutions serves U.S. State, Local, and Education organizations &mdash; agencies, municipalities, and institutions &mdash; with software delivery engineered for the public sector. From modernizing legacy systems to standing up net-new platforms, we design cloud-native architectures that hold up to public-sector scrutiny.
               </p>
               <p className="mil-mb-0">
                 Our delivery is compliance-aware from day one: cloud environments designed with <span className="mil-accent">FedRAMP</span> baselines in mind, controls aligned to <span className="mil-accent">NIST 800-53</span> and <span className="mil-accent">CMMC Level 1</span>, and registration under <span className="mil-accent">NAICS 541511</span> (Custom Computer Programming Services) &mdash; so procurement and security teams have a defensible, auditable partner.

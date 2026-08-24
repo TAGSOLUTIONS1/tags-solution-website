@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { company, contact, social, solutionGroups } from "@/data/site";
+import { company, contact, social } from "@/data/site";
 import { services as serviceList } from "@/data/services";
 import NewsletterForm from "@/components/NewsletterForm";
 
@@ -30,33 +30,25 @@ export default function FooterBig() {
               </p>
               <ul className="mil-simple-list mil-mb-15">
                 {contact.phones.map((p) => (
-                  <li key={p} className="mil-light"><span className="mil-light-soft">{p}</span></li>
+                  <li key={p} className="mil-light"><a href={`tel:${p.replace(/[^+\d]/g, "")}`} className="mil-accent">{p}</a></li>
                 ))}
                 {contact.emails.map((e) => (
-                  <li key={e}><span className="mil-accent">{e.split("@")[0]}</span><span className="mil-light mil-light-soft">@{e.split("@")[1]}</span></li>
+                  <li key={e}><a href={`mailto:${e}`} className="mil-accent">{e}</a></li>
                 ))}
               </ul>
             </div>
             <div className="col-md-8 col-lg-8 col-xl-8">
               <div className="row justify-content-end">
-                <div className="col-6 col-lg-3 mil-mb-60">
+                <div className="col-6 col-lg-4 mil-mb-60">
                   <h4 className="mil-list-title mil-light mil-mb-30">Solutions</h4>
                   <ul className="mil-hover-link-list mil-light">
-                    {solutionGroups.map((g) => (
-                      <li key={g.title}><Link href={g.href}>{g.title}</Link></li>
+                    {serviceList.map((sv) => (
+                      <li key={sv.slug}><Link href={`/services/${sv.slug}`}>{sv.shortTitle || sv.title}</Link></li>
                     ))}
                     <li><Link href="/industries">By Industry</Link></li>
                   </ul>
                 </div>
-                <div className="col-6 col-lg-3 mil-mb-60">
-                  <h4 className="mil-list-title mil-light mil-mb-30">Services</h4>
-                  <ul className="mil-hover-link-list mil-light">
-                    {serviceList.slice(0, 5).map((s) => (
-                      <li key={s.slug}><Link href={`/services/${s.slug}`}>{s.shortTitle}</Link></li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="col-6 col-lg-3 mil-mb-60">
+                <div className="col-6 col-lg-4 mil-mb-60">
                   <h4 className="mil-list-title mil-light mil-mb-30">Company</h4>
                   <ul className="mil-hover-link-list mil-light">
                     <li><Link href="/about">About Us</Link></li>
@@ -67,7 +59,7 @@ export default function FooterBig() {
                     <li><Link href="/engagement">Engagement Models</Link></li>
                   </ul>
                 </div>
-                <div className="col-6 col-lg-3 mil-mb-60">
+                <div className="col-6 col-lg-4 mil-mb-60">
                   <h4 className="mil-list-title mil-light mil-mb-30">Connect</h4>
                   <ul className="mil-hover-link-list mil-light">
                     <li><Link href="/faq">FAQ</Link></li>
@@ -84,7 +76,7 @@ export default function FooterBig() {
       </div>
       <div className="mil-footer-bottom">
         <div className="container">
-          <p className="mil-text-sm mil-light">© {company.name} {company.founded}–2026.</p>
+          <p className="mil-text-sm mil-light">© {company.name} {company.founded}–{new Date().getFullYear()}. · <a href="/privacy" style={{ opacity: .85 }}>Privacy Policy</a></p>
           <p className="mil-text-sm mil-light">All Rights Reserved.</p>
         </div>
       </div>

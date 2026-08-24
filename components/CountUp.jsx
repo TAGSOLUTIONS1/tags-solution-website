@@ -16,7 +16,9 @@ export default function CountUp({ value, duration = 1600 }) {
   const decimals = numStr.includes(".") ? numStr.split(".")[1].length : 0;
   const format = (n) => (decimals ? n.toFixed(decimals) : String(Math.round(n)));
 
-  const [display, setDisplay] = useState(() => format(0));
+  // Server-render the FINAL value so counters are never blank/zero without
+  // JS; the count-up animation replays from 0 when the element scrolls into view.
+  const [display, setDisplay] = useState(() => format(target === null ? 0 : target));
   const ref = useRef(null);
   const started = useRef(false);
 
@@ -28,6 +30,7 @@ export default function CountUp({ value, duration = 1600 }) {
     const run = () => {
       if (started.current) return;
       started.current = true;
+      setDisplay(format(0));
       const start = performance.now();
       const step = (now) => {
         const p = Math.min((now - start) / duration, 1);

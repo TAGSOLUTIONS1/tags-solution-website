@@ -30,7 +30,7 @@ export const models = [
     price: "Monthly",
     tagline: "A full squad, embedded in your mission.",
     description:
-      "A cross-functional team of engineers, designers, and a delivery lead who work exclusively on your product as a seamless extension of your organisation — without the overhead of hiring.",
+      "A cross-functional team of engineers, designers, and a delivery lead who work exclusively on your product as a seamless extension of your organization — without the overhead of hiring.",
     features: [
       "Hand-picked, full-time team",
       "Dedicated delivery manager",
@@ -161,28 +161,78 @@ export const questions = [
 
 export const faqGroups = [
   {
-    group: "Outsourcing FAQs",
-    items: [
-      { q: "Is outsourcing expensive?", a: "Not necessarily. A fixed-scope engagement gives you a locked budget upfront with no hiring, onboarding, or infrastructure overhead. For most SMEs it costs less than building and retaining an equivalent in-house team." },
-      { q: "How much control do I have when outsourcing?", a: "You define the goals and sign off at each milestone; we handle day-to-day execution and management, and keep you updated with regular demos and reports. You stay in control of direction without managing the details." },
-      { q: "What kind of projects are best suited for outsourcing?", a: "Well-defined initiatives with a clear scope — MVPs, platform builds, integrations, or modernisation — especially when you want a single accountable partner to take it from design to launch." },
-      { q: "How do I maintain quality in outsourced projects?", a: "Quality is maintained through clear KPIs, code reviews, automated testing, and QA processes. You get an experienced team that has shipped similar projects, plus adherence to industry standards that reduces the risk of errors and delays." },
-    ],
+    "group": "Outsourcing FAQs",
+    "items": [
+      {
+        "q": "How much does a fixed-scope project cost?",
+        "a": "Every project is quoted after a free discovery call, based on scope and complexity. The quote is broken down by milestone and locked before work begins, with no hourly billing, so the price you sign is the price you pay. For most SMEs this comes in around 40% below the cost of recruiting, onboarding, and retaining an equivalent in-house team."
+      },
+      {
+        "q": "What happens if requirements change mid-project?",
+        "a": "Minor refinements within the agreed scope are absorbed at no cost. Anything beyond it goes through a written change request: we assess the impact on budget and timeline within two business days, you approve it in writing before any work starts, and the contract is updated. You will never see an invoice for work you didn’t sign off."
+      },
+      {
+        "q": "How much control and visibility do I have?",
+        "a": "You approve the scope, review a working build at every milestone, and give final sign-off before launch. Between milestones you have live access to the project board (Jira or ClickUp), a weekly written status report, and scheduled demo calls, while we run the day-to-day: standups, task management, senior code reviews, and dedicated QA. You steer the product; we manage the developers."
+      },
+      {
+        "q": "Who owns the code, and how is my data protected?",
+        "a": "You do, 100%. Full IP, including source code, designs, documentation, and infrastructure configuration, is assigned to you in the contract and handed over at the completion of each milestone. We sign NDAs before discovery even begins, repositories and cloud environments are set up under your own accounts wherever possible, and all team access is revoked at handover. Your code is never reused on another client’s project."
+      },
+      {
+        "q": "What support do I get after launch?",
+        "a": "Every fixed-scope engagement includes a 30-day post-launch support period, during which any defects surfaced are resolved at no charge. After that, most clients move to a monthly support retainer covering monitoring, security patches, and minor enhancements. Prefer to take it in-house? We hand over complete documentation and run a walkthrough with your team so the transition is clean."
+      }
+    ]
   },
   {
-    group: "Dedicated Teams FAQs",
-    items: [
-      { q: "How is a dedicated team different from outsourcing?", a: "A dedicated team works exclusively on your product as an extension of your organisation, with you collaborating closely and making the decisions — whereas outsourcing hands full project ownership to us." },
-      { q: "Can I scale the team up or down?", a: "Yes. Team size and composition can be adjusted as your roadmap changes — add specialists for a push, or scale back between phases." },
-      { q: "Who manages the dedicated team?", a: "We provide a delivery manager and suggest the structure; you set priorities and direction. It's a shared model built around close collaboration." },
-    ],
+    "group": "Dedicated Teams FAQs",
+    "items": [
+      {
+        "q": "How is a dedicated team different from outsourcing?",
+        "a": "With outsourcing, you hand us a defined scope and we deliver the finished product. With a dedicated team, the people are yours: engineers and a delivery lead who work exclusively on your product, follow your roadmap, and operate as a direct extension of your organization. You decide what gets built and in what order; we make sure it gets built well."
+      },
+      {
+        "q": "Who manages the team day to day?",
+        "a": "You own the roadmap, priorities, and every product decision. Our delivery manager owns execution, covering sprint planning, standups, velocity, unblocking, and weekly demo reporting, so none of the operational load lands on your desk. If you’d rather run the team directly under your own product or engineering lead, we support that model too, with the delivery manager stepping back into a lightweight coordination role."
+      },
+      {
+        "q": "What is the minimum team size and commitment?",
+        "a": "Teams start at three full-time engineers on an initial three-month term, then continue on monthly rolling contracts. Adding a specialist takes one week; scaling down requires 30 days’ written notice. No placement fees, no penalties, no long-term lock-in."
+      },
+      {
+        "q": "Can I interview the team, and what if someone isn’t a fit?",
+        "a": "Yes. You interview and approve every member before they join, and you can specify the exact skills and seniority you need. If anyone underperforms or the chemistry isn’t right, tell us. We replace them within two weeks at no cost, with a structured handover so your velocity doesn’t drop."
+      },
+      {
+        "q": "How do you handle time zones and communication?",
+        "a": "Our teams are based in Lahore (UTC+5) and Dubai (UTC+4), but they work on your clock, not ours. Whether you’re in the US, UK, EU, or the Gulf, the team aligns its full working day to your business hours, giving you real-time collaboration rather than overnight handoffs. You get direct Slack or Teams access to every team member, daily written standups, and a weekly demo call. No account managers standing between you and your engineers."
+      }
+    ]
   },
   {
-    group: "Staff Augmentation FAQs",
-    items: [
-      { q: "How fast can augmented engineers start?", a: "Typically within 1–2 weeks. Vetted engineers integrate directly into your existing workflow, tools, and standards with minimal ramp-up." },
-      { q: "Do I manage the augmented staff?", a: "Yes — you direct and manage them like your own team members. We provide the talent and handle contracts; you provide the roadmap and oversight." },
-      { q: "Is there a long-term commitment?", a: "No. Staff augmentation runs on flexible, monthly rolling contracts, so you can scale resources up or down based on your needs." },
-    ],
-  },
+    "group": "Staff Augmentation FAQs",
+    "items": [
+      {
+        "q": "How are your engineers vetted?",
+        "a": "Every engineer passes a four-stage screen before they ever reach a client: a technical assessment, a live coding interview on realistic problems, a system-design round, and an English communication interview, plus reference checks. Fewer than 1 in 10 applicants make it through. You then interview the shortlist yourself and make the final call."
+      },
+      {
+        "q": "How quickly can an engineer start?",
+        "a": "Within one week of a signed agreement, often sooner. We share matched profiles within three business days; once you approve someone, they’re set up in your repos, tools, and rituals, usually committing code within their first few days. They adapt to your stack and your standards, so there is no “our process” for your team to learn."
+      },
+      {
+        "q": "Do I manage the augmented engineers?",
+        "a": "Fully. They attend your standups, take direction from your leads, and follow your workflow exactly like employees. We stay in the background handling contracts, payroll, equipment, and HR, so you get the output of a hire with none of the administration. Their working hours align to your team’s core hours, not ours."
+      },
+      {
+        "q": "What if an engineer isn’t the right fit?",
+        "a": "Tell us, with no awkward conversations required on your side. We provide a replacement within ten business days at no additional cost and manage the handover between engineers ourselves."
+      },
+      {
+        "q": "What are the contract terms and pricing?",
+        "a": "A flat monthly rate per engineer with no recruitment fees, no benefits costs, and no hidden extras: the number on the contract is the number on the invoice. Contracts roll monthly, and you can scale down or exit with 30 days’ notice."
+      }
+    ]
+  }
 ];
