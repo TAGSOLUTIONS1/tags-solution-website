@@ -194,6 +194,189 @@ export const industries = [
       { metric: "Shipments Managed", value: "1M+" },
     ],
   },
+  {
+    "slug": "government",
+    "title": "Government Solutions",
+    "icon": "🏛️",
+    "image": "/tags/industry-government.jpg",
+    "excerpt": "Open data, secure AI, and citizen services built to public-sector standards.",
+    "heroHeadline": "Digital government that citizens can actually use",
+    "heroSubtext": "From open data portals running at national scale to AI that never lets sensitive data leave your infrastructure — we build for the standards, security, and scrutiny of the public sector.",
+    "intro": "Government technology has to work for everyone, satisfy auditors, and outlive election cycles. We engineer open, accessible, and sovereign systems — and our U.S. SLED practice covers the compliance side (FedRAMP-aligned cloud baselines, NIST 800-53, NAICS 541511 registration) so procurement has a defensible partner.",
+    "challenges": [
+      "Legacy systems that predate the modern web",
+      "Strict security, sovereignty, and compliance requirements",
+      "Data silos in the way of transparency mandates",
+      "Citizen-facing services that must be accessible to all"
+    ],
+    "solutions": [
+      {
+        "title": "Open Data Platforms",
+        "description": "Production data portals at government scale — publishing, APIs, and WCAG-accessible citizen access.",
+        "href": "/services/data-and-ai"
+      },
+      {
+        "title": "Secure & Sovereign AI",
+        "description": "AI on sensitive data with zero egress: on-premise or hybrid deployments where information never leaves your control.",
+        "href": "/services/data-and-ai"
+      },
+      {
+        "title": "Citizen Digital Services",
+        "description": "Fast, accessible web services the public can actually complete — forms, portals, and self-service workflows.",
+        "href": "/services/web-development"
+      },
+      {
+        "title": "GIS & Urban Intelligence",
+        "description": "A single map for an entire city's data — geospatial analytics for planning, operations, and public dashboards.",
+        "href": "/services/software-development"
+      },
+      {
+        "title": "Legacy Modernization",
+        "description": "Incremental replacement of aging systems with cloud-ready platforms — without interrupting services citizens rely on.",
+        "href": "/services/enterprise-softwares"
+      }
+    ],
+    "stats": [
+      {
+        "metric": "In Production",
+        "value": "22 Years"
+      },
+      {
+        "metric": "Data Egress (On-Prem Mode)",
+        "value": "Zero"
+      },
+      {
+        "metric": "Accessibility Standard",
+        "value": "WCAG 2.1"
+      },
+      {
+        "metric": "Deploy Modes: Cloud, Hybrid, On-Prem",
+        "value": "3"
+      }
+    ]
+  },
+  {
+    "slug": "enterprise",
+    "title": "Enterprise",
+    "icon": "🏢",
+    "image": "/tags/industry-enterprise.jpg",
+    "excerpt": "Knowledge, finance, and AI systems that work at the scale large organizations run at.",
+    "heroHeadline": "Enterprise systems that keep up with the enterprise",
+    "heroSubtext": "One search bar across every system you run, finance operations executed by agents, and AI platforms you can self-host — engineered for permissions, audit, and scale from day one.",
+    "intro": "Large organizations don't suffer from a lack of software — they suffer from software that doesn't talk, knowledge nobody can find, and processes that still need a human to push every button. We build the connective layer: enterprise search, agentic operations, and private AI that respect your permissions and your perimeter.",
+    "challenges": [
+      "Knowledge scattered across dozens of disconnected systems",
+      "Manual back-office processes that don't scale",
+      "AI ambitions blocked by data-privacy and egress constraints",
+      "Integration sprawl between legacy and modern platforms"
+    ],
+    "solutions": [
+      {
+        "title": "Enterprise Knowledge Search",
+        "description": "One search bar across every system the company knows — with existing permissions enforced on every result.",
+        "href": "/services/data-and-ai"
+      },
+      {
+        "title": "Agentic Operations",
+        "description": "Complete business workflows — like end-to-end finance — executed by AI agents with approvals and full audit trails.",
+        "href": "/services/data-and-ai"
+      },
+      {
+        "title": "Private & Self-Hosted AI",
+        "description": "Agent platforms deployed inside your own infrastructure with zero data egress.",
+        "href": "/services/data-and-ai"
+      },
+      {
+        "title": "Systems Integration",
+        "description": "Making the platforms you already own work as one — ERPs, CRMs, data warehouses, and internal tools.",
+        "href": "/services/enterprise-softwares"
+      },
+      {
+        "title": "Cloud Modernization",
+        "description": "Migration and re-architecture that cut cost and unlock scale without betting the business on a big bang.",
+        "href": "/services/cloud-engineering"
+      }
+    ],
+    "stats": [
+      {
+        "metric": "Permissions Enforced",
+        "value": "100%"
+      },
+      {
+        "metric": "Unified Search Interface",
+        "value": "1"
+      },
+      {
+        "metric": "Manual Touch Required",
+        "value": "0"
+      },
+      {
+        "metric": "Deployment Footprint",
+        "value": "Global"
+      }
+    ]
+  },
+  {
+    "slug": "education",
+    "title": "EdTech",
+    "icon": "🎓",
+    "image": "/tags/industry-education.jpg",
+    "excerpt": "Learning platforms and AI course tools built with — and for — educators.",
+    "heroHeadline": "Technology that teaches the way educators do",
+    "heroSubtext": "AI that turns course creation from weeks into minutes across 900+ languages, professional learning built by educators, and platforms that give schools real insight into progress.",
+    "intro": "EdTech fails when it's built for demos instead of classrooms. We build with educators: course generation with a tutor grounded in each course's own content, standards-compliant delivery (SCORM/LTI), evidence portfolios, and analytics that serve teaching — from individual creators to school-wide platforms. For U.S. public education buyers, our SLED practice covers procurement and compliance.",
+    "challenges": [
+      "Course creation that takes weeks per course",
+      "Serving learners across many languages and levels",
+      "Meeting standards like SCORM and LTI without friction",
+      "Giving schools visibility without burying teachers in admin"
+    ],
+    "solutions": [
+      {
+        "title": "AI Course & Content Generation",
+        "description": "Structured courses generated in minutes — with a RAG tutor grounded in each course's own material.",
+        "href": "/services/data-and-ai"
+      },
+      {
+        "title": "Learning Platform Engineering",
+        "description": "Full learning platforms — enrollment, delivery, assessment, and evidence portfolios — built to education standards.",
+        "href": "/services/web-development"
+      },
+      {
+        "title": "Mobile Learning",
+        "description": "Learning experiences designed for the devices students actually use.",
+        "href": "/services/mobile-app-development"
+      },
+      {
+        "title": "Learning Analytics",
+        "description": "School-wide progress and engagement insight that serves teachers instead of burdening them.",
+        "href": "/services/data-and-ai"
+      },
+      {
+        "title": "District & Campus Systems",
+        "description": "The operational platforms behind the learning — admissions, scheduling, and administration.",
+        "href": "/services/enterprise-softwares"
+      }
+    ],
+    "stats": [
+      {
+        "metric": "Per-Course Creation Time (was weeks)",
+        "value": "Minutes"
+      },
+      {
+        "metric": "Languages Supported",
+        "value": "900+"
+      },
+      {
+        "metric": "SCORM & LTI Standard Export",
+        "value": "2"
+      },
+      {
+        "metric": "K-12 EdTech Award Winner",
+        "value": "K-12"
+      }
+    ]
+  }
 ];
 
 export const getIndustry = (slug) => industries.find((i) => i.slug === slug);

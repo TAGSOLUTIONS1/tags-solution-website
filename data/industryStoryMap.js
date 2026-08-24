@@ -30,5 +30,8 @@ export const industryStoryMap = {
   "logistics": [
     "cargo-arrivals-forecast-daily",
     "predictive-site-logistics"
-  ]
+  ],
+  government: ["production-open-data-portals-government-scale", "ai-on-sensitive-data-zero-egress", "geostats-single-map-entire-city"],
+  enterprise: ["one-search-bar-across-every-system", "end-to-end-finance-operations-run-by-agents", "self-hosted-agent-platform-zero-data-egress", "due-diligence-in-minutes-source-cited"],
+  education: ["course-creation-in-minutes-900-languages", "professional-learning-by-educators-for-educators", "learning-platform-for-eduspark"]
 };

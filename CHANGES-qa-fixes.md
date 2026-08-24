@@ -282,3 +282,18 @@ demo pages' final fate + HomeFind/EduSpark redirects.
   inside the Company dropdown); divider end-ticks retired SITE-WIDE via
   one rule (1px hairlines everywhere; dark variant keeps a light line) —
   the earlier per-section removals are now the universal standard.
+
+### Owner round 3 — three new industries
+- Government Solutions, Enterprise, and Education added end-to-end: full
+  entries (hero, intro, 4 challenges, 5 linked solutions each), story
+  rails from real portfolio work (gov: open-data portals, zero-egress AI,
+  GeoStats; enterprise: knowledge search, agentic finance, self-hosted
+  agents, due diligence; education: 900-language course builder,
+  professional learning, EduSpark), and stat bands sourced from those
+  stories\x27 published numbers — no invented metrics. Education chosen as
+  the third per delegation: three real EdTech stories + the SLED practice
+  already targets education buyers. Auto-propagated: homepage cards (9),
+  /industries grid, search, sitemap, footer By-Industry.
+- ASSET NOTE for owner: the three hero images temporarily reuse existing
+  industry photos — supply Government/Enterprise/Education photos to
+  replace.
