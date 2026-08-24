@@ -43,7 +43,9 @@ export default function Header({ transparent = false, fluid = false }) {
                     <li><Link href="/faq">FAQ</Link></li>
                   </ul>
                 </li>
-                <li><Link href="/contact">Contact Us</Link></li>
+                {/* the one nav item we want people to notice: .mil-nav-cta
+                    pulses it between the nav colour and the brand orange */}
+                <li className="mil-nav-cta"><Link href="/contact">Contact Us</Link></li>
               </ul>
               <SearchWidget />
             </nav>

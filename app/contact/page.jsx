@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
-import { contact } from "@/data/site";
+import { contact, CALENDLY_URL } from "@/data/site";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -75,6 +75,22 @@ export default function Page() {
                   </div>
                 </div>
               ))}
+
+              {/* book a meeting — the alternative to the form for people who'd
+                  rather talk. Uses the same site-wide CALENDLY_URL as every
+                  other booking CTA, so there's one link to change. */}
+              <div className="mil-icon-box-2 mil-mb-60">
+                <div className="mil-icon-frame mil-icon-frame-md mil-icon-bg mil-mb-30" style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px" }}>
+                  <i className="fas fa-calendar-alt mil-accent" aria-hidden="true"></i>
+                </div>
+                <div className="mil-box-text">
+                  <h5 className="mil-mb-15">Book a Meeting</h5>
+                  <p className="mil-mb-30">Rather talk it through? Pick a time that suits you and we&apos;ll take it from there.</p>
+                  <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="mil-button mil-accent-bg">
+                    <span>Book a Meeting</span>
+                  </a>
+                </div>
+              </div>
             </div>
 
             {/* right — message form */}
