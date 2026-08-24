@@ -14,3 +14,8 @@
 - EdTech hero re-cropped to the uniform 1920x1072 ratio (the white-band
   crop had left it taller than its siblings, breaking the third row of
   the industries grid); crop window biased to show students at tables.
+- Industries grid cover frames fixed: the template frame class only
+  styles images inside .mil-card, so the cards were rendering raw
+  unstyled photos (left-edge slices). New self-contained .ind-cover
+  frame: landscape at the photos exact ratio, grayscale-to-color hover
+  matching the site language.

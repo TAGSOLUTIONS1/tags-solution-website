@@ -49,7 +49,7 @@ export default function IndustriesPage() {
             {industries.map((ind) => (
               <div className="col-lg-4 col-md-6 mil-mb-60" key={ind.slug}>
                 <div style={{ display: "flex", flexDirection: "column", height: "100%", border: "1px solid rgba(18,24,32,.08)", borderRadius: "10px", overflow: "hidden", background: "#fff" }}>
-                  <Link href={`/industries/${ind.slug}`} className="mil-cover-frame" style={{ display: "block" }}>
+                  <Link href={`/industries/${ind.slug}`} className="ind-cover">
                     <img src={ind.image} alt={ind.title} />
                   </Link>
                   <div style={{ padding: "34px", display: "flex", flexDirection: "column", flexGrow: 1 }}>

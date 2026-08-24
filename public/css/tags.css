@@ -830,3 +830,11 @@
 .mil-divider:before, .mil-divider:after { display: none !important; }
 .mil-divider { height: 1px; }
 .mil-divider.mil-light { background-color: rgba(255, 255, 255, .12); }
+
+/* --- Industries grid cover frames: self-contained (the template's
+   .mil-cover-frame rules only apply inside .mil-card, so these cards were
+   rendering raw unstyled images — left-edge slices). Landscape frame at
+   the photos' exact ratio, house grayscale-to-color hover. --- */
+.ind-cover { position: relative; overflow: hidden; display: block; aspect-ratio: 1920 / 1072; }
+.ind-cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: .4s cubic-bezier(0, 0, .3642, 1); }
+.ind-cover:hover img { filter: grayscale(100%); transform: scale(1.03); }
